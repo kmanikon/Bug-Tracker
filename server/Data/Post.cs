@@ -1,0 +1,79 @@
+﻿using System.ComponentModel.DataAnnotations;
+namespace ticket_server.Data
+{
+	internal sealed class Post
+	{
+		[Key]
+		public int PostId { get; set; }
+
+		[Required]
+		[MaxLength(100)]
+		public string Title { get; set; } = string.Empty;
+
+		[Required] 
+        public int ProjectId { get; set; }
+
+
+        [Required]
+        [MaxLength(1000)]
+        public string Description { get; set; } = string.Empty;
+
+
+
+
+        [Required]
+		[MaxLength(1000)]
+		public string AsignedDev { get; set; } = string.Empty;
+
+
+        [Required]
+        [MaxLength(1000)]
+        public string AsignedDevEmail { get; set; } = string.Empty;
+
+        [Required]
+        public int AsignedDevUid { get; set; }
+
+
+
+        [Required]
+        [MaxLength(1000)]
+        public string Submitter { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(1000)]
+        public string SubmitterEmail { get; set; } = string.Empty;
+
+        [Required]
+        public int SubmitterUid { get; set; }
+
+
+
+        [Required]
+        [MaxLength(100)]
+        public string TicketPrio { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(100)]
+        public string TicketStatus { get; set; } = string.Empty;
+
+
+        [Required]
+        [MaxLength(100)]
+        public string TicketType { get; set; } = string.Empty;
+
+        [Required]
+        public int TicketNumber { get; set; }
+
+
+        [Required]
+        public DateTime SubmitDate { get; set; }
+
+        [Required]
+        public DateTime ModifyDate { get; set; }
+
+
+        [Required]
+        public bool Read { get; set; }
+    }
+}
+

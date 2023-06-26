@@ -1,0 +1,43 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    /*width: 80vw;*/ /* change from 'width: 100%;' to 'width: 100%;' */
+    /*border: 1px solid #ddd;*/
+    margin-left: 20px; /* add this line to add space on the left side */
+    margin-right: 20px;
+}
+ 
+table th, table td {
+    text-align: center;
+    padding: 16px;
+    /*border: 1px solid #ddd;*/
+}
+
+ 
+table tr:hover {
+    background-color: #ddd;
+}
+ 
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #B8E2F2; /*#2bd3f1;*/ /*#ff993b*/
+    color: #3c3b3b;
+    font-weight: bold;
+    font-size: large;
+}
+
+table {
+    word-break: break-word;
+}
+
+
+
+.tableContainer{
+
+    border-radius: 20px;
+    /*height: 300px;*/
+    padding: 0 10px 10px 10px;
+    /*overflow-y: scroll;*/
+}

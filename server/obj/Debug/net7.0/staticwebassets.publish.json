@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2MhWw4OfBF6U7lnotsxya6sZLA7QACZ1bkBHrme9CqY=",
+  "Source": "ticket_server",
+  "BasePath": "_content/ticket_server",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
