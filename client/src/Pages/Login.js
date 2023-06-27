@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem, Grid, InputAdornment, IconButton } from '@material-ui/core/';
+import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem, Grid, InputAdornment, IconButton, CircularProgress } from '@material-ui/core/';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
@@ -54,6 +54,8 @@ const Login = ({user, setUser, setInit}) => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [username, setUsername] = useState('');
+
+  const [isLoading, setIsLoading] = useState(false);
 
   //const [admin, setAdmin] = useState(false);
   var admin = false;
@@ -200,7 +202,7 @@ const Login = ({user, setUser, setInit}) => {
 
   const makeAPICallGetUser = async (route, demo) => {
 
-
+    setIsLoading(true)
     fetch(url + route, {
         method: 'GET',
         headers: {
@@ -210,6 +212,7 @@ const Login = ({user, setUser, setInit}) => {
 
     .then(response => response.json())
     .then(response => {
+        setIsLoading(false)
         localStorage.setItem( 'currentUser', JSON.stringify(response) );
         setUser(response);
 
@@ -241,6 +244,7 @@ const Login = ({user, setUser, setInit}) => {
         
     })
     .catch((error) => {
+      setIsLoading(false)
       setLoginState(1);
     });
   }
@@ -344,7 +348,7 @@ const makeAPICallPut = async (route, post) => {
     }
 
     
-    
+    setIsLoading(true)
     await fetch(url + 'get-user-by-name/' + email + '/' + username, {
       method: 'GET',
       headers: {
@@ -355,9 +359,11 @@ const makeAPICallPut = async (route, post) => {
     .then(response => response.json())
     .then(response => {
       //handleSignIn();
+      setIsLoading(false)
       setLoginState(2);
     })
     .catch(response => {
+        setIsLoading(false)
         makeAPICallPost('create-user', form);
 
 
@@ -442,6 +448,7 @@ const makeAPICallPut = async (route, post) => {
     setSignUp(0)
     setLoginState(0)
   }
+
 
 
   return (
@@ -549,7 +556,15 @@ const makeAPICallPut = async (route, post) => {
             }}
             onClick={handleSignUp}
             >
+              {isLoading ? 
+              <div>
+              <CircularProgress size={15}/>
+              </div>
+              :
+              <>
               {signUp === 1 ? 'Sign Up' : 'Sign In'}
+              </>
+              }
           </Button>
         
         : 
@@ -689,6 +704,7 @@ const makeAPICallPut = async (route, post) => {
         null
         }
 
+        {/*LoadingCircle*/}
 
        
         </div>
@@ -777,35 +793,65 @@ const makeAPICallPut = async (route, post) => {
 
 
 
-
-        <Button variant="text" style={{
+      {isLoading ? 
+        <div style={{
           width: '300px', 
           textAlign: 'center', 
           marginLeft: '55px', 
           marginTop: '20px',
           marginBottom: '20px',
           textTransform: 'none'
-          }}
-          //onClick={handleSignInDemoAdmin}
-          onClick={swapDemo}
-          >
+          }}>
+            <CircularProgress size={40}/>
+        </div>
+          :
+        <>
+            <Button variant="text" style={{
+            width: '300px', 
+            textAlign: 'center', 
+            marginLeft: '55px', 
+            marginTop: '20px',
+            marginBottom: '20px',
+            textTransform: 'none'
+            }}
+            //onClick={handleSignInDemoAdmin}
+            onClick={swapDemo}
+            >
 
-              
-            Go Back
-        </Button>
+                
+              Go Back
+          </Button>
+        </>
+      }
+
+        
+
+
+       
 
         </div>
       </Card>
       </>
       
       }
+
+
+
+
+      
       
       </div>
 
 
       </div>
+
+      
+
+      
       
     </div>
+
+
   )
 }
 
