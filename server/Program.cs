@@ -19,7 +19,8 @@ builder.Services.AddCors(options =>
             builder
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithOrigins("http://localhost:3000", "http://lol.com");
+            //.WithOrigins("http://localhost:3000", "http://lol.com");
+            .AllowAnyOrigin();
              // (,) add deployed site here
         });
 });

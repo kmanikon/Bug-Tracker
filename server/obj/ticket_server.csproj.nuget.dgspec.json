@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_server/ticket_server.csproj": {}
+    "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/ticket_server.csproj": {}
   },
   "projects": {
-    "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_server/ticket_server.csproj": {
+    "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/ticket_server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_server/ticket_server.csproj",
+        "projectUniqueName": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/ticket_server.csproj",
         "projectName": "ticket_server",
-        "projectPath": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_server/ticket_server.csproj",
+        "projectPath": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/ticket_server.csproj",
         "packagesPath": "/Users/kiranmanikonda/.nuget/packages/",
-        "outputPath": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_server/obj/",
+        "outputPath": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/kiranmanikonda/.nuget/NuGet/NuGet.Config"

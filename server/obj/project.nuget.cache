@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3PM8GemrziaaD1RLgQETt50BFdclyS/NuRZuM+/oxGspamOj1EQNvXm9bR11iwggSZCswubvHmdUO8F4OZ2SpQ==",
+  "dgSpecHash": "lD8EA2lxFdbhfNkmen+3QN5Mr5qqA8QxbMMOT4P7I3v28xJheVyUUiXJ5C2Hdi+FFCTQEuqdsmf63vzwHhOHJw==",
   "success": true,
-  "projectFilePath": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_server/ticket_server.csproj",
+  "projectFilePath": "/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/ticket_server.csproj",
   "expectedPackageFiles": [
     "/Users/kiranmanikonda/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/kiranmanikonda/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/7.0.8/microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.8.nupkg.sha512",
