@@ -385,7 +385,7 @@ const MyTicketTable = ({tickets, setTickets, project, devList, changeCount, user
                           project: project,
                           devList: devList,
                           changeCount: changeCount,
-                          myTickets: false,
+                          myTickets: true,
                         }}
                       >
                         details
