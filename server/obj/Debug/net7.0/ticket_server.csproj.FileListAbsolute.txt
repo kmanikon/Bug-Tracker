@@ -147,7 +147,6 @@
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/appsettings.Development.json
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/appsettings.json
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/ticket_server
-/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/Data/AppDB.db
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/ticket_server.deps.json
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/ticket_server.runtimeconfig.json
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/ticket_server.dll
@@ -219,5 +218,3 @@
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/obj/Debug/net7.0/ticket_server.pdb
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/obj/Debug/net7.0/ticket_server.genruntimeconfig.cache
 /Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/obj/Debug/net7.0/ref/ticket_server.dll
-/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/Data/AppDB.db-shm
-/Users/kiranmanikonda/CSharp_projects/ticket_server/ticket_client/server/bin/Debug/net7.0/Data/AppDB.db-wal
