@@ -7,8 +7,6 @@ using ticket_server.Data;
 
 
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
