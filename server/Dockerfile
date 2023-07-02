@@ -1,25 +1,44 @@
-# Specify the base image
+#FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+#WORKDIR /app
+#EXPOSE 80
+
+#ENV ASPNETCORE_URLS=http://+:80
+
+#FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+#WORKDIR /src
+#COPY ["ticket_server.csproj", "./"]
+#RUN dotnet restore "ticket_server.csproj"
+#COPY . .
+#WORKDIR "/src/."
+#RUN dotnet build "ticket_server.csproj" -c Release -o /app/build
+
+#FROM build AS publish
+#RUN dotnet publish "ticket_server.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+#FROM base AS final
+#WORKDIR /app
+#COPY --from=publish /app/publish .
+#ENTRYPOINT ["dotnet", "ticket_server.dll"]
+
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /app
+WORKDIR /src
+COPY ticket_server.csproj .
+RUN dotnet restore "ticket_server.csproj"
 
-# Copy and restore project files
-COPY *.csproj .
-RUN dotnet restore
+COPY ./Data/AppDB.db /publish/Data/AppDB.db
 
-# Copy the source code and build the project
 COPY . .
-RUN dotnet build -c Release --no-restore
 
-# Publish the project
-RUN dotnet publish -c Release --no-restore --output /app/out
+#ENV ASPNETCORE_URLS=http://+:5251
 
-# Create the runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+RUN dotnet publish "ticket_server.csproj" -c Release -o /publish
+
+#COPY ./Data/AppDB.db /publish/Data/AppDB.db
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 as final
 WORKDIR /app
-COPY --from=build /app/out ./
+COPY --from=build /publish .
 
-# Expose port 443 for HTTPS
 EXPOSE 80
 
-# Set the entry point
 ENTRYPOINT ["dotnet", "ticket_server.dll"]

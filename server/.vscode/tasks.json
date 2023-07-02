@@ -79,7 +79,8 @@
             "dockerRun": {},
             "netCore": {
                 "appProject": "${workspaceFolder}/ticket_server.csproj",
-                "enableDebugging": true
+                "enableDebugging": true,
+                "configureSsl": false
             }
         },
         {

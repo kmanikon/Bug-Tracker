@@ -11,7 +11,7 @@ using ticket_server.Data;
 namespace ticket_server.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230702020806_FirstMigration")]
+    [Migration("20230702081852_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
