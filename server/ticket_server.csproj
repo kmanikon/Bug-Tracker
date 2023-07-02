@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <None Remove="Data\" />
-    <None Remove="Data\AppDB.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

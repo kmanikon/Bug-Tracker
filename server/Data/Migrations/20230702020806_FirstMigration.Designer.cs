@@ -11,7 +11,7 @@ using ticket_server.Data;
 namespace ticket_server.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230625123228_FirstMigration")]
+    [Migration("20230702020806_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -121,6 +121,15 @@ namespace ticket_server.Data.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectId = 1,
+                            Description = "This is a Bug Tracker",
+                            ProjectName = "Bug Tracker",
+                            UidString = "1;2"
+                        });
                 });
 
             modelBuilder.Entity("ticket_server.Data.ProjectActions", b =>

@@ -118,6 +118,15 @@ namespace ticket_server.Data.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectId = 1,
+                            Description = "This is a Bug Tracker",
+                            ProjectName = "Bug Tracker",
+                            UidString = "1;2"
+                        });
                 });
 
             modelBuilder.Entity("ticket_server.Data.ProjectActions", b =>

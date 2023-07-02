@@ -107,6 +107,11 @@ namespace ticket_server.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "ProjectId", "Description", "ProjectName", "UidString" },
+                values: new object[] { 1, "This is a Bug Tracker", "Bug Tracker", "1;2" });
+
+            migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AccessIdString", "Email", "Password", "Username" },
                 values: new object[,]
