@@ -6,6 +6,8 @@
 // new deploy with container
 //const url = 'https://jolly-grape-3wpw.kmanikon-soundbytes.zeet.app/';
 
-const url = 'https://bugtrackerkm.onrender.com/';
+//const url = 'https://bugtrackerkm.onrender.com/';
+
+const url = 'https://bugtrackerkm-7ebk6ir5ca-uw.a.run.app/';
 
 export default url;
