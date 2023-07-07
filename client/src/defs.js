@@ -7,6 +7,6 @@
 
 // Google Cloud url
 // make sure new image pushes are not cached (new image on dockerhub)
-const url = 'https://bugtrackerkm-7ebk6ir5ca-uw.a.run.app/';
+const url = 'https://bugtracker-nuckuqerya-uc.a.run.app/';
 
 export default url;
