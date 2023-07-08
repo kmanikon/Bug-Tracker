@@ -137,7 +137,7 @@ function App() {
                 <Route path="/editUserRole" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserRole/></div>}/>
                 <Route path="/notifications" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Notifications user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/notificationsHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><NotificationsHistory user={currentUser} setUser={setCurrentUser}/></div>}/>
-                <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/> 
+                <Route path="*" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
             </Routes>
 
           
