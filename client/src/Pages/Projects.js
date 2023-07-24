@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 import { 
     ContainerOutlined,
-    InfoCircleOutlined
+    InfoCircleOutlined,
+    FolderOpenOutlined
    
   } 
   from '@ant-design/icons';
@@ -148,7 +149,7 @@ const Projects = ({ user, setUser }) => {
                     }}
                 >
                 My Projects
-                <ContainerOutlined style={{ fontSize: '200%', marginLeft: '20px'}}/>
+                <FolderOpenOutlined style={{ fontSize: '200%', marginLeft: '20px'}}/>
                 
             </div>
 
