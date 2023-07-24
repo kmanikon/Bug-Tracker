@@ -57,7 +57,6 @@ function App() {
 
   const [init, setInit] = useState(false);
 
-
   
   
   useEffect(() => {
@@ -76,15 +75,17 @@ function App() {
     return (
       
             
-      
           <div style={{ display: 'flex' }}>
+
+
 
             { location.pathname !== '/login' ? 
               <>
               
  
 
-            
+              
+              
               <div>
 
                 <div style={{position: 'fixed'}}>
@@ -92,16 +93,9 @@ function App() {
                 </div>
        
               </div>
-
-              <div style={{ minWidth: "200px", height: '100vh' }}></div>
-              
-
-              
-                
-
-
-
-
+    
+              <div style={{ minWidth: "140px", height: '100vh' }}></div>
+  
               
               </>
             : null}
@@ -112,7 +106,7 @@ function App() {
               null
             }
 
-          
+            
 
             <Routes>
                 <Route exact path="/home" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Home/></div>}/>

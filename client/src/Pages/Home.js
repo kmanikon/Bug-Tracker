@@ -16,7 +16,8 @@ import {
   ContainerOutlined,
   FileSearchOutlined,
   UserOutlined,
-  BellOutlined
+  BellOutlined,
+  FolderOpenOutlined
 
         
 } 
@@ -100,7 +101,7 @@ const Home = () => {
           }}              
           >
     
-              <ContainerOutlined style={{ fontSize: '400%'}}/>
+              <FolderOpenOutlined style={{ fontSize: '400%'}}/>
               <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
                 My Projects
               </div>

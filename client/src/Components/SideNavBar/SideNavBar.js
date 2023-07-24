@@ -2,7 +2,7 @@ import React, { useState, } from 'react'
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { UserOutlined, WindowsOutlined, MenuOutlined, MenuUnfoldOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { UserOutlined, WindowsOutlined, MenuOutlined, MenuUnfoldOutlined, UnorderedListOutlined, HomeOutlined, FolderOpenOutlined, FileSearchOutlined } from '@ant-design/icons';
 import useStyles from './styles';
 
 
@@ -25,12 +25,13 @@ const SideNavBar = ({user, height}) => {
     return (
         <div >
             
-            <AppBar position="static" color="inherit" >
+            <AppBar position="static" color="inherit" elevation={3}>
 
                 <Sidebar 
                     className={classes.sideBar} 
-                    width="200px" 
-                    style={{ height: height}}
+                    width="120px" 
+                    style={{ height: height, marginTop: '60px'}}
+                    
                 >
 
 {/*
@@ -49,45 +50,85 @@ const SideNavBar = ({user, height}) => {
                     <div>
                     <Menu>
                         <div className={active === 'home' ? classes.active : classes.inactive}>
-                            <MenuItem onClick={() => setActive('home')} component={<Link to="/home" />} >
+                            <MenuItem 
+                                style={{height: '100px'}}
+                                onClick={() => setActive('home')} component={<Link to="/home" />}
+                            >
 
                             <div >
-                                <div style={{ display: 'flex', alignItems: 'center'}}>
-                                    <WindowsOutlined style={{marginRight: '10px'}}/>
-                                    <div>Dashboard Home</div>
+                                <div 
+                                style={{ 
+                                    //display: 'block', 
+                                    //alignItems: 'center'
+                                    textAlign: 'center'
+                                }}
+                                >
+                                    <HomeOutlined style={{fontSize: 50}}/>
+                                    <div style={{marginTop: '5px'}}>Home</div>
                                 </div>
                             </div>
                             </MenuItem>
                         </div>
 
                         <div className={active === 'projects' ? classes.active : classes.inactive}>
-                            <MenuItem onClick={() => setActive('projects')} component={<Link to="/projects" />}>
+                            <MenuItem 
+                                style={{height: '100px'}}
+                                onClick={() => setActive('projects')} component={<Link to="/projects" />}
+                            >
+                                
                                 <div style={{alignItems: 'center'}}>
-                                    <div style={{ display: 'flex', alignItems: 'center'}}>
-                                        <MenuOutlined style={{marginRight: '10px'}}/>
-                                        <div>My Projects</div>
+
+
+                                    <div 
+                                        style={{ 
+                                            //display: 'flex', 
+                                            //alignItems: 'center'
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        <FolderOpenOutlined style={{fontSize: 50}}/>
+                                        <div style={{marginTop: '5px'}}>Projects</div>
                                     </div>
                                 </div>
                             </MenuItem>
                         </div>
 
                         <div className={active === 'tickets' ? classes.active : classes.inactive}>
-                            <MenuItem onClick={() => setActive('tickets')} component={<Link to="/mytickets" />}>
+                            <MenuItem 
+                                style={{height: '100px'}}
+                                onClick={() => setActive('tickets')} component={<Link to="/mytickets" />}
+                            >
+                                
                                 <div style={{alignItems: 'center'}}>
-                                    <div style={{ display: 'flex', alignItems: 'center'}}>
-                                        <UnorderedListOutlined style={{marginRight: '10px'}}/>
-                                        <div>My Tickets</div>
+                                    <div 
+                                        style={{ 
+                                            //display: 'flex', 
+                                            //alignItems: 'center'
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        <FileSearchOutlined style={{fontSize: 50}}/>
+                                        <div style={{marginTop: '5px'}}>My Tickets</div>
                                     </div>
                                 </div>
                             </MenuItem>
                         </div>
 
                         <div className={active === 'profile' ? classes.active : classes.inactive}>
-                            <MenuItem onClick={() => setActive('profile')} component={<Link to="/profile" />}>
+                            <MenuItem 
+                                style={{height: '100px'}}
+                                onClick={() => setActive('profile')} component={<Link to="/profile" />}
+                            >
                                 <div style={{alignItems: 'center'}}>
-                                    <div style={{ display: 'flex', alignItems: 'center'}}>
-                                        <UserOutlined style={{marginRight: '10px'}}/>
-                                        <div>User Profile</div>
+                                    
+                                    <div 
+                                        style={{ 
+                                            //display: 'flex', 
+                                            //alignItems: 'center'
+                                            textAlign: 'center'
+                                    }}>
+                                        <UserOutlined style={{fontSize: 50}}/>
+                                        <div style={{marginTop: '5px'}}>Profile</div>
                                     </div>
                                 </div>
                             </MenuItem>

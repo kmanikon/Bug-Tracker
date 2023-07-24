@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
     position: 'fixed',
     width: '100%',
     justifyContent: 'flex-end',
-    minWidth: '830px'
+    minWidth: '830px',
+    marginLeft: '-20px'
   },
   toolbar: {
     display: 'flex',
