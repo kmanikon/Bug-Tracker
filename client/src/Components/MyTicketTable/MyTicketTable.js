@@ -26,10 +26,12 @@ const COLUMNS = [
         accessor: 'ticketStatus',
 
     },
+    /*
     {
         Header: 'Assigned Dev',
         accessor: 'asignedDev',
     },
+    */
     {
         Header: 'Type',
         accessor: 'ticketType',
@@ -329,7 +331,9 @@ const MyTicketTable = ({tickets, setTickets, project, devList, changeCount, user
             <colgroup>
               <col className="title-column" />
               <col className="status-column" />
+              {/*
               <col className="assigned-dev-column" />
+              */}
               <col className="ticket-type-column" />
               <col className="ticket-prio-column" />
               {/*
@@ -362,7 +366,9 @@ const MyTicketTable = ({tickets, setTickets, project, devList, changeCount, user
                     {data[row.id].ticketStatus.charAt(0).toUpperCase() +
                     data[row.id].ticketStatus.slice(1)}
                   </td>
+                  {/*
                   <td className="row-body assigned-dev-column">{data[row.id].asignedDev}</td>
+                  */}
                   <td className="row-body ticket-type-column">{data[row.id].ticketType}</td>
                   <td className="row-body ticket-prio-column">{data[row.id].ticketPrio}</td>
                   <td className="row-body submitted-date-column">{formatDate(data[row.id].submitDate)}</td>

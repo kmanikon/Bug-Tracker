@@ -20,10 +20,12 @@ import url from '../../defs';
 
 // column headers
 const COLUMNS = [
+    /*
     {
         Header: 'Ticket #',
         accessor: 'ticketNumber'
     },
+    */
     {
         Header: 'Title',
         accessor: 'title'

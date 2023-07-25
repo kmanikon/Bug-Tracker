@@ -19,10 +19,12 @@ import AutoScrollContainer from 'auto-scroll-container'
         Header: 'Title',
         accessor: 'title',
     },
+    /*
     {
         Header: 'Ticket #',
         accessor: 'ticketNumber'
     },
+    */
     {
         Header: 'Status',
         accessor: 'ticketStatus',
@@ -244,9 +246,11 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
                                 {(data[row.id].title)}
                             </td>
 
+                                {/*
                             <td className="row-body">
                                 {(data[row.id].ticketNumber)}
                             </td>
+                            */}
 
                             <td className="row-body">
                                 {(data[row.id].ticketStatus.charAt(0).toUpperCase() 
