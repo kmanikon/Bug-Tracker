@@ -60,6 +60,24 @@ const UserProfileHistory = () => {
 
         <div style={{marginTop: '110px'}}></div>
 
+
+        <Button color="black" size="large" variant="outlined"
+                style={{
+                    marginTop: '0px',
+                    marginLeft: '20px',
+                    marginBottom: '20px',
+                    fontWeight: 'bold',
+                    fontSize: 'large'
+                }}
+            >
+            <Link to="/myActions"
+                style={{ textDecoration: 'none' }}>
+
+                Back 
+              
+              </Link>
+          </Button>
+
         <UserHistoryTable project={project} history={filterHistory} tickets={filterTickets} changeCount={changeCount} userProfile={true}/>
 
 

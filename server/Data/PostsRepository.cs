@@ -25,6 +25,16 @@ namespace ticket_server.Data
 
 
 
+        internal async static Task<List<Post>> GetPostsByUserAsync(int userId)
+        {
+            using (var db = new AppDBContext())
+            {
+                List<Post> postsToReturn = await db.Posts.Where(t => t.AsignedDevUid == userId).ToListAsync();
+                return postsToReturn;
+            }
+        }
+
+
 
 
 

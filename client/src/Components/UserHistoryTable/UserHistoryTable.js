@@ -136,23 +136,7 @@ const UserHistoryTable = ({project, history, tickets, changeCount, userProfile})
 
     return (
         <div style={{width: width}}>
-            <Button color="black" size="large" variant="outlined"
-                style={{
-                    marginTop: '0px',
-                    marginLeft: '20px',
-                    marginBottom: '20px',
-                    fontWeight: 'bold',
-                    fontSize: 'large'
-                }}
-            >
-            <Link to="/profile"
-                //state={{ project: project, changeCount: changeCount }} 
-                style={{ textDecoration: 'none' }}>
-
-                Back 
-              
-              </Link>
-          </Button>
+            
 
         <div style={{display: 'flex'}}>
 

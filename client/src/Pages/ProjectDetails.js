@@ -22,7 +22,7 @@ const ProjectDetails = ({user}) => {
   const location = useLocation();
   var { project, changeCount } = location.state;
 
-
+  
 
   
 

@@ -31,6 +31,8 @@ import UserProfileHistory from './Pages/UserProfileHistory';
 import ManageProjectUsers from './Pages/ManageProjectUsers';
 import EditUserRole from './Pages/EditUserRole';
 import EditUserProfile from './Pages/EditUserProfile';
+import MyActions from './Pages/MyActions';
+import Dashboard from './Pages/Dashboard';
 
 import MyTickets from './Pages/MyTickets';
 import MyProjectsTickets from './Pages/MyProjectsTickets';
@@ -122,15 +124,17 @@ function App() {
                 <Route path="/addProjectUser" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddProjectUser/></div>}/>
                 <Route path="/removeProjectUser" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><RemoveProjectUser/></div>}/>
                 <Route exact path="/ticketHistoryDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketHistoryDetails user={currentUser}/></div>}/>
-                <Route exact path="/profile" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><UserProfile user={currentUser}/></div>}/>
+                <Route exact path="/profile" element={<div style={{width: '100%'}}><TopNavBar setUser={setCurrentUser} user={currentUser} /><UserProfile user={currentUser}/></div>}/>
                 <Route exact path="/profileHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><UserProfileHistory user={currentUser}/></div>}/>
                 <Route path="/editUserProfile" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserProfile user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/myTickets" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyTickets user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/myProjectTickets" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyProjectsTickets user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/manageUsers" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><ManageProjectUsers user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/editUserRole" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserRole/></div>}/>
+                <Route path="/myActions" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyActions user={currentUser}/></div>}/>
                 <Route path="/notifications" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Notifications user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/notificationsHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><NotificationsHistory user={currentUser} setUser={setCurrentUser}/></div>}/>
+                <Route exact path="/dashboard" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
                 <Route path="*" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
             </Routes>
 

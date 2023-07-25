@@ -1,15 +1,24 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { CardActions, CardContent, CardMedia, Button, Typography, Box, Grid } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
+import { Link } from 'react-router-dom'; 
 import UserProfileCard from '../Components/UserProfileCard/UserProfileCard';
+import MyActions from './MyActions';
+
 
 import { 
 
     UserOutlined,
-    InfoCircleOutlined
+    InfoCircleOutlined,
+    BellOutlined,
+    FolderOpenOutlined,
+    FileSearchOutlined,
+    DashboardOutlined,
+    FundProjectionScreenOutlined,
+    SnippetsOutlined
           
   } 
   from '@ant-design/icons';
@@ -43,8 +52,8 @@ const UserProfile = ({user}) => {
 
     var changeCount = 0;
 
-    const [projects, setProjects] = useState([]);
-    const [actions, setActions] = useState([]);
+    //const [projects, setProjects] = useState([]);
+    //const [actions, setActions] = useState([]);
 
     let navigate = useNavigate(); 
 
@@ -61,6 +70,7 @@ const UserProfile = ({user}) => {
         navigate(path);
     }
     
+    /*
     const makeAPICallProjects = async (route) => {
 
     
@@ -102,69 +112,139 @@ const UserProfile = ({user}) => {
         }
     }, [changeCount, location, user]);
 
+    */
 
 
- 
-
-    const [open, setOpen] = useState(false);
-
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
-    const InfoDialog = () => {
-        return (
-            <div>
-              <Button 
-                variant="outlined" 
-                style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginLeft: '40px',
-                    marginRight: '20px',
-                    marginTop: '20px'
-                 }}
-                //onClick={handleDelete}
-                onClick={handleClickOpen}
-            >
-                <InfoCircleOutlined style={{fontSize: '200%'}}/>
-            </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title" variant="h5" 
-                    style={{
-                        fontWeight: 'bold',
-                        fontSize: 'large',
-                    }}
-                >
-                  {"User Profile"}
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description" >
-                  The "User Profile" section displays a history of user actions done within the bug tracker. This section is intended as a way to view and revert previous changes done by the user.
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose}>Close</Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-          );
-      }
 
 
     return (
-        <div style={{ width: '100%'}}>
+        <div style={{ width: '100%', height: '85%' }}>
+            <div style={{marginTop: '80px'}}></div>
+
+
+
+            <Grid container rowSpacing={1} columnSpacing={1} style={{
+                marginLeft: '5%',
+                marginTop: '3%',
+                height: '75%',
+                width: '92%',
+                marginRight: '5%',
+                display: 'flex',
+                justifyContent: 'center',
+                minWidth: '750px'
+            }}
+            >
+            <Grid item xs={4}>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                
+            <Button style={{
+                width: '100%', 
+                textAlign: 'left',
+                height: '100%',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: 'large',
+                flex: 0,
+                justifyContent: 'center',
+                flexDirection: 'row',
+                display: 'block'
+            }}              
+            >
+        
+                <FundProjectionScreenOutlined style={{ fontSize: '1000%'}}/>
+                <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+                    Dashboard
+                </div>
+                
+            </Button>
+
+            </Link>
+            </Grid>
+
+            <Grid item xs={4}>
+            <Link to="/myActions" style={{ textDecoration: 'none' }} >
+            <Button style={{
+                width: '100%', 
+                //display: 'block', 
+                textAlign: 'left',
+                
+                //textTransform: 'none',
+                height: '100%',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: 'large',
+
+                flex: 0,
+                justifyContent: 'center',
+                flexDirection: 'row',
+                display: 'block'
+            }}              
+            >
+        
+                <SnippetsOutlined style={{ fontSize: '1000%'}}/>
+                <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+                    My Actions
+                </div>
+                
+            </Button>
+
+            </Link>
+            </Grid>
+
+            <Grid item xs={4}>
+
+            <Button style={{
+                width: '100%', 
+                //display: 'block', 
+                textAlign: 'left',
+                
+                //textTransform: 'none',
+                height: '100%',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: 'large',
+
+                flex: 0,
+                justifyContent: 'center',
+                flexDirection: 'row',
+                display: 'block'
+            }}
+            onClick={routeChangeEditProfile}
+            >
+        
+                <UserOutlined style={{ fontSize: '1000%'}}/>
+                <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+                    Edit User
+                </div>
+                
+            </Button>
+
+            </Grid>
+
+            
+            
+            
+            
+        </Grid>
+
+
+
+
+
+
+
+
+        </div>
+    )
+}
+
+export default UserProfile
+
+
+
+/*
+
+<div style={{ width: '100%'}}>
 
                 <div style={{marginTop: '80px'}}></div>
 
@@ -208,8 +288,10 @@ const UserProfile = ({user}) => {
         </div>
 
                 <UserProfileCard projects={projects} actions={actions} changeCount={changeCount}/>
-        </div>
-    )
-}
 
-export default UserProfile
+        
+        </div>
+
+
+
+*/

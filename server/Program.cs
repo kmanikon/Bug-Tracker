@@ -133,6 +133,24 @@ app.MapGet("/get-posts-by-project-notifications/{projectId}", async (int project
 
 
 
+// int -> posts with matching assigned dev uid
+app.MapGet("/get-posts-by-user/{userId}", async (int userId) =>
+{
+    List<Post> postsToReturn = await PostsRepository.GetPostsByUserAsync(userId);
+
+    if (postsToReturn != null)
+    {
+        return Results.Ok(postsToReturn);
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("Posts Endpoints");
+
+
+
+
 // Project Actions -> create post (fill out with db info) + create action
 app.MapPost("/create-post", async (ProjectActions postInfo) =>
 {

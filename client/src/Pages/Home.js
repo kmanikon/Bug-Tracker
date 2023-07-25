@@ -32,7 +32,7 @@ import { useNavigate } from "react-router-dom";
   the homepage + navigation to main pages
 
 */
-
+ 
 
 const Home = () => {
 
