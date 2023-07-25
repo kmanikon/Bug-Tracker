@@ -37,13 +37,16 @@ const RemoveProjectUser = () => {
     const ref = useRef(null);
 
 
-    const [userName, setUserName] = useState('');
-    const [email, setEmail] = useState('');
+    //const [userName, setUserName] = useState('');
+    //const [email, setEmail] = useState('');
 
     const [queryUser, setQueryUser] = useState();
 
     const [userFound, setUserFound] = useState(1);
     const [userOnProject, setUserOnProject] = useState(0);
+
+
+    const [asignedDev, setAsignedDev] = useState(0);
 
 
     let navigate = useNavigate(); 
@@ -150,6 +153,10 @@ const RemoveProjectUser = () => {
 
     const handleSubmit = () => {
 
+        const userName = devList[asignedDev][2];
+        const email = devList[asignedDev][1];
+
+
         makeAPICallGetUser('get-user-by-name/' + email + "/" + userName);
 
     
@@ -163,6 +170,26 @@ const RemoveProjectUser = () => {
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>
+
+                <Button color="black" size="large" variant="outlined"
+                    style={{
+                        marginTop: '10px',
+                        marginLeft: '20px',
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        marginBottom: '20px'
+                    }}
+ 
+                >
+                <Link to="/manageUsers" 
+                    state={{ project: project, devList: devList, changeCount: changeCount }} 
+                    style={{ textDecoration: 'none' }}>
+
+                    Back 
+                
+                </Link>
+                </Button>
+
                 
                 <div className={classes.projectInfo}>
                     <div className="projectsTitle">Remove User</div>
@@ -174,6 +201,8 @@ const RemoveProjectUser = () => {
                 <div style={{display: 'flex'}}>
 
                     <div style={{width: '35%', display: 'block'}}>
+
+                        {/*}
                         <Box className={classes.title} variant="h5" gutterBottom >Username</Box>
                         <TextField id="outlined-basic" variant="outlined" 
                             style={{ width: '240px', marginLeft: '20px', marginTop: '10px'}}
@@ -193,7 +222,45 @@ const RemoveProjectUser = () => {
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)}
                         />
+    */}
 
+                        <div style={{ display: 'flex', }}>
+
+                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '350px', minWidth: '350px' }}
+                            value={asignedDev}
+                            onChange={(e) => setAsignedDev(e.target.value)}
+                        >
+                            {devList.map(({ name }, index) => (
+                            <MenuItem key={index} value={index}>
+                                {devList[index][3]}
+                            </MenuItem>
+                            ))}
+                        
+                        </Select>
+
+                        
+
+                        <Button color="black" size="large" 
+                            style={{
+                                marginTop: '10px',
+                                marginLeft: '100px',
+                                fontWeight: 'bold',
+                                fontSize: 'large',
+                                minWidth: '200px',
+                                maxWidth: '200px',
+
+                                //position: 'fixed',
+      
+                            }}
+                            onClick={handleSubmit}
+                        >
+                            
+                            Submit
+                            <RightOutlined size="large" style={{marginLeft: '10px'}}/>
+                 
+                        </Button>
+                        
+                        </div>
 
                         
                     </div>
@@ -234,37 +301,9 @@ const RemoveProjectUser = () => {
                     }}>
             
  
-                <Button color="black" size="large" 
-                    style={{
-                        marginTop: '10px',
-                        marginLeft: '30px',
-                        fontWeight: 'bold',
-                        fontSize: 'large'
-                    }}
-
-                >
-                <Link to="/manageUsers" 
-                    state={{ project: project, devList: devList, changeCount: changeCount }} 
-                    style={{ textDecoration: 'none' }}>
-
-                    Back 
                 
-                </Link>
-                </Button>
 
-                <Button color="black" size="large" 
-                    style={{
-                        marginTop: '10px',
-                        marginLeft: '30px',
-                        fontWeight: 'bold',
-                        fontSize: 'large'
-                    }}
-                    onClick={handleSubmit}
-                >
-                    
-                    Submit
-                    <RightOutlined size="large" style={{marginLeft: '10px'}}/>
-                </Button>
+                
 
                 <RestrictDemoDialog/>
 
