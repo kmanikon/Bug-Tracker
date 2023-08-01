@@ -34,7 +34,7 @@ namespace ticket_server.Data.Migrations
                     TicketNumber = table.Column<int>(type: "INTEGER", nullable: false),
                     SubmitDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ModifyDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Read = table.Column<bool>(type: "INTEGER", nullable: false)
+                    ReadString = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +68,7 @@ namespace ticket_server.Data.Migrations
                     TicketNumber = table.Column<int>(type: "INTEGER", nullable: false),
                     SubmitDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ModifyDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Read = table.Column<bool>(type: "INTEGER", nullable: false)
+                    ReadString = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {

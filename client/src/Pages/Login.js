@@ -165,7 +165,7 @@ const Login = ({user, setUser, setInit}) => {
 
         "submitDate": new Date,//"2023-05-15T07:41:51.053Z", // doesn't matter
         "modifyDate": new Date,//"2023-05-15T07:41:51.053Z", // doesn't matter
-        "read": false
+        "readString": "0F"
         
       }
 

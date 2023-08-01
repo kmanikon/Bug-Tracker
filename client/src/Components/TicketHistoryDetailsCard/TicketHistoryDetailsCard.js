@@ -229,7 +229,7 @@ const TicketHistoryDetailsCard = ({user, ticket, project, action, tickets, histo
 
         "submitDate": ticket.submitDate,
         "modifyDate": ticket.modifyDate,
-        "read": ticket.read
+        "readString": ticket.readString
       }
 
       
@@ -348,7 +348,7 @@ const TicketHistoryDetailsCard = ({user, ticket, project, action, tickets, histo
 
       "submitDate": ticket.submitDate,
       "modifyDate": ticket.modifyDate,
-      "read": ticket.read
+      "readString": ticket.readString
     }
 
 
@@ -469,7 +469,7 @@ const handleUpdate = () => {
 
     "submitDate": ticket.submitDate,
     "modifyDate": ticket.modifyDate,
-    "read": ticket.read
+    "readString": ticket.readString
   }
 
 

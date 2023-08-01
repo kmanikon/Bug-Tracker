@@ -154,6 +154,27 @@ app.MapGet("/get-posts-by-user/{userId}", async (int userId) =>
 // Project Actions -> create post (fill out with db info) + create action
 app.MapPost("/create-post", async (ProjectActions postInfo) =>
 {
+
+    Project postProject = await ProjectsRepository.GetProjectByIdAsync(postInfo.ProjectId);
+
+    if (postProject == null) {
+         return Results.BadRequest();
+    }
+
+
+    List<int> UserIdList = postProject.UidString.Split(';').ToList().Select(int.Parse).ToList();
+
+    
+    String NewReadString = "0F";
+
+    foreach (var userId in UserIdList){
+        NewReadString += ";";
+        NewReadString += userId.ToString();
+        NewReadString += "F";
+    }
+
+
+
     Post postToCreate = new Post
     {
         PostId = postInfo.PostId,
@@ -172,7 +193,9 @@ app.MapPost("/create-post", async (ProjectActions postInfo) =>
         TicketNumber = postInfo.TicketNumber,
         SubmitDate = postInfo.SubmitDate,//DateTime.UtcNow,
         ModifyDate = postInfo.ModifyDate,//DateTime.UtcNow
-        Read = postInfo.Read
+        //Read = postInfo.Read
+        ReadString = NewReadString,
+        
     };
 
 
@@ -209,9 +232,12 @@ app.MapPost("/create-post", async (ProjectActions postInfo) =>
         TicketNumber = postToCreate.TicketNumber,
         SubmitDate = postToCreate.SubmitDate,
         ModifyDate = postToCreate.ModifyDate,
-        Read = postInfo.Read
+        //Read = postInfo.Read
+        ReadString = NewReadString,
 
     };
+
+    
 
     
     bool createActionSuccessful = await ProjectActionsRepository.CreateProjectActionsAsync(p);
@@ -234,6 +260,24 @@ app.MapPost("/create-post", async (ProjectActions postInfo) =>
 app.MapPut("/update-post", async (ProjectActions postInfo) =>
 {
 
+    Project postProject = await ProjectsRepository.GetProjectByIdAsync(postInfo.ProjectId);
+
+    if (postProject == null) {
+         return Results.BadRequest();
+    }
+
+
+    List<int> UserIdList = postProject.UidString.Split(';').ToList().Select(int.Parse).ToList();
+
+    
+    String NewReadString = "0F";
+
+    foreach (var userId in UserIdList){
+        NewReadString += ";";
+        NewReadString += userId.ToString();
+        NewReadString += "F";
+    }
+
     Post postToUpdate = new Post
     {
         PostId = postInfo.PostId,
@@ -252,7 +296,8 @@ app.MapPut("/update-post", async (ProjectActions postInfo) =>
         TicketNumber = postInfo.TicketNumber,
         SubmitDate = postInfo.SubmitDate,
         ModifyDate = DateTime.UtcNow,
-        Read = postInfo.Read
+        //Read = postInfo.Read
+        ReadString = NewReadString
     };
 
     bool updateSuccessful = await PostsRepository.UpdatePostAsync(postToUpdate);
@@ -287,7 +332,8 @@ app.MapPut("/update-post", async (ProjectActions postInfo) =>
         TicketNumber = postToUpdate.TicketNumber,
         SubmitDate = postToUpdate.SubmitDate,
         ModifyDate = DateTime.UtcNow,
-        Read = postInfo.Read
+        //Read = postInfo.Read
+        ReadString = NewReadString
 
     };
 
@@ -312,6 +358,30 @@ async static void CreateOrUpdateProjectAction(ProjectActions projectActionInfo)
     // Check if an action with the same Title and Description exists
     ProjectActions existingAction = await ProjectActionsRepository.GetProjectActionsByTitleAndDescriptionAsync(projectActionInfo.Title, projectActionInfo.Description, projectActionInfo.ProjectId);
 
+
+
+    Project postProject = await ProjectsRepository.GetProjectByIdAsync(projectActionInfo.ProjectId);
+
+
+    if (postProject == null) {
+         return; //Results.BadRequest();
+    }
+
+
+    List<int> UserIdList = postProject.UidString.Split(';').ToList().Select(int.Parse).ToList();
+
+    
+    String NewReadString = "0F";
+
+    foreach (var userId in UserIdList){
+        NewReadString += ";";
+        NewReadString += userId.ToString();
+        NewReadString += "F";
+    }
+
+
+
+
     if (existingAction != null)
     {
         // Update the existing action
@@ -321,7 +391,7 @@ async static void CreateOrUpdateProjectAction(ProjectActions projectActionInfo)
         existingAction.UserName = projectActionInfo.UserName;
         existingAction.UserEmail = projectActionInfo.UserEmail;
         existingAction.UserId = projectActionInfo.UserId;
-        existingAction.Read = false;
+        existingAction.ReadString = NewReadString;
 
         bool updateSuccessful = await ProjectActionsRepository.UpdateProjectActionsAsync(existingAction);
 
@@ -376,7 +446,8 @@ async static void CreateOrUpdateProjectAction(ProjectActions projectActionInfo)
             TicketNumber = projectActionInfo.TicketNumber,
             SubmitDate = projectActionInfo.SubmitDate,
             ModifyDate = projectActionInfo.ModifyDate,
-            Read = false//postInfo.Read
+            //Read = false//postInfo.Read
+            ReadString = NewReadString
 
         };
 
@@ -403,6 +474,26 @@ app.MapPost("/create-or-update-post", async (ProjectActions postInfo) =>
     // Check if the post already exists
     Post existingPost = await PostsRepository.GetPostByTitleAndDescriptionAsync(postInfo.Title, postInfo.Description, postInfo.SubmitterUid);
 
+
+
+    Project postProject = await ProjectsRepository.GetProjectByIdAsync(postInfo.ProjectId);
+
+    if (postProject == null) {
+         return Results.BadRequest();
+    }
+
+    List<int> UserIdList = postProject.UidString.Split(';').ToList().Select(int.Parse).ToList();
+
+    String NewReadString = "0F";
+
+    foreach (var userId in UserIdList){
+        NewReadString += ";";
+        NewReadString += userId.ToString();
+        NewReadString += "F";
+    }
+
+
+
     if (existingPost != null)
     {
         // Update the existing post
@@ -420,7 +511,8 @@ app.MapPost("/create-or-update-post", async (ProjectActions postInfo) =>
         existingPost.TicketNumber = postInfo.TicketNumber;
         existingPost.SubmitDate = postInfo.SubmitDate;
         existingPost.ModifyDate = postInfo.ModifyDate;
-        existingPost.Read = false;//postInfo.Read;
+        //existingPost.Read = false;//postInfo.Read;
+        existingPost.ReadString = NewReadString;
 
         bool updateSuccessful = await PostsRepository.UpdatePostAsync(existingPost);
 
@@ -454,8 +546,8 @@ app.MapPost("/create-or-update-post", async (ProjectActions postInfo) =>
             TicketNumber = postInfo.TicketNumber,
             SubmitDate = postInfo.SubmitDate,
             ModifyDate = postInfo.ModifyDate,
-            Read = false//postInfo.Read
-
+            //Read = false//postInfo.Read
+            ReadString = NewReadString
         };
 
 
@@ -494,7 +586,8 @@ app.MapPost("/create-or-update-post", async (ProjectActions postInfo) =>
             TicketNumber = postInfo.TicketNumber,
             SubmitDate = postInfo.SubmitDate,
             ModifyDate = postInfo.ModifyDate,
-            Read = false//postInfo.Read
+            //Read = false//postInfo.Read
+            ReadString = NewReadString
         };
 
         int createSuccessful = await PostsRepository.CreatePostAsync(postToCreate);
@@ -528,7 +621,8 @@ app.MapPost("/create-or-update-post", async (ProjectActions postInfo) =>
             TicketNumber = postInfo.TicketNumber,
             SubmitDate = postInfo.SubmitDate,
             ModifyDate = postInfo.ModifyDate,
-            Read = false//postInfo.Read
+            //Read = false//postInfo.Read
+            ReadString = NewReadString
 
         };
 
@@ -555,6 +649,8 @@ app.MapPost("/create-or-update-post", async (ProjectActions postInfo) =>
 // delete post if found + create action
 app.MapPut("/delete-post-by-id", async (ProjectActions postInfo) =>
 {
+
+
     
     Post postToDelete = new Post
     {
@@ -574,7 +670,7 @@ app.MapPut("/delete-post-by-id", async (ProjectActions postInfo) =>
         TicketNumber = postInfo.TicketNumber,
         SubmitDate = postInfo.SubmitDate,
         ModifyDate = postInfo.ModifyDate,
-        Read = postInfo.Read
+        ReadString = postInfo.ReadString
     };
     
 
@@ -609,7 +705,7 @@ app.MapPut("/delete-post-by-id", async (ProjectActions postInfo) =>
         TicketNumber = postToDelete.TicketNumber,
         SubmitDate = postToDelete.SubmitDate,
         ModifyDate = postToDelete.ModifyDate,
-        Read = postInfo.Read
+        ReadString = postInfo.ReadString
 
     };
     
@@ -991,6 +1087,13 @@ app.MapGet("/get-all-projectActions", async () => await ProjectActionsRepository
 
 
 
+
+
+
+
+
+
+
 // actions by project
 app.MapGet("/get-actions-by-project-id/{projectId}/{userId}", async (int projectId, int userId) =>
 {
@@ -999,9 +1102,26 @@ app.MapGet("/get-actions-by-project-id/{projectId}/{userId}", async (int project
 
     foreach (var post in projectActionsToReturn)
     {
-        if (post.AsignedDevUid == userId)
+        int index = post.ReadString.IndexOf(userId.ToString());
+
+        String userIdString = userId.ToString();
+
+        if (index != -1)
         {
-            post.Read = true;
+            int endIndex = index + userIdString.Length - 1;
+
+            var newstr = post.ReadString.Substring(0, endIndex + 1) + "T";
+
+            if (newstr.Length != post.ReadString.Length){
+                newstr += post.ReadString.Substring(newstr.Length);
+            }
+
+            post.ReadString = newstr;
+
+            //post.ReadString = "0F;1F";
+            //System.Console.WriteLine("Marking Read " + post.ReadString);
+
+            // Update the projectActions in the repository
             bool updateSuccessful = await ProjectActionsRepository.UpdateProjectActionsAsync(post);
         }
     }
@@ -1016,6 +1136,10 @@ app.MapGet("/get-actions-by-project-id/{projectId}/{userId}", async (int project
         return Results.BadRequest();
     }
 }).WithTags("Project Actions Endpoints");
+
+
+
+
 
 
 
@@ -1064,13 +1188,21 @@ app.MapGet("/get-actions-by-user-id/{userId}", async (int userId) =>
 }).WithTags("Project Actions Endpoints");
 
 
+
+
+// FIX ME
+
 // get user action where read = false
 app.MapGet("/get-unread-actions-by-user-id/{userId}", async (int userId) =>
 {
-    List<ProjectActions> projectActionsToReturn = await ProjectActionsRepository.GetAssignedProjectActionsByUserIdAsync(userId);
+    
+    //List<ProjectActions> projectActionsToReturn = await ProjectActionsRepository.GetAssignedProjectActionsByUserIdAsync(userId);
+    
+    
+    // get project actions from all projects 
+    List<ProjectActions> projectActionsToReturn = await ProjectActionsRepository.GetNotificationProjectActionsAsync(userId);
 
-
-
+    String userIDStr = userId.ToString();
 
     if (projectActionsToReturn != null)
     {
@@ -1081,7 +1213,14 @@ app.MapGet("/get-unread-actions-by-user-id/{userId}", async (int userId) =>
         {
             int projectId = projectAction.ProjectId;
 
-            if (projectAction.AsignedDevUid == userId && projectAction.Read == false)
+            //if (projectAction.AsignedDevUid == userId && projectAction.Read == false)
+            //if (projectAction.ReadString != null && projectAction.ReadList.Any(tuple => tuple.userId == userId && tuple.read == false))
+            
+            int index = projectAction.ReadString.IndexOf(userIDStr) + userIDStr.Length;
+            
+
+            
+            if (projectAction.ReadString[index] == 'F')
             {
                 if (unreadCounts.ContainsKey(projectId))
                 {

@@ -44,6 +44,17 @@ namespace ticket_server.Data
             }
         }
 
+        internal async static Task<List<ProjectActions>> GetNotificationProjectActionsAsync(int userId)
+        {
+            using (var db = new AppDBContext())
+            {
+                String userIDStr = userId.ToString();
+                //Func<Post, bool> ProjectTickets = t => t.ProjectId == projectId;
+                List<ProjectActions> actionsToReturn = await db.ProjectActions.Where(t => t.ReadString.Contains(userIDStr)).ToListAsync();
+                return actionsToReturn;
+            }
+        }
+
         internal async static Task<List<ProjectActions>> GetAssignedProjectActionsByUserIdAsync(int userId)
         {
             using (var db = new AppDBContext())

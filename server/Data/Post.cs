@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ticket_server.Data
 {
 	internal sealed class Post
@@ -71,9 +73,11 @@ namespace ticket_server.Data
         [Required]
         public DateTime ModifyDate { get; set; }
 
-
         [Required]
-        public bool Read { get; set; }
+        [MaxLength(1000)]
+        public string ReadString { get; set; } = "0F";
+
+
     }
 }
 

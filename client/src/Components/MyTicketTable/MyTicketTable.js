@@ -188,7 +188,7 @@ const MyTicketTable = ({tickets, setTickets, project, devList, changeCount, user
 
             "submitDate": ticket.submitDate,
             "modifyDate": ticket.modifyDate,
-            "read": ticket.read
+            "readString": ticket.readString
           }
 
         await makeAPICallUpdateStatus(post, "closed", rowId)
@@ -225,7 +225,7 @@ const MyTicketTable = ({tickets, setTickets, project, devList, changeCount, user
 
             "submitDate": ticket.submitDate,
             "modifyDate": ticket.modifyDate,
-            "read": ticket.read
+            "readString": ticket.readString
           }
 
         await makeAPICallUpdateStatus(post, "pending", rowId)

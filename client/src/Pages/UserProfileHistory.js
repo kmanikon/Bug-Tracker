@@ -44,7 +44,7 @@ const UserProfileHistory = () => {
 
             "submitDate": ticket.submitDate,
             "modifyDate": ticket.modifyDate,
-            "read": ticket.read
+            "readString": ticket.readString
       }
 
       return post

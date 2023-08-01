@@ -47,7 +47,7 @@ const COLUMNS = [
     }
 ];
 
-const NotificationsTable = ({project, history, tickets, changeCount, userProfile}) => {
+const NotificationsTable = ({project, history, tickets, changeCount, userProfile, user}) => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -132,16 +132,47 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
     }
 
 
+    const markTrue = (testID, testString) => {
+
+        const index = testString.indexOf(testID.toString());
+
+        if (index !== -1){
+            const endIndex = index + (testID.toString()).length - 1;
+
+            console.log(endIndex)
+
+            var newstr = testString.substring(0, endIndex + 1) + 'T'
+            
+            if (newstr.length !== testString.length){
+                newstr += testString.substring(newstr.length, testString.length)
+            }
+            return newstr;
+        }
+
+        return "";
+    }
+
+
     const handleMarkRead = async (rowId) => {
 
         // "ticket" = postAction
         const action = filteredHistory[rowId]
 
         var post = action;
-        post.read = true;
 
+        //post.read = true;
 
-        makeAPICallUpdateStatus(post);
+        const newReadString = markTrue(user.userId, post.readString);
+
+        if (newReadString !== ""){
+             post.readString = newReadString;
+             makeAPICallUpdateStatus(post);
+        }
+
+    
+        // .read = 
+        //  makeAPICallUpdateStatus(post);
+    
 
     }
 
@@ -167,7 +198,7 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
 
               "submitDate": ticket.submitDate,
               "modifyDate": ticket.modifyDate,
-              "read": ticket.read
+              "readString": ticket.readString
         }
 
         return post

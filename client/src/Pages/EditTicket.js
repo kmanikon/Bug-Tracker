@@ -131,7 +131,7 @@ const EditTicket = ({ user }) => {
 
             "submitDate": ticket.submitDate,
             "modifyDate": ticket.modifyDate,
-            "read": ticket.read
+            "readString": ticket.readString
           }
 
 

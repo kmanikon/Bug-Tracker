@@ -47,8 +47,8 @@ const NotificationsHistory = ({user}) => {
         .then(response => response.json())
         .then(postsFromServer => {
   
-  
-            var myunreads = postsFromServer.filter(post => post.asignedDevUid == user.userId && post.read == false)
+            var userString = user.userId.toString() + "F";
+            var myunreads = postsFromServer.filter(post => post.readString.includes(userString));
 
             setHistory(myunreads.sort(function(a,b){
                 // Turn your strings into dates, and then subtract them
@@ -81,7 +81,7 @@ const NotificationsHistory = ({user}) => {
             <div style={{marginTop: '110px'}}></div>
 
             
-            <NotificationsTable project={project} history={filteredHistory} tickets={tickets} changeCount={changeCount} />
+            <NotificationsTable project={project} history={filteredHistory} tickets={tickets} changeCount={changeCount} user={user}/>
  
 
         </div>

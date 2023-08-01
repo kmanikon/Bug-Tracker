@@ -100,7 +100,11 @@ namespace ticket_server.Data
         public DateTime ModifyDate { get; set; }
 
         [Required]
-        public bool Read { get; set; }
+        [MaxLength(1000)]
+        public string ReadString { get; set; } = "0F";
+
+
     }
+    
 }
 
