@@ -139,7 +139,6 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
         if (index !== -1){
             const endIndex = index + (testID.toString()).length - 1;
 
-            console.log(endIndex)
 
             var newstr = testString.substring(0, endIndex + 1) + 'T'
             

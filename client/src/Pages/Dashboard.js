@@ -55,7 +55,7 @@ const Dashboard = ({user}) => {
         .then(response => response.json())
         .then(postsFromServer => {
 
-            console.log(postsFromServer)
+            //console.log(postsFromServer)
 
             const highPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'High').length
             const medPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'Medium').length
