@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 
-//const { innerWidth: width, innerHeight: height } = window;
 
 export default makeStyles((theme) => ({
 

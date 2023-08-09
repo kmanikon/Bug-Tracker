@@ -109,9 +109,10 @@ function App() {
             }
 
             
+            
 
             <Routes>
-                <Route exact path="/home" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Home/></div>}/>
+                <Route exact path="/home" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Home/></div>}/>
                 <Route path="/projects" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Projects user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/projectDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><ProjectDetails user={currentUser} /></div>}/>
                 <Route path="/ticketDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketDetails user={currentUser}/></div>}/>
@@ -135,8 +136,9 @@ function App() {
                 <Route path="/notifications" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Notifications user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/notificationsHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><NotificationsHistory user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route exact path="/dashboard" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
-                <Route path="*" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
+                <Route path="*" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
             </Routes>
+
 
           
             

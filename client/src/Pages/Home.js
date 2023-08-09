@@ -38,10 +38,14 @@ const Home = () => {
 
     const location = useLocation();
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
+
     return (
-      <div style={{ width: width, height: height}}>
+      <div style={{  
+        height: '100%',
+        minWidth: '700px',
+        minHeight: '500px'
+      }}
+      >
 
       <div style={{marginTop: '80px'}}></div>
 
