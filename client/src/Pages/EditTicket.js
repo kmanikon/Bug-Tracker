@@ -34,10 +34,6 @@ const EditTicket = ({ user }) => {
     // ticket, ticket num
 
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-    var descWidth = width * 0.575;
-
     //const ticketId = 14;
     //const projectId = 2;
     const ticketStatus = 'pending';
@@ -143,7 +139,7 @@ const EditTicket = ({ user }) => {
     return (
         <div>
 
-        <div style={{ width: width, marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px'}}>
         <div>
             
             <div style={{marginTop: '110px'}}></div>
@@ -155,7 +151,7 @@ const EditTicket = ({ user }) => {
 
             <Card className={classes.headerCard} ref={ref}>
     
-                <div style={{display: 'flex'}}>
+                <div style={{display: 'flex', minWidth: '800px'}}>
 
                     <div style={{width: '35%', display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Title</Box>
@@ -188,7 +184,7 @@ const EditTicket = ({ user }) => {
 
                         <Box className={classes.title} variant="h5" gutterBottom >Description</Box>
                         <TextField id="outlined-basic" variant="outlined" multiline="true"
-                            style={{ width: descWidth, marginLeft: '20px', marginTop: '10px'}}
+                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px'}}
                             value={description} 
                             onChange={(e) => setDescription(e.target.value)}
                         />

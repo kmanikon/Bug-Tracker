@@ -60,8 +60,6 @@ const Login = ({user, setUser, setInit}) => {
   //const [admin, setAdmin] = useState(false);
   var admin = false;
 
-  var { innerWidth: width, innerHeight: height } = window;
-
   // state for password visibility
   const [showPassword, setShowPassword] = useState(false);
 
@@ -455,7 +453,7 @@ const makeAPICallPut = async (route, post) => {
 
 
     
-    <div style={{width: width}}>
+    <div style={{ width: '100%' }}>
       
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
 

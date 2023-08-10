@@ -25,7 +25,9 @@ const SideNavBar = ({user, height}) => {
     return (
         <div >
             
-            <AppBar position="static" color="inherit" elevation={3}>
+            <AppBar position="static" color="inherit" elevation={3} 
+                style={{marginTop: '-60px'}}
+            >
 
                 <Sidebar 
                     className={classes.sideBar} 
@@ -49,6 +51,8 @@ const SideNavBar = ({user, height}) => {
 
                     <div>
                     <Menu>
+
+                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
                         <div className={active === 'home' ? classes.active : classes.inactive}>
                             <MenuItem 
                                 style={{height: '100px'}}
@@ -133,12 +137,14 @@ const SideNavBar = ({user, height}) => {
                                 </div>
                             </MenuItem>
                         </div>
+                        </SubMenu>
                     </Menu>
 
                     </div>
 
                 
                 </Sidebar>
+                
             </AppBar>
         </div>
     )

@@ -47,9 +47,6 @@ const UserProfile = ({user}) => {
 
     const location = useLocation();
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-
     var changeCount = 0;
 
     //const [projects, setProjects] = useState([]);

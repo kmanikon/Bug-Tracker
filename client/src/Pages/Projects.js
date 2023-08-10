@@ -34,8 +34,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 const Projects = ({ user, setUser }) => {
 
     const location = useLocation();
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
+
 
     //var [changeCount, setChangeCount] = useState(0);
     var changeCount = 0;

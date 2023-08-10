@@ -27,7 +27,7 @@ import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, BarElement, CategoryScale, LinearScale} from 'chart.js';
-import { Pie, Bar } from 'react-chartjs-2';
+import { Pie, Bar, Doughnut } from 'react-chartjs-2';
 
 import url from '../defs';
 
@@ -269,8 +269,9 @@ const Dashboard = ({user}) => {
 
     var { innerWidth: width, innerHeight: height } = window;
     width -= 200
+    
     return (
-      <div style={{ width: width, height: height}}>
+      <div style={{ height: '700px', minWidth: '800px' }}>
 
       <div style={{marginTop: '100px'}}></div>
 
@@ -299,12 +300,12 @@ const Dashboard = ({user}) => {
             marginTop: '3%',
             height: '75%',
             width: '92%',
-            marginRight: '5%'
+            marginRight: '5%',
           }}
         >
 
 
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{ borderRight: "1px solid black", borderBottom: "1px solid black"}}>
 
             <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
                 <Pie 
@@ -344,9 +345,9 @@ const Dashboard = ({user}) => {
         </Grid>
 
 
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{ borderBottom: "1px solid black"}}>
         <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
-                <Pie 
+                <Doughnut 
                     data={TicketsByTypedata} 
                     options={{
                         plugins: {
@@ -381,7 +382,7 @@ const Dashboard = ({user}) => {
                 />
             </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{ borderRight: "1px solid black"}}>
         <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
             <Bar
                 data={TicketsByProjectdata}

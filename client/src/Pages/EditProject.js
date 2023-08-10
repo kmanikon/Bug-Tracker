@@ -25,10 +25,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const EditProject = ({user}) => {
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200;
-    var descWidth = width * 0.575;
-
     const classes = useStyles();
     const ref = useRef(null);
 
@@ -139,7 +135,7 @@ const EditProject = ({user}) => {
     return (
         <div>
 
-        <div style={{ width: width, marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px'}}>
         <div>
             
             <div style={{marginTop: '110px'}}></div>
@@ -167,7 +163,7 @@ const EditProject = ({user}) => {
 
                         <Box className={classes.title} variant="h5" gutterBottom >Description</Box>
                         <TextField id="outlined-basic" variant="outlined" multiline="true"
-                            style={{ width: descWidth, marginLeft: '20px', marginTop: '10px'}}
+                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px', minWidth: '500px'}}
                             value={description} 
                             onChange={(e) => setDescription(e.target.value)}
                         />

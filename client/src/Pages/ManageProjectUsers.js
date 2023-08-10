@@ -22,9 +22,6 @@ const ManageProjectUsers = ({user}) => {
     const location = useLocation();
     var { project, devList, changeCount } = location.state;
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-
     let navigate = useNavigate(); 
 
     const [projectUsers, setProjectUsers] = useState([]);

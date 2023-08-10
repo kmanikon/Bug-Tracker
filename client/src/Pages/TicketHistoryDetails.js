@@ -14,14 +14,11 @@ import TicketHistoryDetailsCard from '../Components/TicketHistoryDetailsCard/Tic
 
 const TicketHistoryDetails = ({user}) => {
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-
     const location = useLocation();
     const { ticket, project, action, tickets, history, changeCount, userProfile } = location.state;
 
     return (
-        <div style={{ width: width, marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px'}}>
                 <div style={{marginTop: '110px'}}></div>
 
                 {ticket ? 

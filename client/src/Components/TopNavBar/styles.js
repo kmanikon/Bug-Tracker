@@ -13,11 +13,34 @@ export default makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'flex-end',
     minWidth: '830px',
-    marginLeft: '-20px'
+    marginLeft: '-20px',
+
+    "&::after": {
+      position: "absolute",
+      content: '""',
+      width: "10px",
+      height: "60px",
+      top: "48px",
+      backgroundColor: 'white',
+      marginLeft: '-5px',
+
+      [theme.breakpoints.down("xs")]: {
+        left: "0px"
+      },
+      "@media (orientation: landscape)": {
+        left: "0px"
+      },
+      [theme.breakpoints.up("sm")]: {
+        left: "0px",
+        top: '0px'
+      }
+    }
+    
   },
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
+    //marginRight: '-120px'
   },
   profile: {
     display: 'flex',
@@ -26,7 +49,8 @@ export default makeStyles((theme) => ({
   },
   notifications: {
     marginRight: '10px'
-  }
+  },
+
 
 
 }));

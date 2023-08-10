@@ -21,9 +21,6 @@ import url from '../defs';
 
 const MyProjectsTickets = ({user}) => {
 
-  var { innerWidth: width, innerHeight: height } = window;
-  width -= 200 
-
   // state: project
 
   const location = useLocation();

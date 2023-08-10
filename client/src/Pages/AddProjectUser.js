@@ -23,9 +23,7 @@ const AddProjectUser = () => {
     const location = useLocation();
     var { project, devList, changeCount, projectUsers } = location.state;
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-    var descWidth = width * 0.575;
+
 
 
     const classes = useStyles();
@@ -109,7 +107,7 @@ const AddProjectUser = () => {
         <div>
 
 
-            <div style={{ width: width, marginLeft: '20px'}}>
+            <div style={{ width: '100%', marginLeft: '20px'}}>
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>
@@ -121,7 +119,7 @@ const AddProjectUser = () => {
 
                 <Card className={classes.headerCard} ref={ref}>
     
-                <div style={{display: 'flex'}}>
+                <div style={{display: 'flex', minWidth: '800px'}}>
 
                     <div style={{width: '35%', display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Username</Box>

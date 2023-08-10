@@ -13,8 +13,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const ProjectHistory = ({user}) => {
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
 
     const location = useLocation();
 
@@ -23,7 +21,7 @@ const ProjectHistory = ({user}) => {
     
 
     return (
-        <div style={{ width: width, marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px'}}>
             <div style={{marginTop: '110px'}}></div>
 
             <ProjectHistoryTable project={project} history={history} tickets={tickets} changeCount={changeCount} user={user}/>

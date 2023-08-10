@@ -27,10 +27,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const EditUserProfile = ({user, setUser}) => {
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-    var descWidth = width * 0.575;
-
     const classes = useStyles();
     const ref = useRef(null);
 
@@ -152,7 +148,7 @@ const EditUserProfile = ({user, setUser}) => {
     return (
         <div>
 
-        <div style={{ width: width, marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px'}}>
         <div>
             
             <div style={{marginTop: '110px'}}></div>

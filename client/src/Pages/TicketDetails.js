@@ -13,8 +13,6 @@ import TicketDetailsCard from '../Components/TicketDetailsCard/TicketDetailsCard
 
 const TicketDetails = ({user}) => {
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
 
     const location = useLocation();
     const { ticket, ticketNum, project, devList, changeCount, myTickets } = location.state;
@@ -23,7 +21,7 @@ const TicketDetails = ({user}) => {
     
   
     return (
-      <div style={{ width: width, marginLeft: '20px'}}>
+      <div style={{ marginLeft: '20px', marginRight: '20px'}}>
           <div style={{marginTop: '110px'}}></div>
   
           <div>

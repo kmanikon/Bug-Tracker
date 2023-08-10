@@ -31,11 +31,6 @@ const EditUserRole = () => {
     const location = useLocation();
     var { project, devList, changeCount } = location.state;
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-    var descWidth = width * 0.575;
-
-
     const classes = useStyles();
     const ref = useRef(null);
 
@@ -175,7 +170,7 @@ const EditUserRole = () => {
         <div>
 
 
-            <div style={{ width: width, marginLeft: '20px'}}>
+            <div style={{ marginLeft: '20px' }}>
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>

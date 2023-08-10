@@ -79,6 +79,8 @@ function App() {
             
           <div style={{ display: 'flex' }}>
 
+              
+
 
 
             { location.pathname !== '/login' ? 
@@ -111,31 +113,32 @@ function App() {
             
             
 
-            <Routes>
+            <Routes> 
                 <Route exact path="/home" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Home/></div>}/>
                 <Route path="/projects" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Projects user={currentUser} setUser={setCurrentUser}/></div>}/>
                 <Route path="/projectDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><ProjectDetails user={currentUser} /></div>}/>
-                <Route path="/ticketDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketDetails user={currentUser}/></div>}/>
-                <Route path="/addTicket" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddTicket user={currentUser}/></div>}/>
-                <Route path="/editTicket" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditTicket user={currentUser}/></div>}/>
-                <Route path="/addProject" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddProject user={currentUser}/></div>}/>
-                <Route path="/editProject" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditProject user={currentUser}/></div>}/>
-                <Route path="/projectHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><ProjectHistory user={currentUser}/></div>}/>
+                <Route path="/ticketDetails" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketDetails user={currentUser}/></div>}/>
+                <Route path="/addTicket" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddTicket user={currentUser}/></div>}/>
+                <Route path="/editTicket" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditTicket user={currentUser}/></div>}/>
+                <Route path="/addProject" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddProject user={currentUser}/></div>}/>
+                <Route path="/editProject" element={<div style={{width: '100%'}}><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditProject user={currentUser}/></div>}/>
+                <Route path="/projectHistory" element={<div style={{width: '100%'}}><TopNavBar setUser={setCurrentUser} user={currentUser} /><ProjectHistory user={currentUser}/></div>}/>
                 <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
-                <Route path="/addProjectUser" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddProjectUser/></div>}/>
-                <Route path="/removeProjectUser" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><RemoveProjectUser/></div>}/>
-                <Route exact path="/ticketHistoryDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketHistoryDetails user={currentUser}/></div>}/>
-                <Route exact path="/profile" element={<div style={{width: '100%'}}><TopNavBar setUser={setCurrentUser} user={currentUser} /><UserProfile user={currentUser}/></div>}/>
+                <Route path="/addProjectUser" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddProjectUser/></div>}/>
+                <Route path="/removeProjectUser" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><RemoveProjectUser/></div>}/>
+                <Route exact path="/ticketHistoryDetails" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketHistoryDetails user={currentUser}/></div>}/>
+                <Route exact path="/profile" element={<div style={{width: '100%'}}><TopNavBar setUser={setCurrentUser} user={currentUser} /><UserProfile user={currentUser}/></div>}/>                
                 <Route exact path="/profileHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><UserProfileHistory user={currentUser}/></div>}/>
-                <Route path="/editUserProfile" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserProfile user={currentUser} setUser={setCurrentUser}/></div>}/>
-                <Route path="/myTickets" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyTickets user={currentUser} setUser={setCurrentUser}/></div>}/>
-                <Route path="/myProjectTickets" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyProjectsTickets user={currentUser} setUser={setCurrentUser}/></div>}/>
+                <Route path="/editUserProfile" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserProfile user={currentUser} setUser={setCurrentUser}/></div>}/>                
+                <Route path="/myTickets" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyTickets user={currentUser} setUser={setCurrentUser}/></div>}/>                
+                <Route path="/myProjectTickets" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyProjectsTickets user={currentUser} setUser={setCurrentUser}/></div>}/>                
                 <Route path="/manageUsers" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><ManageProjectUsers user={currentUser} setUser={setCurrentUser}/></div>}/>
-                <Route path="/editUserRole" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserRole/></div>}/>
-                <Route path="/myActions" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyActions user={currentUser}/></div>}/>
-                <Route path="/notifications" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Notifications user={currentUser} setUser={setCurrentUser}/></div>}/>
+                <Route path="/editUserRole" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditUserRole/></div>}/>                
+                <Route path="/myActions" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><MyActions user={currentUser}/></div>}/>                
+                <Route path="/notifications" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Notifications user={currentUser} setUser={setCurrentUser}/></div>}/>                
                 <Route path="/notificationsHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><NotificationsHistory user={currentUser} setUser={setCurrentUser}/></div>}/>
-                <Route exact path="/dashboard" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
+
+                <Route exact path="/dashboard" element={<div style={{width: '100%', height: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
                 <Route path="*" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
             </Routes>
 

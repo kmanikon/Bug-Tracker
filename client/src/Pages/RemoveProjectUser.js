@@ -28,11 +28,6 @@ const RemoveProjectUser = () => {
     const location = useLocation();
     var { project, devList, changeCount } = location.state;
 
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
-    var descWidth = width * 0.575;
-
-
     const classes = useStyles();
     const ref = useRef(null);
 
@@ -166,7 +161,7 @@ const RemoveProjectUser = () => {
         <div>
 
 
-            <div style={{ width: width, marginLeft: '20px'}}>
+            <div style={{ width: '100%', marginLeft: '20px', maxWidth: '800px'}}>
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>

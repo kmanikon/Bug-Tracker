@@ -16,9 +16,6 @@ import ProjectDetailsCard from '../Components/ProjectDetailsCard/ProjectDetailsC
 
 const ProjectDetails = ({user}) => {
 
-  var { innerWidth: width, innerHeight: height } = window;
-  width -= 200
-
   const location = useLocation();
   var { project, changeCount } = location.state;
 

@@ -74,7 +74,7 @@ const TopNavBar = ({user, setUser, init}) => {
       }, [user, location.pathname, init])
 
     return (
-        <AppBar className={classes.appBar} position="static" color="inherit">
+        <AppBar className={classes.appBar} position="static" color="inherit" elevation={3}>
             <Toolbar className={classes.toolbar}>
 
             <div style={{marginTop: '10px'}}></div>
