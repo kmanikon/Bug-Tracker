@@ -377,6 +377,10 @@ const Dashboard = ({user}) => {
               </Link>
             </Button>
 
+            <Typography style={{textAlign: 'center', fontWeight: 'bold', fontSize: 'large', marginTop: '10px'}}>
+                {showAssigned ? <>My Assigned Tickets</> : <>My Submitted Tickets</>}
+            </Typography>
+            
             <Button color="black" size="large" variant="outlined"
                 style={{
                     //marginTop: '10px',
