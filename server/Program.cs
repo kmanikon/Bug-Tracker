@@ -133,7 +133,7 @@ app.MapGet("/get-posts-by-project-notifications/{projectId}", async (int project
 
 
 
-// int -> posts with matching assigned dev uid
+// int -> posts with matching assigned dev uid 
 app.MapGet("/get-posts-by-user/{userId}", async (int userId) =>
 {
     List<Post> postsToReturn = await PostsRepository.GetPostsByUserAsync(userId);

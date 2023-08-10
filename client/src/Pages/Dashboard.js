@@ -45,38 +45,47 @@ const Dashboard = ({user}) => {
     const [projectData, setProjectData] = useState([]);
     const [projectNamesData, setProjectNamesData] = useState([]);
 
+    const [showAssigned, setShowAssigned] = useState(true);
+
+    const [mytickets, setMytickets] = useState([]);
+    const [myprojects, setMyprojects] = useState([]);
+
 
     const makeAPICallPosts = async (route) => {
 
     
         fetch(url + route, {
-            method: 'GET'
+            method: 'GET' 
         })
         .then(response => response.json())
         .then(postsFromServer => {
 
             //console.log(postsFromServer)
 
-            const highPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'High').length
-            const medPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'Medium').length
-            const lowPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'Low').length
+            //const assignedTickets = mytickets.filter((t) => t.asignedDevUid === user.userId);
+
+            const highPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'High' && t.asignedDevUid === user.userId).length
+            const medPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'Medium' && t.asignedDevUid === user.userId).length
+            const lowPrioTickets = postsFromServer.filter((t) => t.ticketPrio === 'Low' && t.asignedDevUid === user.userId).length
 
    
             setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
         
-            const bugsTickets = postsFromServer.filter((t) => t.ticketType === 'Bugs/Errors').length
-            const featureTickets = postsFromServer.filter((t) => t.ticketType === 'Feature Request').length
-            const taskTickets = postsFromServer.filter((t) => t.ticketType === 'Task').length
-            const otherTickets = postsFromServer.filter((t) => t.ticketType === 'Other').length
+            const bugsTickets = postsFromServer.filter((t) => t.ticketType === 'Bugs/Errors' && t.asignedDevUid === user.userId).length
+            const featureTickets = postsFromServer.filter((t) => t.ticketType === 'Feature Request' && t.asignedDevUid === user.userId).length
+            const taskTickets = postsFromServer.filter((t) => t.ticketType === 'Task' && t.asignedDevUid === user.userId).length
+            const otherTickets = postsFromServer.filter((t) => t.ticketType === 'Other' && t.asignedDevUid === user.userId).length
 
             setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
    
 
 
-            const pendingTickets = postsFromServer.filter((t) => t.ticketStatus === 'pending').length
-            const closedTickets = postsFromServer.filter((t) => t.ticketStatus === 'closed').length
+            const pendingTickets = postsFromServer.filter((t) => t.ticketStatus === 'pending' && t.asignedDevUid === user.userId).length
+            const closedTickets = postsFromServer.filter((t) => t.ticketStatus === 'closed' && t.asignedDevUid === user.userId).length
 
             setStatusData([pendingTickets, closedTickets]);
+
+            setMytickets(postsFromServer);
 
 
             fetch(url + 'get-projects-by-user-id/' + user.userId, {
@@ -87,12 +96,13 @@ const Dashboard = ({user}) => {
                 const projectNames = projects.map((p) => p.projectName)
                 const projectIds = projects.map((p) => p.projectId)
                 //console.log(projectNames)
+                setMyprojects(projectIds);
 
 
                 setProjectNamesData(projectNames);
 
 
-                const ProjectTicketCounts = projectIds.map((p) => postsFromServer.filter((t) => t.projectId === p).length)
+                const ProjectTicketCounts = projectIds.map((p) => postsFromServer.filter((t) => t.projectId === p && t.asignedDevUid === user.userId).length)
                 setProjectData(ProjectTicketCounts);
             });
         });
@@ -100,11 +110,81 @@ const Dashboard = ({user}) => {
 
     
     useEffect( () => {
-
         if (user){
             makeAPICallPosts('get-posts-by-user/' + user.userId);
         }
     }, [user]);
+
+
+    const handleShowAssigned = () => {
+
+        // switching to submitted tickets
+        if (showAssigned) {
+            setShowAssigned(false);
+
+            const submittedTickets = mytickets.filter((t) => t.submitterUid === user.userId);
+
+            const highPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'High').length
+            const medPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'Medium').length
+            const lowPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'Low').length
+
+
+            setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
+
+         
+            const bugsTickets = submittedTickets.filter((t) => t.ticketType === 'Bugs/Errors').length
+            const featureTickets = submittedTickets.filter((t) => t.ticketType === 'Feature Request').length
+            const taskTickets = submittedTickets.filter((t) => t.ticketType === 'Task').length
+            const otherTickets = submittedTickets.filter((t) => t.ticketType === 'Other').length
+
+            setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
+
+            
+
+            const pendingTickets = submittedTickets.filter((t) => t.ticketStatus === 'pending').length
+            const closedTickets = submittedTickets.filter((t) => t.ticketStatus === 'closed').length
+
+            setStatusData([pendingTickets, closedTickets]);      
+            
+            const ProjectTicketCounts = myprojects.map((p) => submittedTickets.filter((t) => t.projectId === p).length)
+            setProjectData(ProjectTicketCounts);
+
+
+          
+        }
+        // switching to assigned tickets
+        else {
+            setShowAssigned(true);
+
+            const assignedTickets = mytickets.filter((t) => t.asignedDevUid === user.userId);
+
+            const highPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'High').length
+            const medPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'Medium').length
+            const lowPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'Low').length
+
+
+            setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
+
+         
+            const bugsTickets = assignedTickets.filter((t) => t.ticketType === 'Bugs/Errors').length
+            const featureTickets = assignedTickets.filter((t) => t.ticketType === 'Feature Request').length
+            const taskTickets = assignedTickets.filter((t) => t.ticketType === 'Task').length
+            const otherTickets = assignedTickets.filter((t) => t.ticketType === 'Other').length
+
+            setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
+
+            
+
+            const pendingTickets = assignedTickets.filter((t) => t.ticketStatus === 'pending').length
+            const closedTickets = assignedTickets.filter((t) => t.ticketStatus === 'closed').length
+
+            setStatusData([pendingTickets, closedTickets]);      
+            
+            const ProjectTicketCounts = myprojects.map((p) => assignedTickets.filter((t) => t.projectId === p).length)
+            setProjectData(ProjectTicketCounts);
+          
+        }
+      }
 
 
     const TicketsByPriodata = {
@@ -276,13 +356,16 @@ const Dashboard = ({user}) => {
       <div style={{marginTop: '100px'}}></div>
 
 
-        < Button color="black" size="large" variant="outlined"
+        <div style={{display: 'flex', justifyContent: 'space-between' }}>
+            < Button color="black" size="large" variant="outlined"
                 style={{
-                    marginTop: '10px',
+                    //marginTop: '10px',
                     marginLeft: '80px',
-                    marginBottom: '0px',
+                    //marginBottom: '0px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    height: '50px'
+
                 }}
 
             >
@@ -293,6 +376,23 @@ const Dashboard = ({user}) => {
               
               </Link>
             </Button>
+
+            <Button color="black" size="large" variant="outlined"
+                style={{
+                    //marginTop: '10px',
+                    marginRight: '80px',
+                    //marginBottom: '20px',
+                    fontWeight: 'bold',
+                    fontSize: 'large',
+                    height: '50px'
+
+                }}
+                onClick={handleShowAssigned}
+            >
+              {showAssigned ? <>Show Submitted Tickets</> : <>Show Assigned Tickets</>}
+            </Button>
+
+            </div>
 
  
       <Grid container rowSpacing={1} columnSpacing={1} style={{

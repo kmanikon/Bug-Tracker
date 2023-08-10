@@ -29,7 +29,7 @@ namespace ticket_server.Data
         {
             using (var db = new AppDBContext())
             {
-                List<Post> postsToReturn = await db.Posts.Where(t => t.AsignedDevUid == userId).ToListAsync();
+                List<Post> postsToReturn = await db.Posts.Where(t => t.AsignedDevUid == userId || t.SubmitterUid == userId).ToListAsync();
                 return postsToReturn;
             }
         }
