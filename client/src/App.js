@@ -83,7 +83,7 @@ function App() {
 
 
 
-            { location.pathname !== '/login' ? 
+            { location.pathname !== '/login' && location.pathname !== '/' ? 
               <>
               
  
@@ -139,6 +139,7 @@ function App() {
                 <Route path="/notificationsHistory" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><NotificationsHistory user={currentUser} setUser={setCurrentUser}/></div>}/>
 
                 <Route exact path="/dashboard" element={<div style={{width: '100%', height: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
+                <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
                 <Route path="*" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
             </Routes>
 
