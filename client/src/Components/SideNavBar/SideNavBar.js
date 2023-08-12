@@ -100,7 +100,7 @@ const SideNavBar = ({user, height}) => {
                         <div className={active === 'tickets' ? classes.active : classes.inactive}>
                             <MenuItem 
                                 style={{height: '100px'}}
-                                onClick={() => setActive('tickets')} component={<Link to="/mytickets" />}
+                                onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
                                 
                                 <div style={{alignItems: 'center'}}>

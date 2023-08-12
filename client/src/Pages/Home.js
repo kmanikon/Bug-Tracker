@@ -115,7 +115,7 @@ const Home = () => {
           </Link>
         </Grid>
         <Grid item xs={6}>
-        <Link to="/mytickets" style={{ textDecoration: 'none' }}>
+        <Link to="/myTickets" style={{ textDecoration: 'none' }}>
           <Button style={{
             width: '100%', 
             //display: 'block', 

@@ -45,7 +45,35 @@ import SideNavBar from './Components/SideNavBar/SideNavBar';
 import TopNavBar from './Components/TopNavBar/TopNavBar';
 
 
+const paths = [
+  "/home",
+  "/projects",
+  "/projectDetails",
+  "/ticketDetails",
+  "/addTicket",
+  "/editTicket",
+  "/addProject",
+  "/editProject",
+  "/projectHistory",
+  //"/login"
+  "/addProjectUser",
+  "/removeProjectUser",
+  "/ticketHistoryDetails",
+  "/profile",
+  "/profileHistory",
+  "/editUserProfile",
+  "/myTickets",
+  "/mytickets",
+  "/myProjectTickets",
+  "/manageUsers",
+  "/editUserRole",
+  "/myActions",
+  "/notifications",
+  "/notificationsHistory",
+  "/dashboard",
+  //"/"
 
+]
 
 
 function App() {
@@ -83,7 +111,9 @@ function App() {
 
 
 
-            { location.pathname !== '/login' && location.pathname !== '/' ? 
+            { 
+            //location.pathname !== '/login' && location.pathname !== '/' ? 
+            paths.includes(location.pathname) ?
               <>
               
  
@@ -140,7 +170,8 @@ function App() {
 
                 <Route exact path="/dashboard" element={<div style={{width: '100%', height: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
                 <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
-                <Route path="*" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> 
+                <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
+                {/*<Route path="*" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> */}
             </Routes>
 
 
