@@ -10,10 +10,12 @@ import ReactFlow, {
     MiniMap,
     NodeToolbar,
     Panel,
+    Position,
+    Handle,
     getConnectedEdges,
 
   } from 'reactflow';
-import { EditFilled } from '@ant-design/icons';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import { Button } from '@material-ui/core';
 
 
@@ -23,39 +25,62 @@ import Sidebar from './Sidebar';
 
 import './styles.css';
 
+
 const initialNodes = [
-    { id: '1', type: 'input', data: { label: 'Start here...' }, position: { x: -150, y: 0 }, type: 'node-with-toolbar' },
-    { id: '2', type: 'input', data: { label: '...or here!' }, position: { x: 150, y: 0 }, type: 'node-with-toolbar' },
-    { id: '3', data: { label: 'Delete me.' }, position: { x: 0, y: 100 } },
-    { id: '4', data: { label: 'Then me!' }, position: { x: 0, y: 200 } },
-    { id: '5', type: 'output', data: { label: 'End here!' }, position: { x: 0, y: 300 } },
+    { id: '1', type: 'node-with-toolbar', data: { label: 'Node 1' }, position: { x: 100, y: 100 } },
+    { id: '2', type: 'node-with-toolbar', data: { label: 'Node 2' }, position: { x: 100, y: 200 } },
 ];
   
-const initialEdges = [
-    { id: '1->3', source: '1', target: '3' },
-    { id: '2->3', source: '2', target: '3' },
-    { id: '3->4', source: '3', target: '4' },
-    { id: '4->5', source: '4', target: '5' },
-];
+const initialEdges = [];//[{ id: 'e1-2', source: '1', target: '2' }];
 
 const nodeTypes = {
     'node-with-toolbar': NodeWithToolbar,
 };
 
-function NodeWithToolbar({ data }) {
+
+function NodeWithToolbar({ id, data, isConnectable }) {
+
+    const topid = "top" + id;
+    const botid = "bot" + id;
+    const leftid = "left" + id;
+    const rightid = "right" + id;
+
     return (
       <>
         <NodeToolbar
           isVisible={data.forceToolbarVisible || undefined}
           position={data.toolbarPosition}
+          align="end"
         >
-          <Button><EditFilled/></Button>
+            <div style={{display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20 }}>
+                <Button style={{minWidth: 10, marginRight: 5}}><EditFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
+                <Button style={{minWidth: 10}} ><DeleteFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
+            </div>
 
         </NodeToolbar>
+
+        <Handle
+          type="source"
+          
+          id={topid}
+          position={Position.Top}
+          //onConnect={(params) => console.log('handle onConnect', params)}
+          isConnectable={isConnectable}
+        />
+        <Handle
+          type="source"
+          id={botid}
+          position={Position.Bottom}
+          //onConnect={(params) => console.log('handle onConnect', params)}
+          isConnectable={isConnectable}
+        />
+
+        
         <div className="react-flow__node-default">{data?.label}</div>
       </>
     );
   }
+
 
 
 const ProjectBoard = () => {
@@ -94,11 +119,13 @@ const ProjectBoard = () => {
     ),
   );
 
+
     return (
         <div className="providerflow">
             <ReactFlowProvider>
                 <div className="reactflow-wrapper">
                 <ReactFlow
+                    connectionMode="loose"
                     nodes={nodes}
                     edges={edges}
                     nodeTypes={nodeTypes}
@@ -107,7 +134,6 @@ const ProjectBoard = () => {
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
                     fitView
-                    //attributionPosition="top-right"
                     >
                     <Background variant="dots" gap={12} size={1} />
                 </ReactFlow>
