@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
+import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
+import TopNavBar from '../Components/TopNavBar/TopNavBar';
+import ProjectBoard from '../Components/ProjectBoard/ProjectBoard';
 import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
 import { Link } from 'react-router-dom';
 
-import MyTicketTable from '../Components/MyTicketTable/MyTicketTable'
-
 import url from '../defs';
+
+import 'reactflow/dist/style.css';
 
 
 /*
@@ -117,54 +118,52 @@ const makeAPICallGetHistory = async (route) => {
     }
   }
 
+
+
     return (
       <div style={{ width: '100%', marginLeft: '20px'}}>
-            <div style={{marginTop: '110px'}}></div>
+            <div style={{marginTop: '80px'}}></div>
 
             
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-            <Button color="black" size="large" variant="outlined"
-                style={{
-                    marginTop: '0px',
-                    marginLeft: '20px',
-                    marginBottom: '20px',
-                    fontWeight: 'bold',
-                    fontSize: 'large'
-                }}
+            <div style={{display: 'flex', justifyContent: 'space-between', }}>
+              <Button color="black" size="large" variant="outlined"
+                  style={{
+                      marginTop: '0px',
+                      //marginLeft: '20px',
+                      marginBottom: '20px',
+                      fontWeight: 'bold',
+                      fontSize: 'large'
+                  }}
 
-            >
-            <Link to="/myTickets" 
-                style={{ textDecoration: 'none' }}>
+              >
+                <Link to="/myTickets" 
+                    style={{ textDecoration: 'none' }}>
 
-                Back 
+                    Back 
+                  
+                </Link>
+              </Button>
+
               
-              </Link>
-            </Button>
 
-            <Button color="black" size="large" variant="outlined"
-            style={{
-                marginRight: '80px',
-                marginBottom: '20px',
-                fontWeight: 'bold',
-                fontSize: 'large',
 
-            }}
+              
 
-              onClick={handleShowAssigned}
-            >
-              {showAssigned ? <>Show Submitted Tickets</> : <>Show Assigned Tickets</>}
-        </Button>
-        </div>
+            </div>
 
             
 
-            
+            {/*
+            <div style={{marginTop: '20px'}}></div>
 
-      <div style={{marginTop: '20px'}}></div>
+            <MyTicketTable tickets={showTickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user} showAssigned={showAssigned}/>
+            */}
 
-        <MyTicketTable tickets={showTickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user} showAssigned={showAssigned}/>
-        
 
+            {/* Board Here */}
+            <div style={{ width: '85vw', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid'}}>
+              <ProjectBoard/>
+            </div>
 
       </div>
     )
