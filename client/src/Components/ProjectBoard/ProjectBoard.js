@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import ReactFlow, {
     ReactFlowProvider,
     Background,
@@ -12,12 +12,15 @@ import ReactFlow, {
     Panel,
     Position,
     Handle,
+    Controls,
     getConnectedEdges,
+    useReactFlow
 
   } from 'reactflow';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import { Button } from '@material-ui/core';
 
+import TicketNode from './TicketNode';
 
 import 'reactflow/dist/style.css';
 
@@ -29,21 +32,59 @@ import './styles.css';
 const initialNodes = [
     { id: '1', type: 'node-with-toolbar', data: { label: 'Node 1' }, position: { x: 100, y: 100 } },
     { id: '2', type: 'node-with-toolbar', data: { label: 'Node 2' }, position: { x: 100, y: 200 } },
+    { id: '3', type: 'node-with-toolbar', data: { label: 'Node 3' }, position: { x: 100, y: 300 } },
 ];
   
 const initialEdges = [];//[{ id: 'e1-2', source: '1', target: '2' }];
 
+
 const nodeTypes = {
-    'node-with-toolbar': NodeWithToolbar,
+    //'node-with-toolbar': NodeWithToolbar,
+    'node-with-toolbar': TicketNode
 };
 
 
-function NodeWithToolbar({ id, data, isConnectable }) {
+/*
+const memo(({ id, data, isConnectable }) => {
+//function NodeWithToolbar({ id, data, isConnectable }) {
 
     const topid = "top" + id;
     const botid = "bot" + id;
     const leftid = "left" + id;
     const rightid = "right" + id;
+
+
+    const removeNode = () => {
+      const {
+        getNode,
+        getNodes,
+        getEdges,
+        setEdges,
+        deleteElements
+      } = useReactFlow();
+
+      const node = getNode(id);
+  
+      if (!node) {
+        return;
+      }
+  
+      const nodes = getNodes();
+      const edges = getEdges();
+      const [prevNode] = getIncomers(node, nodes, edges);
+      const [nextNode] = getOutgoers(node, nodes, edges);
+  
+      const connectedEdges = getConnectedEdges([node], edges);
+  
+      const insertEdge = {
+        id: `${prevNode.id}=>${nextNode.id}`,
+        target: nextNode.id,
+        source: prevNode.id
+      };
+  
+      deleteElements({ nodes: [node], edges: connectedEdges });
+      setEdges((prev) => prev.concat(insertEdge));
+    };
 
     return (
       <>
@@ -54,7 +95,7 @@ function NodeWithToolbar({ id, data, isConnectable }) {
         >
             <div style={{display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20 }}>
                 <Button style={{minWidth: 10, marginRight: 5}}><EditFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
-                <Button style={{minWidth: 10}} ><DeleteFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
+                <Button style={{minWidth: 10}} onClick={() => console.log()}><DeleteFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
             </div>
 
         </NodeToolbar>
@@ -81,6 +122,8 @@ function NodeWithToolbar({ id, data, isConnectable }) {
     );
   }
 
+  */
+
 
 
 const ProjectBoard = () => {
@@ -89,35 +132,9 @@ const ProjectBoard = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
     const onConnect = useCallback((params) => setEdges(addEdge(params, edges)), [edges]);
-    const onNodesDelete = useCallback(
-        (deleted) => {
-        setEdges(
-            deleted.reduce((acc, node) => {
-            const incomers = getIncomers(node, nodes, edges);
-            const outgoers = getOutgoers(node, nodes, edges);
-            const connectedEdges = getConnectedEdges([node], edges);
 
-            const remainingEdges = acc.filter((edge) => !connectedEdges.includes(edge));
 
-            const createdEdges = incomers.flatMap(({ id: source }) =>
-                outgoers.map(({ id: target }) => ({ id: `${source}->${target}`, source, target }))
-            );
 
-            return [...remainingEdges, ...createdEdges];
-            }, edges)
-        );
-        },
-        [nodes, edges]
-    );
-
-    const forceToolbarVisible = useCallback((enabled) =>
-    setNodes((nodes) =>
-      nodes.map((node) => ({
-        ...node,
-        data: { ...node.data, forceToolbarVisible: enabled },
-      })),
-    ),
-  );
 
 
     return (
@@ -130,12 +147,12 @@ const ProjectBoard = () => {
                     edges={edges}
                     nodeTypes={nodeTypes}
                     onNodesChange={onNodesChange}
-                    onNodesDelete={onNodesDelete}
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
                     fitView
-                    >
+                  >
                     <Background variant="dots" gap={12} size={1} />
+                    <Controls></Controls>
                 </ReactFlow>
                 </div>
             </ReactFlowProvider>
