@@ -56,3 +56,29 @@
 .icon-button:hover {
     color: #000000;
 }
+
+.alignForm {
+    width: 100px;
+    height: 500px;
+    top: 0;
+    right: 0;
+}
+
+.boardWindow {
+    position: relative;
+    background-color: white;
+    width: 300px;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.underLinedButton {
+    text-decoration: 'underline';
+    text-underline-offset: '14px';
+    text-decoration-thickness: 3px;
+    text-decoration-color: '#7CB9E8';
+    background-color: 'transparent';
+}
+

@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom';
 import TopNavBar from '../Components/TopNavBar/TopNavBar';
 import ProjectBoard from '../Components/ProjectBoard/ProjectBoard';
 import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
-import { RightOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
 import { Link } from 'react-router-dom';
+import { shadows } from '@mui/system';
 
 import url from '../defs';
 
@@ -144,6 +145,39 @@ const makeAPICallGetHistory = async (route) => {
                 </Link>
               </Button>
 
+            {/*
+              <div>
+                
+              <Button color="black" size="medium" variant="outlined"
+                  style={{
+                      marginTop: '0px',
+                      //marginLeft: '20px',
+                      marginRight: '20px',
+                      marginBottom: '20px',
+                      fontWeight: 'bold',
+                      fontSize: 'large'
+                  }}
+                  
+
+              >
+                <PlusOutlined style={{marginRight: 10 }} />
+                Add Ticket
+              </Button>
+              <Button color="black" size="medium" variant="outlined"
+                  style={{
+                      marginTop: '0px',
+                      //marginLeft: '20px',
+                      marginRight: '20px',
+                      marginBottom: '20px',
+                      fontWeight: 'bold',
+                      fontSize: 'large'
+                  }}
+              >
+                Create Note
+              </Button>
+              </div>
+              */}
+
               
 
 
@@ -161,7 +195,7 @@ const makeAPICallGetHistory = async (route) => {
 
 
             {/* Board Here */}
-            <div style={{ width: '85vw', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid'}}>
+            <div style={{ width: '85vw', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid',}}>
               <ProjectBoard/>
             </div>
 
