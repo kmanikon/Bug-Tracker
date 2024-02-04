@@ -1,4 +1,4 @@
-import React, { useCallback, mem, useState } from 'react';
+import React, { useCallback, mem, useState, useEffect } from 'react';
 import ReactFlow, {
     ReactFlowProvider,
     Background,
@@ -30,6 +30,7 @@ import Sidebar from './Sidebar';
 import './styles.css';
 
 
+/*
 const initialNodes = [
     { id: '1', type: 'node-with-toolbar', data: { label: 'Node 1', description: 'hi1' }, position: { x: 100, y: 100 } },
     { id: '2', type: 'node-with-toolbar', data: { label: 'Node 2', description: 'hi2' }, position: { x: 100, y: 200 } },
@@ -37,106 +38,65 @@ const initialNodes = [
 ];
   
 const initialEdges = [];//[{ id: 'e1-2', source: '1', target: '2' }];
-
+*/
 
 const nodeTypes = {
-    //'node-with-toolbar': NodeWithToolbar,
     'node-with-toolbar': TicketNode
 };
 
 
-/*
-const memo(({ id, data, isConnectable }) => {
-//function NodeWithToolbar({ id, data, isConnectable }) {
+//let id = Math.max(...initialNodes.map(item => item.id));
+//let id = 1;
+//const getId = () => `${id++}`;
 
-    const topid = "top" + id;
-    const botid = "bot" + id;
-    const leftid = "left" + id;
-    const rightid = "right" + id;
+let selectedNode = 0;
 
+const ProjectBoard = ({tickets}) => {
 
-    const removeNode = () => {
-      const {
-        getNode,
-        getNodes,
-        getEdges,
-        setEdges,
-        deleteElements
-      } = useReactFlow();
-
-      const node = getNode(id);
-  
-      if (!node) {
-        return;
-      }
-  
-      const nodes = getNodes();
-      const edges = getEdges();
-      const [prevNode] = getIncomers(node, nodes, edges);
-      const [nextNode] = getOutgoers(node, nodes, edges);
-  
-      const connectedEdges = getConnectedEdges([node], edges);
-  
-      const insertEdge = {
-        id: `${prevNode.id}=>${nextNode.id}`,
-        target: nextNode.id,
-        source: prevNode.id
-      };
-  
-      deleteElements({ nodes: [node], edges: connectedEdges });
-      setEdges((prev) => prev.concat(insertEdge));
-    };
-
-    return (
-      <>
-        <NodeToolbar
-          isVisible={data.forceToolbarVisible || undefined}
-          position={data.toolbarPosition}
-          align="end"
-        >
-            <div style={{display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20 }}>
-                <Button style={{minWidth: 10, marginRight: 5}}><EditFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
-                <Button style={{minWidth: 10}} onClick={() => console.log()}><DeleteFilled className="icon-button" style={{ fontSize: '20px' }}/></Button>
-            </div>
-
-        </NodeToolbar>
-
-        <Handle
-          type="source"
-          
-          id={topid}
-          position={Position.Top}
-          //onConnect={(params) => console.log('handle onConnect', params)}
-          isConnectable={isConnectable}
-        />
-        <Handle
-          type="source"
-          id={botid}
-          position={Position.Bottom}
-          //onConnect={(params) => console.log('handle onConnect', params)}
-          isConnectable={isConnectable}
-        />
-
-        
-        <div className="react-flow__node-default">{data?.label}</div>
-      </>
-    );
-  }
-
-  */
-
-
-
-const ProjectBoard = () => {
-
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     const onConnect = useCallback((params) => setEdges(addEdge(params, edges)), [edges]);
     const [mode, setMode] = useState('add');
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+
+    //let [selectedNode, setSelectedNode] = useState();
+
+    let [id, setId] = useState(0);//useState(Math.max(...formattedTickets.map(item => Number(item.id))) + 1);
+
+    
+    const formatTickets = (userTickets) => {
+      const newList = userTickets.map(ticket => {
+        return {
+          id: String(ticket.postId),
+          type: 'node-with-toolbar',
+          data: { label: ticket.title, description: ticket.description }
+        };
+      });
+
+      return newList;
+    }
+
+    let [formattedTickets, setFormattedTickets] = useState([]);//formatTickets(tickets));
+
+    useEffect(() => {
+      const updatedTickets = formatTickets(tickets);
+      setFormattedTickets(updatedTickets);
+    }, [tickets]);
+
+
+    useEffect(() => {
+      console.log(formattedTickets);
+    }, [formattedTickets]);
+    
+
+    
+
+    const getId = () => {
+      return `${id++}`;
+    }
 
 
     const underLineStyles = {
@@ -147,10 +107,91 @@ const ProjectBoard = () => {
       textTransform: 'none', fontSize: 16
     }
 
+    const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
+    
+
+    const onDragOver = useCallback((event) => {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+    }, []);
+
+    const format = () => {
+      console.log(tickets)
+    }
+  
+    const onDrop = useCallback(
+      (event) => {
+        event.preventDefault();
+      
+        if (selectedNode != null && formattedTickets && formattedTickets.length > 0) {
+        
+            // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
+            // and you don't need to subtract the reactFlowBounds.left/top anymore
+            // details: https://reactflow.dev/whats-new/2023-11-10
+            const position = reactFlowInstance.screenToFlowPosition({
+              x: event.clientX,
+              y: event.clientY,
+            });
+
+            let selectedTicket = formattedTickets[selectedNode];
+
+            const newNode = {
+              id: getId(), 
+              type: 'node-with-toolbar',
+              data: selectedTicket.data,
+              position
+            };
+            
+            setNodes((nds) => nds.concat(newNode));
+        }
+        
+      },
+      [reactFlowInstance],
+      
+    );
+
+
+
+    const onDragStart = (event, nodeType, index) => {
+      event.dataTransfer.setData('application/reactflow', nodeType);
+      event.dataTransfer.effectAllowed = 'move';
+  
+      //setSelectedNode(index);    
+      selectedNode = index;
+    };
+
+    
+    const TicketDrag = ({index}) => {
+      return (
+        <div 
+            style={{
+                width: '100%'
+            }}
+        >
+          <div
+            className="drag_btns" 
+            onDragStart={(event) => onDragStart(event, 'input', index)} draggable
+          >
+            <div className="drag_txt">
+              {formattedTickets && formattedTickets.length > 0 &&
+                <>
+                  {formattedTickets[index].data.label}
+                </>
+              }
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+
 
     return (
       <>
+        
         <div className="providerflow">
+        {formattedTickets && tickets && formattedTickets.length === tickets.length &&
           <ReactFlowProvider>
             <div className="reactflow-wrapper">
               <ReactFlow
@@ -163,6 +204,9 @@ const ProjectBoard = () => {
                 onConnect={onConnect}
                 fitView
                 attributionPosition="top-left"
+                onInit={setReactFlowInstance}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
               >
                 <Background variant="dots" gap={12} size={1} />
                 <Controls>
@@ -172,6 +216,7 @@ const ProjectBoard = () => {
 
             </div>
           </ReactFlowProvider>
+        }
 
           <Divider orientation="vertical" flexItem />
           <div className="boardWindow">
@@ -203,10 +248,31 @@ const ProjectBoard = () => {
 
             </div>
             
-            <div style={{marginTop: '30px'}}></div>
+           
+
+            {mode === 'add' && 
+              <>
+              <div style={{marginTop: '20px'}}></div>
+
+                <div className="scroll">
+                  {formattedTickets && formattedTickets.length > 0 && 
+                    <>
+                      {formattedTickets.map((post, index) =>
+                        <div key={index}>
+                          <TicketDrag index={index}/>
+                        </div>
+                      )}
+                    </>
+                  }
+                  
+                </div>
+
+              </>
+            }
 
             {mode === 'note' && 
             <>
+              <div style={{marginTop: '30px'}}></div>
               <TextField
                 className="text"
                 onChange={(e) => setTitle(e.target.value)}  
@@ -263,4 +329,4 @@ const ProjectBoard = () => {
     );
 }
 
-export default ProjectBoard
+export default ProjectBoard;

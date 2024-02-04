@@ -103,3 +103,24 @@
     
 }
 
+.drag_btns { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.01rem solid;
+    min-height: 50px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.drag_txt {
+    margin: 10px;
+}
+
+.scroll {
+    height: 80%;
+    overflow-y:auto;
+}
