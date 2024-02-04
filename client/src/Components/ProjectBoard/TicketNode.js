@@ -72,6 +72,9 @@ export default memo(({ id, data, isConnectable }) => {
         },
       }));
 
+
+    
+
     return (
         <>
             
@@ -89,6 +92,16 @@ export default memo(({ id, data, isConnectable }) => {
                     >*/}
 
                     <Tooltip title={'details'} placement="top">
+                        {/*
+                        <Link to="/ticketDetails" 
+                            //state={{ ticket: ticket, ticketNum: ticketNum, project: project, devList: devList, changeCount: changeCount, myTickets: myTickets  }} 
+                            //>style={{ textDecoration: 'none' }}
+                        >
+                            <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
+                                <SearchIcon className="icon-button" style={{ fontSize: '24px' }} />
+                            </Button>
+                        </Link>
+                        */}
                         <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
                             <SearchIcon className="icon-button" style={{ fontSize: '24px' }} />
                         </Button>

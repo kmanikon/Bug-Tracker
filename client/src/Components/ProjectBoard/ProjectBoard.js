@@ -30,26 +30,18 @@ import Sidebar from './Sidebar';
 import './styles.css';
 
 
-/*
-const initialNodes = [
-    { id: '1', type: 'node-with-toolbar', data: { label: 'Node 1', description: 'hi1' }, position: { x: 100, y: 100 } },
-    { id: '2', type: 'node-with-toolbar', data: { label: 'Node 2', description: 'hi2' }, position: { x: 100, y: 200 } },
-    { id: '3', type: 'node-with-toolbar', data: { label: 'Node 3', description: 'hi3' }, position: { x: 100, y: 300 } },
-];
-  
-const initialEdges = [];//[{ id: 'e1-2', source: '1', target: '2' }];
-*/
 
 const nodeTypes = {
     'node-with-toolbar': TicketNode
 };
 
-
-//let id = Math.max(...initialNodes.map(item => item.id));
-//let id = 1;
-//const getId = () => `${id++}`;
-
 let selectedNode = 0;
+
+
+
+
+
+
 
 const ProjectBoard = ({tickets}) => {
 
@@ -65,6 +57,7 @@ const ProjectBoard = ({tickets}) => {
     //let [selectedNode, setSelectedNode] = useState();
 
     let [id, setId] = useState(0);//useState(Math.max(...formattedTickets.map(item => Number(item.id))) + 1);
+
 
     
     const formatTickets = (userTickets) => {
@@ -85,12 +78,6 @@ const ProjectBoard = ({tickets}) => {
       const updatedTickets = formatTickets(tickets);
       setFormattedTickets(updatedTickets);
     }, [tickets]);
-
-
-    useEffect(() => {
-      console.log(formattedTickets);
-    }, [formattedTickets]);
-    
 
     
 
@@ -116,10 +103,6 @@ const ProjectBoard = ({tickets}) => {
       event.dataTransfer.dropEffect = 'move';
     }, []);
 
-    const format = () => {
-      console.log(tickets)
-    }
-  
     const onDrop = useCallback(
       (event) => {
         event.preventDefault();
