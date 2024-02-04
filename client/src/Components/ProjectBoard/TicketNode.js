@@ -47,15 +47,6 @@ export default memo(({ id, data, isConnectable }) => {
     const leftid = "left" + id;
     const rightid = "right" + id;
 
-    const ticket = linkTickets[data.index];
-    const ticketNum = data.ticketNum;
-    const project = linkProject;
-    const devList = linkDevlist;
-    const changeCount = linkChangeCount;
-    const myTickets = false;
-
-    
-
     const removeNode = () => {
         const node = getNode(id);
 
@@ -100,14 +91,16 @@ export default memo(({ id, data, isConnectable }) => {
                 <div style={{ display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20, backgroundColor: 'white' }}>
 
                     <Tooltip title={'Details'} placement="top">
-                        <Link 
-                            to="/ticketDetails"
-                            state={{ ticket: linkTickets[data.index], ticketNum: data.ticketNum, project: linkProject, devList: linkDevlist, changeCount: linkChangeCount, myTickets: true }}
-                        >
-                            <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
-                                <EditFilled className="icon-button" style={{ fontSize: '20px' }} />
-                            </Button>
-                        </Link>
+                        {linkTickets && linkProject && linkDevlist &&
+                            <Link 
+                                to="/ticketDetails"
+                                state={{ ticket: linkTickets[data.index], ticketNum: data.ticketNum, project: linkProject, devList: linkDevlist, changeCount: linkChangeCount, myTickets: true }}
+                            >
+                                <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
+                                    <EditFilled className="icon-button" style={{ fontSize: '20px' }} />
+                                </Button>
+                            </Link>
+                        }
                     </Tooltip>
 
                     <Tooltip title={'Delete'} placement="top">
@@ -119,24 +112,28 @@ export default memo(({ id, data, isConnectable }) => {
             </NodeToolbar>
 
             <Handle
+                style={{width: '100%', opacity: 0}}
                 type="source"
                 id={topid}
                 position={Position.Top}
                 isConnectable={isConnectable}
             />
             <Handle
+                style={{width: '100%', opacity: 0}}
                 type="source"
                 id={botid}
                 position={Position.Bottom}
                 isConnectable={isConnectable}
             />
             <Handle
+                style={{height: '100%', opacity: 0}}
                 type="source"
                 id={leftid}
                 position={Position.Left}
                 isConnectable={isConnectable}
             />
             <Handle
+                style={{height: '100%', opacity: 0}}
                 type="source"
                 id={rightid}
                 position={Position.Right}

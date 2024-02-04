@@ -15,7 +15,8 @@ import ReactFlow, {
     Controls,
     getConnectedEdges,
     useReactFlow,
-    ControlButton
+    ControlButton,
+    MarkerType
 
   } from 'reactflow';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
@@ -30,6 +31,16 @@ import Sidebar from './Sidebar';
 import './styles.css';
 
 
+const defaultEdgeOptions = {
+  animated: false,
+  type: 'step',
+  markerEnd: {
+    type: MarkerType.ArrowClosed,
+    width: 20,
+    height: 20,
+    color: '#cdcdcd',
+  },
+};
 
 const nodeTypes = {
     'node-with-toolbar': TicketNode
@@ -56,11 +67,9 @@ let selectedNode = 0;
 */
 
 let linkTickets = [];
-// selectedNode -> data.index
-let linkProject = 0;
+let linkProject = null;
 let linkDevlist = [];
 let linkChangeCount = 0;
-//let linkMyTickets = false;
 
 const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
 
@@ -73,9 +82,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    //let [selectedNode, setSelectedNode] = useState();
-
-    let [id, setId] = useState(0);//useState(Math.max(...formattedTickets.map(item => Number(item.id))) + 1);
+    let [id, setId] = useState(0);
 
 
 
@@ -208,6 +215,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
                 connectionMode="loose"
                 nodes={nodes}
                 edges={edges}
+                defaultEdgeOptions={defaultEdgeOptions}
                 nodeTypes={nodeTypes}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
@@ -217,6 +225,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
                 onInit={setReactFlowInstance}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
+                connectionLineType="SmoothStep"
               >
                 <Background variant="dots" gap={12} size={1} />
                 <Controls>
