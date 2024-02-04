@@ -18,12 +18,14 @@ import ReactFlow, {
 } from 'reactflow';
 import { styled } from '@mui/material/styles';
 import { EditFilled, DeleteFilled, CloseOutlined } from '@ant-design/icons';
-import { Button, Typography, Link } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import { linkTickets, linkProject, linkDevlist, linkChangeCount } from './ProjectBoard';
 
 export default memo(({ id, data, isConnectable }) => {
     const [showDescription, setShowDescription] = useState(false);
@@ -44,6 +46,15 @@ export default memo(({ id, data, isConnectable }) => {
     const botid = "bot" + id;
     const leftid = "left" + id;
     const rightid = "right" + id;
+
+    const ticket = linkTickets[data.index];
+    const ticketNum = data.ticketNum;
+    const project = linkProject;
+    const devList = linkDevlist;
+    const changeCount = linkChangeCount;
+    const myTickets = false;
+
+    
 
     const removeNode = () => {
         const node = getNode(id);
@@ -88,32 +99,18 @@ export default memo(({ id, data, isConnectable }) => {
             >
                 <div style={{ display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20, backgroundColor: 'white' }}>
 
-                    {/*<LightTooltip title={<div className="description" ><Link style={{display: 'flex'}}><div style={{marginRight: 5}}>Details</div><OpenInNewIcon/></Link></div>} placement="top" fontSize={30}
-                    >*/}
-
-                    <Tooltip title={'details'} placement="top">
-                        {/*
-                        <Link to="/ticketDetails" 
-                            //state={{ ticket: ticket, ticketNum: ticketNum, project: project, devList: devList, changeCount: changeCount, myTickets: myTickets  }} 
-                            //>style={{ textDecoration: 'none' }}
+                    <Tooltip title={'Details'} placement="top">
+                        <Link 
+                            to="/ticketDetails"
+                            state={{ ticket: linkTickets[data.index], ticketNum: data.ticketNum, project: linkProject, devList: linkDevlist, changeCount: linkChangeCount, myTickets: true }}
                         >
                             <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
-                                <SearchIcon className="icon-button" style={{ fontSize: '24px' }} />
+                                <EditFilled className="icon-button" style={{ fontSize: '20px' }} />
                             </Button>
                         </Link>
-                        */}
-                        <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
-                            <SearchIcon className="icon-button" style={{ fontSize: '24px' }} />
-                        </Button>
                     </Tooltip>
 
-                    <Tooltip title={'edit'} placement="top">
-                        <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
-                            <EditFilled className="icon-button" style={{ fontSize: '20px' }} />
-                        </Button>
-                    </Tooltip>
-
-                    <Tooltip title={'delete'} placement="top">
+                    <Tooltip title={'Delete'} placement="top">
                         <Button style={{ minWidth: 10 }} onClick={removeNode}>
                             <DeleteFilled className="icon-button" style={{ fontSize: '20px' }} />
                         </Button>
@@ -133,6 +130,18 @@ export default memo(({ id, data, isConnectable }) => {
                 position={Position.Bottom}
                 isConnectable={isConnectable}
             />
+            <Handle
+                type="source"
+                id={leftid}
+                position={Position.Left}
+                isConnectable={isConnectable}
+            />
+            <Handle
+                type="source"
+                id={rightid}
+                position={Position.Right}
+                isConnectable={isConnectable}
+            />
 
             <div className="react-flow__node-default">{data?.label}</div>
             </div>
@@ -140,3 +149,4 @@ export default memo(({ id, data, isConnectable }) => {
         </>
     );
 });
+

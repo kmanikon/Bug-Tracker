@@ -39,11 +39,30 @@ let selectedNode = 0;
 
 
 
+/*
+  ticket: ticket, 
+  ticketNum: ticketNum, 
+  project: project, 
+  devList: devList, 
+  changeCount: changeCount, 
+  myTickets: myTickets
 
+  ticket list
+  index -> tikcet num
+  project
+  devlist
+  changeCount
+  myTickets = false
+*/
 
+let linkTickets = [];
+// selectedNode -> data.index
+let linkProject = 0;
+let linkDevlist = [];
+let linkChangeCount = 0;
+//let linkMyTickets = false;
 
-
-const ProjectBoard = ({tickets}) => {
+const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -59,18 +78,26 @@ const ProjectBoard = ({tickets}) => {
     let [id, setId] = useState(0);//useState(Math.max(...formattedTickets.map(item => Number(item.id))) + 1);
 
 
+
+    useEffect(() => {
+      linkTickets = tickets;
+      linkProject = project;
+      linkDevlist = devlist;
+      linkChangeCount = changeCount;
+    }, [tickets, project, devlist, changeCount]);
     
+
     const formatTickets = (userTickets) => {
       const newList = userTickets.map(ticket => {
         return {
           id: String(ticket.postId),
           type: 'node-with-toolbar',
-          data: { label: ticket.title, description: ticket.description }
+          data: { label: ticket.title, description: ticket.description, ticketNum: ticket.postId, index: ticket.index }
         };
       });
 
       return newList;
-    }
+    };
 
     let [formattedTickets, setFormattedTickets] = useState([]);//formatTickets(tickets));
 
@@ -313,3 +340,4 @@ const ProjectBoard = ({tickets}) => {
 }
 
 export default ProjectBoard;
+export { linkTickets, linkProject, linkDevlist, linkChangeCount };
