@@ -74,12 +74,19 @@ const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    const [sortBy, setSortBy] = useState('Submit Date')
+    const [sortBy, setSortBy] = useState('Submit Date');
+
+    const [filter, setFilter] = useState('All Tickets');
 
     const sortList = [
         'Submit Date',
         'Ticket Type',
         'Ticket Priority'
+    ]
+
+    const filterList = [
+      'All Tickets',
+      'My Tickets'
     ]
 
     //var filteredTickets = tickets;
@@ -107,6 +114,10 @@ const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }
             filteredTs = filteredTs.sort((a, b) => new Date(b.submitDate) - new Date(a.submitDate));
         }
         
+        if (filter === 'My Tickets') {
+            filteredTs = filteredTs.filter(ticket => ticket.asignedDevUid == user.userId);
+        }
+        
         if (!showClosed) {
             filteredTs = filteredTs.filter(ticket => ticket.ticketStatus == 'pending');
             
@@ -125,7 +136,7 @@ const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }
 
  
     const columns = useMemo(() => COLUMNS, []);
-    const data = useMemo(() =>  sortTickets(), [tickets, sortBy, showClosed, searchTerm]); 
+    const data = useMemo(() =>  sortTickets(), [tickets, sortBy, filter, showClosed, searchTerm]); 
     
     // data is changing
 
@@ -324,6 +335,22 @@ const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }
         {sortList.map(({ name }, index) => (
             <MenuItem key={index} value={sortList[index]}>
             {sortList[index]}
+            </MenuItem>
+        ))}
+        </Select>
+
+        <Select
+        style={{ marginTop: '0px', marginLeft: '40px', height: '40px', color: 'grey' }}
+        displayEmpty
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        >
+        <MenuItem disabled value="">
+            Filter By
+        </MenuItem>
+        {filterList.map(({ name }, index) => (
+            <MenuItem key={index} value={filterList[index]}>
+            {filterList[index]}
             </MenuItem>
         ))}
         </Select>
