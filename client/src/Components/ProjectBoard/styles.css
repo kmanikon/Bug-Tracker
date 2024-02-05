@@ -124,3 +124,34 @@
     height: 80%;
     overflow-y:auto;
 }
+
+.noteCard {
+    border: 0.01rem solid black;
+    font-size: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    /*min-width: 200px;*/
+    max-width: 300px;
+    text-align: center;
+    
+    box-shadow: grey 2px -2px;
+    background-color: white;
+    
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.commentIcon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.commentText {
+    padding: 0 3px;
+    flex: 1;
+    align-self: flex-start;
+    line-height: 8px;
+    margin-left: 10px;
+    margin-right: 5px;
+}

@@ -23,6 +23,7 @@ import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import { Button, TextField, Paper } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import TicketNode from './TicketNode';
+import Note from './Note';
 
 import 'reactflow/dist/style.css';
 
@@ -43,7 +44,8 @@ const defaultEdgeOptions = {
 };
 
 const nodeTypes = {
-    'node-with-toolbar': TicketNode
+    'node-with-toolbar': TicketNode,
+    'note': Note
 };
 
 let selectedNode = 0;
@@ -71,6 +73,8 @@ let linkProject = null;
 let linkDevlist = [];
 let linkChangeCount = 0;
 
+let id = 0;
+
 const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -82,7 +86,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    let [id, setId] = useState(0);
+    //let [id, setId] = useState(0);
 
 
 
@@ -204,6 +208,46 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
 
 
 
+    const editNote = (id, newDescription) => {
+      console.log('hi')
+      setNodes((nds) => nds.map((node) => {
+        if (node.id === id) {
+          // If the node has the matching id, update its data
+          return {
+            ...node,
+            data: {
+              title: node.data.title,
+              description: newDescription,
+              editNote: node.data.editNote
+            },
+          };
+        }
+        return node;
+      }));
+    };
+    
+    const createNote = () => {
+      const position = reactFlowInstance.screenToFlowPosition({
+        x: 50,
+        y: 50,
+      });
+
+      const data = {title: title, description: description, editNote: editNote}
+
+      const newNode = {
+        id: getId(),
+        type: 'note',
+        data: data,
+        position
+      };
+      
+      setNodes((nds) => nds.concat(newNode));
+    }
+    
+    
+
+
+
     return (
       <>
         
@@ -292,6 +336,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
             {mode === 'note' && 
             <>
               <div style={{marginTop: '30px'}}></div>
+
+              {/*
               <TextField
                 className="text"
                 onChange={(e) => setTitle(e.target.value)}  
@@ -308,6 +354,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
 
                 }}
               />
+              */}
+              
 
 
 
@@ -315,11 +363,11 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
                 className="text"
                 onChange={(e) => setDescription(e.target.value)}  
                 value={description} 
-                label="Description"
+                label="Comment"
                 variant="outlined"
                 multiline
-                minRows={14}
-                maxRows={14}
+                minRows={16}
+                maxRows={16}
                 //placeholder="Title"
                 size="medium"
                 style={{
@@ -335,7 +383,9 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
                 //variant="outlined"
                 color="primary"
                 variant="contained"
-                style={{textAlign: 'center', width: '80%', marginLeft: '10%', height: 50, textTransform: 'none', fontSize: 16}}>
+                style={{textAlign: 'center', width: '80%', marginLeft: '10%', height: 50, textTransform: 'none', fontSize: 16}}
+                onClick={createNote}
+              >
                 Create Note
               </Button>
               </>
