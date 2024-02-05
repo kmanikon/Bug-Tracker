@@ -136,7 +136,7 @@ const Home = () => {
     
               <FileSearchOutlined style={{ fontSize: '400%'}}/>
               <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
-                My Tickets
+                Workflows
               </div>
               
           </Button>

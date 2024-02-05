@@ -180,7 +180,7 @@ const UserProfile = ({user}) => {
         
                 <SnippetsOutlined style={{ fontSize: '1000%'}}/>
                 <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
-                    My Actions
+                    Action Logs
                 </div>
                 
             </Button>
