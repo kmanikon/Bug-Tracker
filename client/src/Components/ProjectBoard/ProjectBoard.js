@@ -16,7 +16,8 @@ import ReactFlow, {
     getConnectedEdges,
     useReactFlow,
     ControlButton,
-    MarkerType
+    MarkerType,
+    useViewport
 
   } from 'reactflow';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
@@ -227,9 +228,12 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
     };
     
     const createNote = () => {
+
+      const { innerWidth: width, innerHeight: height } = window;
+      
       const position = reactFlowInstance.screenToFlowPosition({
-        x: 50,
-        y: 50,
+        x: width / 2,
+        y: height / 2,
       });
 
       const data = {title: title, description: description, editNote: editNote}
