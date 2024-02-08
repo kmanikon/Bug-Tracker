@@ -26,6 +26,15 @@ import Divider from '@mui/material/Divider';
 import TicketNode from './TicketNode';
 import Note from './Note';
 
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 import 'reactflow/dist/style.css';
 
 import Sidebar from './Sidebar';
@@ -76,7 +85,7 @@ let linkChangeCount = 0;
 
 let id = 0;
 
-const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
+const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose}) => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -210,7 +219,6 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
 
 
     const editNote = (id, newDescription) => {
-      console.log('hi')
       setNodes((nds) => nds.map((node) => {
         if (node.id === id) {
           // If the node has the matching id, update its data
@@ -225,6 +233,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
         }
         return node;
       }));
+
     };
     
     const createNote = () => {
@@ -247,13 +256,77 @@ const ProjectBoard = ({tickets, project, devlist, changeCount}) => {
       
       setNodes((nds) => nds.concat(newNode));
     }
-    
-    
 
+    const destringNodes = (JSONString) => {
+      const parsedNodes = JSON.parse(JSONString);
+      let newNodes = [];
+      parsedNodes.forEach((node) => {
+        newNodes.push(node);
+      });
+
+      setNodes(newNodes);
+    }
+
+    const destringEdges = (JSONString) => {
+      const parsedEdges = JSON.parse(JSONString);
+      let newEdges = [];
+      parsedEdges.forEach((edge) => {
+        newEdges.push(edge);
+      });
+
+      setEdges(newEdges);
+    }
+
+    const handleSave = () => {
+        const nodeStr = JSON.stringify(nodes);
+        const edgesStr = JSON.stringify(edges);
+
+        destringNodes(nodeStr);
+        destringEdges(edgesStr);
+        handleClose();
+    }
+
+    const SaveDialog = ({open, handleClose}) => {
+      return (
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title" variant="h5" 
+                style={{
+                    fontWeight: 'bold',
+                    fontSize: 'large',
+                    minWidth: 300,
+                    //minHeight: 300
+                }}
+            >
+            {"Save Workflow"}
+            </DialogTitle>
+            <DialogContent>
+            <DialogContentText id="alert-dialog-description" >
+                Save workflow configuration?
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+
+              <div style={{marginBottom: 5}}>
+                <Button onClick={handleSave}><CheckOutlinedIcon/></Button>
+                <Button onClick={handleClose}><ClearOutlinedIcon/></Button>
+              </div>
+            </DialogActions>
+        </Dialog>
+      );
+    }
+    
 
 
     return (
       <>
+
+    
+        <SaveDialog open={open} handleClose={handleClose}/>
         
         <div className="providerflow">
         {formattedTickets && tickets && formattedTickets.length === tickets.length &&

@@ -38,6 +38,8 @@ const MyProjectsTickets = ({user}) => {
   
   const [showAssigned, setShowAssigned] = useState(true);
 
+  const [open, setOpen] = useState(false);
+
   var devList = projectUsers.map((user) => [user.userId, user.email, user.username, user.username + ", " + user.email]);
 
   //var showTickets = tickets.filter(ticket => ticket.asignedDev == user.username );
@@ -119,6 +121,13 @@ const makeAPICallGetHistory = async (route) => {
     }
   }
 
+  const handleOpen = () => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
 
 
     return (
@@ -126,7 +135,8 @@ const makeAPICallGetHistory = async (route) => {
             <div style={{marginTop: '80px'}}></div>
 
             
-            <div style={{display: 'flex', justifyContent: 'space-between', }}>
+            <div style={{display: 'flex', //justifyContent: 'space-between', 
+          }}>
               <Button color="black" size="large" variant="outlined"
                   style={{
                       marginTop: '0px',
@@ -143,6 +153,24 @@ const makeAPICallGetHistory = async (route) => {
                     Back 
                   
                 </Link>
+              </Button>
+
+              <Button 
+                color="primary" 
+                size="large" 
+                variant="outlined"
+                  style={{
+                      marginTop: '0px',
+                      marginLeft: '40px',
+                      marginBottom: '20px',
+                      fontWeight: 'bold',
+                      fontSize: 'large',
+                      width: 300,
+                      fontSize: 16
+                  }}
+                  onClick={handleOpen}
+              >
+                    Save Workflow
               </Button>
 
             {/*
@@ -201,6 +229,8 @@ const makeAPICallGetHistory = async (route) => {
                 project={project}
                 devlist={devList}
                 changeCount={changeCount}
+                open={open}
+                handleClose={handleClose}
               />
             </div>
 
