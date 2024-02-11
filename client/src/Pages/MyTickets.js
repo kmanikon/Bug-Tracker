@@ -7,12 +7,10 @@ import { useNavigate } from "react-router-dom";
 import MyTicketsCard from '../Components/MyTicketsCard/MyTicketsCard';
 
 import { 
-
-    FileSearchOutlined,
     InfoCircleOutlined
- 
   } 
   from '@ant-design/icons';
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 
 import url from '../defs';
 
@@ -173,8 +171,10 @@ const MyTickets = ({user}) => {
                         marginLeft: '40px'
                         }}
                     >
-                    Go To Project Workflow
-                    <FileSearchOutlined style={{ fontSize: '200%', marginLeft: '20px'}}/>
+                    <div style={{display: 'flex',  marginBottom: '-20px'}}>
+                        Go To Project Workflow
+                        <DashboardCustomizeOutlinedIcon style={{ fontSize: '200%', marginLeft: '20px', marginTop: '-10px'}}/>
+                    </div>
                 </div>
                 <InfoDialog/>
 

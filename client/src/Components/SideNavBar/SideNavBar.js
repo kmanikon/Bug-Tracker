@@ -2,7 +2,9 @@ import React, { useState, } from 'react'
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { UserOutlined, WindowsOutlined, MenuOutlined, MenuUnfoldOutlined, UnorderedListOutlined, HomeOutlined, FolderOpenOutlined, FileSearchOutlined } from '@ant-design/icons';
+import { UserOutlined, MenuOutlined, FolderOpenOutlined } from '@ant-design/icons';
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import useStyles from './styles';
 
 
@@ -67,8 +69,8 @@ const SideNavBar = ({user, height}) => {
                                     textAlign: 'center'
                                 }}
                                 >
-                                    <HomeOutlined style={{fontSize: 50}}/>
-                                    <div style={{marginTop: '5px'}}>Home</div>
+                                    <HomeOutlinedIcon style={{fontSize: 60}}/>
+                                    <div style={{marginTop: '-5px'}}>Home</div>
                                 </div>
                             </div>
                             </MenuItem>
@@ -111,7 +113,7 @@ const SideNavBar = ({user, height}) => {
                                             textAlign: 'center'
                                         }}
                                     >
-                                        <FileSearchOutlined style={{fontSize: 50}}/>
+                                        <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
                                         <div style={{marginTop: '5px'}}>Workflows</div>
                                     </div>
                                 </div>

@@ -11,9 +11,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import { 
   ContainerOutlined,
-  FileSearchOutlined,
   UserOutlined,
-  BellOutlined
 
         
 } 

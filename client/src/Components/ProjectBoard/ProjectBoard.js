@@ -37,7 +37,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import 'reactflow/dist/style.css';
 
-import Sidebar from './Sidebar';
 
 import './styles.css';
 
