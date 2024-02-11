@@ -34,7 +34,7 @@ const SideNavBar = ({user, height}) => {
                 <Sidebar 
                     className={classes.sideBar} 
                     width="120px" 
-                    style={{ height: height, marginTop: '60px', textAlign: 'left' }}
+                    style={{ height: height, marginTop: '60px'}}
                     
                 >
                     <div>
@@ -47,7 +47,7 @@ const SideNavBar = ({user, height}) => {
                                 onClick={() => setActive('home')} component={<Link to="/home" />}
                             >
 
-                                <div>
+                                <div style={{textAlign: 'center'}}>
                                     <HomeOutlinedIcon style={{fontSize: 60}}/>
                                     <div style={{marginTop: '-5px'}}>Home</div>
                                 </div>
