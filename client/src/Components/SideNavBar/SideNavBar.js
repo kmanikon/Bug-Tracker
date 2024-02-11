@@ -46,17 +46,29 @@ const SideNavBar = ({user, height}) => {
                     <div>
                     <Menu>
 
-                        <SubMenu style={{height: '40px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
-                        <div className={active === 'home' ? classes.active : classes.inactive} >
+                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
+                        <div 
+                            className={active === 'home' ? classes.active : classes.inactive} 
+                        >
                             <MenuItem 
                                 style={{height: '100px' }}
                                 onClick={() => setActive('home')} component={<Link to="/home" />}
                             >
 
+
+                                {/*}
                                 <Stack direction="column" alignItems="center">
                                     <HomeOutlinedIcon style={{fontSize: 60}}/>
                                     <Typography variant="body1">Home</Typography>
                                 </Stack>
+                                */}
+                                <div>
+                                    
+                                    <div style={{textAlign: 'center'}}>
+                                        <UserOutlined style={{fontSize: 50}}/>
+                                        <div style={{marginTop: '10px'}}>Profile</div>
+                                    </div>
+                                </div>
                             </MenuItem>
                         </div>
 
@@ -80,10 +92,18 @@ const SideNavBar = ({user, height}) => {
                                 style={{height: '100px'}}
                                 onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
+                                {/*}
                                 <Stack direction="column" alignItems="center" gap={1}>
                                     <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
                                     <Typography variant="body1">Workflows</Typography>
                                 </Stack>
+                                */}
+                                <div>
+                                    <div style={{textAlign: 'center'}}>
+                                        <UserOutlined style={{fontSize: 50}}/>
+                                        <div style={{marginTop: '10px'}}>Profile</div>
+                                    </div>
+                                </div>
                             </MenuItem>
                         </div>
 
