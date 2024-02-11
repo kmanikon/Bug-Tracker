@@ -34,11 +34,11 @@ const SideNavBar = ({user, height}) => {
                 <Sidebar 
                     className={classes.sideBar} 
                     width="120px" 
-                    style={{ height: height, marginTop: '60px' }}
+                    style={{ height: height, marginTop: '60px', textAlign: 'left' }}
                     
                 >
                     <div>
-                    <Menu style={{ textAlign: 'center'}}>
+                    <Menu>
 
                         <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
                         <div className={active === 'home' ? classes.active : classes.inactive} >
@@ -75,7 +75,7 @@ const SideNavBar = ({user, height}) => {
                                 onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
                                 
-                                <div style={{alignItems: 'center'}}>
+                                <div >
                                     <div >
                                         <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
                                         <div style={{marginTop: '5px'}}>Workflows</div>
