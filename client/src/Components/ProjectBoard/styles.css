@@ -126,7 +126,7 @@
 }
 
 .noteCard {
-    border: 0.01rem solid black;
+    border: 0.05rem solid black;
     font-size: 8px;
     padding: 12px;
     border-radius: 10px;
@@ -134,7 +134,7 @@
     max-width: 300px;
     text-align: center;
     
-    box-shadow: grey 2px -2px;
+    /*box-shadow: grey 2px -2px;*/
     background-color: white;
     
     word-break: break-word;
@@ -152,6 +152,6 @@
     flex: 1;
     align-self: flex-start;
     line-height: 8px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-right: 5px;
 }

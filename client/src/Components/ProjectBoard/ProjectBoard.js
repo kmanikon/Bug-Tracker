@@ -41,6 +41,8 @@ import Sidebar from './Sidebar';
 
 import './styles.css';
 
+import url from '../../defs';
+
 
 const defaultEdgeOptions = {
   animated: false,
@@ -85,7 +87,7 @@ let linkChangeCount = 0;
 
 let id = 0;
 
-const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose}) => {
+const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose, openClear, handleCloseClear}) => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -96,9 +98,9 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
+    const [workflowId, setWorkflowId] = useState(null);
+
     //let [id, setId] = useState(0);
-
-
 
     useEffect(() => {
       linkTickets = tickets;
@@ -131,6 +133,11 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
 
     const getId = () => {
       return `${id++}`;
+    }
+
+    const setInitialId = () => {
+      const maxId = nodes.reduce((max, obj) => obj.id > max ? obj.id : max, 0);
+      console.log(maxId);
     }
 
 
@@ -216,25 +223,6 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
       );
     };
 
-
-
-    const editNote = (id, newDescription) => {
-      setNodes((nds) => nds.map((node) => {
-        if (node.id === id) {
-          // If the node has the matching id, update its data
-          return {
-            ...node,
-            data: {
-              title: node.data.title,
-              description: newDescription,
-              editNote: node.data.editNote
-            },
-          };
-        }
-        return node;
-      }));
-
-    };
     
     const createNote = () => {
 
@@ -245,7 +233,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
         y: height / 2,
       });
 
-      const data = {title: title, description: description, editNote: editNote}
+      const data = {title: title, description: description}
 
       const newNode = {
         id: getId(),
@@ -264,6 +252,9 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
         newNodes.push(node);
       });
 
+      const maxId = newNodes.reduce((max, obj) => obj.id > max ? obj.id : max, 0);
+      id = (maxId + 1);
+
       setNodes(newNodes);
     }
 
@@ -277,13 +268,159 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
       setEdges(newEdges);
     }
 
-    const handleSave = () => {
-        const nodeStr = JSON.stringify(nodes);
-        const edgesStr = JSON.stringify(edges);
+    const makeAPICallCreateWorkflow = async (route) => {
+      const newWorkflow = {
+        workflowId: 0,
+        projectId: project.projectId,
+        nodesJSON: "",
+        edgesJSON: ""
+      }
 
-        destringNodes(nodeStr);
-        destringEdges(edgesStr);
+      fetch(url + route, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newWorkflow)
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (response){
+          setWorkflowId(response?.workflowId);
+        }
+      });
+    };
+
+    const makeAPICallGetWorkflow = async (route) => {
+      fetch(url + route, {
+          method: 'GET'
+      })
+      .then(response => response.json())
+      .then(response => {
+          if (response == "No Workflow."){
+            makeAPICallCreateWorkflow('create-workflow');
+          }else {
+              console.log(response);
+
+              if (response){
+                if (response.nodesJSON){
+                  destringNodes(response.nodesJSON);
+                }
+                if (response.edgesJSON){
+                  destringEdges(response.edgesJSON);
+                }
+                setWorkflowId(response?.workflowId);
+              }
+          }
+      });
+    };
+
+
+
+
+
+
+
+    const makeAPICallCreateWorkflowSave = async (route) => {
+      const newWorkflow = {
+        workflowId: 0,
+        projectId: project.projectId,
+        nodesJSON: "",
+        edgesJSON: ""
+      }
+
+      fetch(url + route, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newWorkflow)
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (response && response?.workflowId){
+          setWorkflowId(response?.workflowId);
+          makeAPICallUpdateWorkflow('update-workflow/', response.workflowId);
+        }
+      });
+    };
+
+    const makeAPICallGetWorkflowSave = async (route) => {
+      fetch(url + route, {
+          method: 'GET'
+      })
+      .then(response => response.json())
+      .then(response => {
+          if (response == "No Workflow."){
+            makeAPICallCreateWorkflowSave('create-workflow');
+          }else {
+              if (response && response?.workflowId){
+                setWorkflowId(response?.workflowId);
+                makeAPICallUpdateWorkflow('update-workflow/', response.workflowId);
+              }
+          }
+      });
+    };
+
+    
+
+
+    const setupWorkflow = () => {
+      if (project){
+        makeAPICallGetWorkflow('get-workflow-by-project-id/' + project.projectId);
+      }
+    };
+
+
+    useEffect(() => {
+      setupWorkflow();
+    }, [])
+
+
+    const makeAPICallUpdateWorkflow = async (route, wid) => {
+
+      const nodeStr = JSON.stringify(nodes);
+      const edgesStr = JSON.stringify(edges);
+
+      const body = {
+        workflowId: wid,
+        projectId: project.projectId,
+        nodesJSON: nodeStr,
+        edgesJSON: edgesStr
+      }
+
+      fetch(url + route, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+      .then(response => response.json())
+      .then(response => {
+         console.log('Updated Successfully.')
+      });
+    }; 
+
+
+    const saveWorkFlow = async () => {
+      if (project && workflowId != null) {
+        makeAPICallUpdateWorkflow('update-workflow/', workflowId);
+      }
+      else if (project) {
+        makeAPICallGetWorkflowSave('get-workflow-by-project-id/' + project.projectId);
+      }
+    }
+
+    const handleSave = async () => {
+        saveWorkFlow();
         handleClose();
+    }
+
+    const clearBoard = () => {
+      setNodes([]);
+      setEdges([]);
+      handleCloseClear();
     }
 
     const SaveDialog = ({open, handleClose}) => {
@@ -319,7 +456,40 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
         </Dialog>
       );
     }
-    
+
+    const ClearDialog = ({open, handleClose}) => {
+      return (
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title" variant="h5" 
+                style={{
+                    fontWeight: 'bold',
+                    fontSize: 'large',
+                    minWidth: 300,
+                    //minHeight: 300
+                }}
+            >
+            {"Clear Board"}
+            </DialogTitle>
+            <DialogContent>
+            <DialogContentText id="alert-dialog-description" >
+                Remove all tickets and comments?
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+
+              <div style={{marginBottom: 5}}>
+                <Button onClick={clearBoard}><CheckOutlinedIcon/></Button>
+                <Button onClick={handleClose}><ClearOutlinedIcon/></Button>
+              </div>
+            </DialogActions>
+        </Dialog>
+      );
+    }
 
 
     return (
@@ -327,6 +497,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
 
     
         <SaveDialog open={open} handleClose={handleClose}/>
+
+        <ClearDialog open={openClear} handleClose={handleCloseClear}/>
         
         <div className="providerflow">
         {formattedTickets && tickets && formattedTickets.length === tickets.length &&

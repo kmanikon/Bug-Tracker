@@ -30,30 +30,36 @@ export default memo(({ id, data, isConnectable }) => {
 
     const [newDesc, setNewDesc] = useState('');
 
-
+    
     const closeDescription = () => {
         setEditDesc(false);
     }
 
+    /*
     const saveDescription = () => {
         if (data?.editNote){
             data?.editNote(id, newDesc);
         }
         setEditDesc(false);
     }
+    */
+    
 
 
+    
     const toggleDescription = () => {
         if (editDesc == false) {
             setNewDesc(data?.description);
         }
         setEditDesc(!editDesc);
     };
+    
 
     const {
         getNode,
         getNodes,
         getEdges,
+        setNodes,
         setEdges,
         deleteElements
     } = useReactFlow();
@@ -77,6 +83,31 @@ export default memo(({ id, data, isConnectable }) => {
 
         deleteElements({ nodes: [node], edges: connectedEdges });
     };
+
+    const updateNode = () => {
+        const node = getNode(id);
+
+        if (!node) {
+            return;
+        }
+
+        const nodes = getNodes();
+
+        const updatedNodes = nodes.map(node => {
+            if (node.id === id) {
+                let tmp = node;
+                tmp.data.description = newDesc;
+                return tmp;
+            } else {
+              return node;
+            }
+          });
+
+        setNodes(updatedNodes);
+
+        setEditDesc(false);
+
+    };
     
     return (
         <>
@@ -90,14 +121,17 @@ export default memo(({ id, data, isConnectable }) => {
                 >
                     <div style={{ display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20, backgroundColor: 'white' }}>
 
-                        <Tooltip title={'Edit'} placement="top">
-                            <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
+                        <Tooltip title={<div style={{fontSize: 14, padding: 5}}>Edit</div>} placement="top">
+                            <Button style={{ minWidth: 10, marginRight: 5 }} 
+                                onClick={toggleDescription}
+                            >
                                 <EditFilled className="icon-button" style={{ fontSize: '20px' }} />
                             </Button>
                             
                         </Tooltip>
+                        
 
-                        <Tooltip title={'Delete'} placement="top">
+                        <Tooltip title={<div style={{fontSize: 14, padding: 5}}>Delete</div>} placement="top">
                             <Button style={{ minWidth: 10 }} onClick={removeNode}>
                                 <DeleteFilled className="icon-button" style={{ fontSize: '20px' }} />
                             </Button>
@@ -106,14 +140,17 @@ export default memo(({ id, data, isConnectable }) => {
                 </NodeToolbar>
 
 
-                    <div style={{display: 'flex'}}>
-                        <InsertCommentOutlinedIcon className="commentIcon"
-                        />
+                    <div style={{display: 'flex', padding: 5}}>
+                        {/*<InsertCommentOutlinedIcon className="commentIcon"/>*/}
+                        
 
+                        
                         <div className="commentText">
                             {editDesc === false ?
                             <>
-                                {data?.description}
+                                <div style={{fontSize: 12}}>
+                                    {data?.description}
+                                </div>
                             </>
                             :
                             <>
@@ -134,7 +171,7 @@ export default memo(({ id, data, isConnectable }) => {
                                         <div style={{ display: 'flex'}}>
                                             <Button 
                                                 style={{ minWidth: 10 }} 
-                                                onClick={saveDescription}
+                                                onClick={updateNode}
                                             >
                                                 <CheckOutlinedIcon style={{fontSize: 12}}/>
                                             </Button>
@@ -150,7 +187,9 @@ export default memo(({ id, data, isConnectable }) => {
                     
                             </>
                             }
+                            
                         </div>
+                        
                     </div>
 
                     <Handle

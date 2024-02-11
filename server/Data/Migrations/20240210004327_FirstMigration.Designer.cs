@@ -11,7 +11,7 @@ using ticket_server.Data;
 namespace ticket_server.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230801160219_FirstMigration")]
+    [Migration("20240210004327_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -283,6 +283,39 @@ namespace ticket_server.Data.Migrations
                             Email = "demoEmail2@gmail.com",
                             Password = "Password 2",
                             Username = "Demo Developer"
+                        });
+                });
+
+            modelBuilder.Entity("ticket_server.Data.Workflow", b =>
+                {
+                    b.Property<int>("WorkflowId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("EdgesJSON")
+                        .IsRequired()
+                        .HasMaxLength(10000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NodesJSON")
+                        .IsRequired()
+                        .HasMaxLength(10000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("WorkflowId");
+
+                    b.ToTable("Workflows");
+
+                    b.HasData(
+                        new
+                        {
+                            WorkflowId = 1,
+                            EdgesJSON = "Example JSON",
+                            NodesJSON = "Example JSON",
+                            ProjectId = 0
                         });
                 });
 #pragma warning restore 612, 618

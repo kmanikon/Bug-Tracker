@@ -1,31 +1,16 @@
 import React, { memo, useState } from "react";
-import ReactFlow, {
-    ReactFlowProvider,
-    Background,
-    useNodesState,
-    useEdgesState,
-    addEdge,
-    getIncomers,
-    getOutgoers,
-    MiniMap,
+import {
     NodeToolbar,
-    Panel,
     Position,
-    Handle,
-    Controls,
     getConnectedEdges,
-    useReactFlow
+    useReactFlow,
+    Handle
 } from 'reactflow';
-import { styled } from '@mui/material/styles';
-import { EditFilled, DeleteFilled, CloseOutlined } from '@ant-design/icons';
-import { Button, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import SearchIcon from '@mui/icons-material/Search';
-import { linkTickets, linkProject, linkDevlist, linkChangeCount } from './ProjectBoard';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import { Button } from '@material-ui/core';
+import Tooltip from '@mui/material/Tooltip';
+import { linkTickets } from './ProjectBoard';
 
 export default memo(({ id, data, isConnectable }) => {
     const [showDescription, setShowDescription] = useState(false);
@@ -63,17 +48,25 @@ export default memo(({ id, data, isConnectable }) => {
     };
 
 
-    const LightTooltip = styled(({ className, ...props }) => (
-        <Tooltip {...props} classes={{ popper: className }} arrow />
-      ))(({ theme }) => ({
-        [`& .${tooltipClasses.tooltip}`]: {
-          backgroundColor: theme.palette.common.white,
-          color: 'rgba(0, 0, 0, 0.87)',
-          boxShadow: theme.shadows[1],
-          fontSize: 11,
-        },
-      }));
 
+    /*
+
+
+    const navigate = useNavigate();
+
+    const handleRouteChange = () => {
+
+        navigate(
+            '/ticketDetails',
+            {state: { ticket: linkTickets[data.index], ticketNum: data.ticketNum, project: linkProject, devList: linkDevlist, changeCount: linkChangeCount, myTickets: true }}
+        );
+    }
+
+    <Link 
+        to="/ticketDetails"
+        state={{ ticket: linkTickets[data.index], ticketNum: data.ticketNum, project: linkProject, devList: linkDevlist, changeCount: linkChangeCount, myTickets: true }}
+    >
+    */
 
     
 
@@ -90,20 +83,31 @@ export default memo(({ id, data, isConnectable }) => {
             >
                 <div style={{ display: 'flex', borderWidth: '10px', borderStyle: 'transparent', marginRight: -20, backgroundColor: 'white' }}>
 
-                    <Tooltip title={'Details'} placement="top">
-                        {linkTickets && linkProject && linkDevlist &&
-                            <Link 
-                                to="/ticketDetails"
-                                state={{ ticket: linkTickets[data.index], ticketNum: data.ticketNum, project: linkProject, devList: linkDevlist, changeCount: linkChangeCount, myTickets: true }}
-                            >
-                                <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
-                                    <EditFilled className="icon-button" style={{ fontSize: '20px' }} />
-                                </Button>
-                            </Link>
-                        }
-                    </Tooltip>
+                    {linkTickets && linkTickets.length > 0 &&
+                        <Tooltip 
+                            title={
+                                <div style={{fontSize: 16, color: 'black', textAlign: 'center', padding: 5}}>
+                                    {linkTickets[data.index].description}
+                                </div>
+                            } 
+                            placement="top"
+                            componentsProps={{
+                                tooltip: {
+                                  sx: {
+                                    bgcolor: 'common.white',
+                                    border: '1px solid grey'
+                                  },
+                                },
+                              }}
+                        >
+                            <Button style={{ minWidth: 10, marginRight: 5 }} onClick={toggleDescription}>
+                                <DescriptionOutlinedIcon className="icon-button" style={{ fontSize: '20px' }} />
+                            </Button>
+                            
+                        </Tooltip>
+                    }
 
-                    <Tooltip title={'Delete'} placement="top">
+                    <Tooltip title={<div style={{fontSize: 14, padding: 5}}>Delete</div>} placement="top">
                         <Button style={{ minWidth: 10 }} onClick={removeNode}>
                             <DeleteFilled className="icon-button" style={{ fontSize: '20px' }} />
                         </Button>

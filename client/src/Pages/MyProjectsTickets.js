@@ -39,6 +39,7 @@ const MyProjectsTickets = ({user}) => {
   const [showAssigned, setShowAssigned] = useState(true);
 
   const [open, setOpen] = useState(false);
+  const [openClear, setOpenClear] = useState(false);
 
   var devList = projectUsers.map((user) => [user.userId, user.email, user.username, user.username + ", " + user.email]);
 
@@ -129,6 +130,14 @@ const makeAPICallGetHistory = async (route) => {
     setOpen(false);
   }
 
+  const handleOpenClear = () => {
+    setOpenClear(true);
+  }
+
+  const handleCloseClear = () => {
+    setOpenClear(false);
+  }
+
 
     return (
       <div style={{ width: '100%', marginLeft: '20px'}}>
@@ -171,6 +180,25 @@ const makeAPICallGetHistory = async (route) => {
                   onClick={handleOpen}
               >
                     Save Workflow
+              </Button>
+
+              <Button 
+                //color="error" 
+                size="large" 
+                variant="outlined"
+                  style={{
+                      color: '#ab47bc',
+                      marginTop: '0px',
+                      marginLeft: '40px',
+                      marginBottom: '20px',
+                      fontWeight: 'bold',
+                      fontSize: 'large',
+                      width: 200,
+                      fontSize: 16
+                  }}
+                  onClick={handleOpenClear}
+              >
+                    Clear Board
               </Button>
 
             {/*
@@ -231,6 +259,8 @@ const makeAPICallGetHistory = async (route) => {
                 changeCount={changeCount}
                 open={open}
                 handleClose={handleClose}
+                openClear={openClear}
+                handleCloseClear={handleCloseClear}
               />
             </div>
 
