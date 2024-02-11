@@ -67,7 +67,7 @@ const SideNavBar = ({user, height}) => {
                             >
                                 
                                 <div>
-                                    <div>
+                                    <div style={{textAlign: 'center'}}>
                                         <FolderOpenOutlined style={{fontSize: 50}}/>
                                         <div style={{marginTop: '5px'}}>Projects</div>
                                     </div>
@@ -94,7 +94,7 @@ const SideNavBar = ({user, height}) => {
                             >
                                 <div>
                                     
-                                    <div>
+                                    <div style={{textAlign: 'center'}}>
                                         <UserOutlined style={{fontSize: 50}}/>
                                         <div style={{marginTop: '10px'}}>Profile</div>
                                     </div>
