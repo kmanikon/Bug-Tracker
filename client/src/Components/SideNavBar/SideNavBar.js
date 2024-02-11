@@ -63,15 +63,11 @@ const SideNavBar = ({user, height}) => {
 
 
                                 
-                                {/*<Stack direction="column" alignItems="center">*/}
+                                <Stack direction="column" alignItems="center">
                                     <HomeOutlinedIcon style={{fontSize: 60}}/>
-                                    {/*<Typography variant="body1" alignItems="center">Home</Typography>*/}
-                                {/*</Stack>*/}
-                                
-                                {/*
-                                    <UserOutlined style={{fontSize: 50}}/>
-                                    <div style={{marginTop: '10px'}}>Profile</div>
-                                */}
+                                    <Typography variant="body1" alignItems="center">Home</Typography>
+                                </Stack>
+
                             </MenuItem>
                         </div>
 
@@ -80,9 +76,10 @@ const SideNavBar = ({user, height}) => {
                                 style={{height: '100px'}}
                                 onClick={() => setActive('projects')} component={<Link to="/projects" />}
                             >
-                                
+                                <div style={{textAlign: 'center'}}>
                                     <FolderOpenOutlined style={{fontSize: 50}}/>
-                                    {/*<div style={{marginTop: '5px', textAlign: 'center'}}>Projects</div>*/}
+                                    <div style={{marginTop: '5px', textAlign: 'center'}}>Projects</div>
+                                </div>
                             </MenuItem>
                         </div>
 
@@ -91,14 +88,12 @@ const SideNavBar = ({user, height}) => {
                                 style={{height: '100px'}}
                                 onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
-                                {/*}
+                                
                                 <Stack direction="column" alignItems="center" gap={1}>
                                     <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
                                     <Typography variant="body1">Workflows</Typography>
                                 </Stack>
-                                */}
-                                    <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
-                                    {/*<div style={{marginTop: '10px', textAlign: 'center'}}>Workflows</div>*/}
+                                
                             </MenuItem>
                         </div>
 
@@ -107,9 +102,10 @@ const SideNavBar = ({user, height}) => {
                                 style={{height: '100px'}}
                                 onClick={() => setActive('profile')} component={<Link to="/profile" />}
                             >
-                                    
+                                <div style={{textAlign: 'center'}}>
                                     <UserOutlined style={{fontSize: 50}}/>
-                                    {/*<div style={{marginTop: '10px'}}>Profile</div>*/}
+                                    <div style={{marginTop: '5px', textAlign: 'center'}}>Profile</div>
+                                </div>
                             </MenuItem>
                         </div>
                         </SubMenu>
