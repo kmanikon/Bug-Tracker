@@ -18,7 +18,9 @@ namespace ticket_server.Data
 		public DbSet<Project> Projects { get; set;  }
 
         public DbSet<ProjectActions> ProjectActions { get; set; }
-        
+
+        public DbSet<Workflow> Workflows { get; set; }
+
         // Gets the current path (executing assembly)
         //static string currentPath = Directory.GetCurrentDirectory();//Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         //static string currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -97,6 +99,7 @@ namespace ticket_server.Data
             modelBuilder.Entity<User>().HasData(usersToSeed);
 
 
+            
             // initial project, update later
             Project[] projectsToSeed = new Project[1];
 
@@ -110,9 +113,22 @@ namespace ticket_server.Data
 
 
             modelBuilder.Entity<Project>().HasData(projectsToSeed);
+
             
 
 
+            
+            Workflow[] workflowsToSeed = new Workflow[1];
+
+            workflowsToSeed[0] = new Workflow
+            {
+                WorkflowId = 1,
+                NodesJSON = "Example JSON",
+                EdgesJSON = "Example JSON"
+            };
+
+            modelBuilder.Entity<Workflow>().HasData(workflowsToSeed);
+            
         }
 	}
 }

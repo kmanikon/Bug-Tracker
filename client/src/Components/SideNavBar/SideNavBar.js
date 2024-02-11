@@ -112,7 +112,7 @@ const SideNavBar = ({user, height}) => {
                                         }}
                                     >
                                         <FileSearchOutlined style={{fontSize: 50}}/>
-                                        <div style={{marginTop: '5px'}}>My Tickets</div>
+                                        <div style={{marginTop: '5px'}}>Workflows</div>
                                     </div>
                                 </div>
                             </MenuItem>

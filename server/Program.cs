@@ -1281,8 +1281,6 @@ app.MapPut("/update-projectActions", async (ProjectActions projectActionToUpdate
 }).WithTags("Project Actions Endpoints");
 
 
-
-
 // delete action
 app.MapDelete("/delete-projectAction-by-id/{projectActionId}", async (int projectActionId) =>
 {
@@ -1297,6 +1295,96 @@ app.MapDelete("/delete-projectAction-by-id/{projectActionId}", async (int projec
         return Results.BadRequest();
     }
 }).WithTags("Project Actions Endpoints");
+
+
+
+
+
+
+
+// get workflows (for testing only)
+app.MapGet("/get-all-workflows", async () => await WorkflowsRepository.GetWorkflowsAsync())
+    .WithTags("Workflows Endpoints");
+
+// get workflow by workflow id
+app.MapGet("/get-workflow-by-id/{workflowId}", async (int workflowId) =>
+{
+    Workflow workflowToReturn = await WorkflowsRepository.GetWorkflowByIdAsync(workflowId);
+
+    if (workflowToReturn != null)
+    {
+        return Results.Ok(workflowToReturn);
+    }
+    else
+    {
+        return Results.Ok("No Workflow.");
+    }
+}).WithTags("Workflows Endpoints");
+
+
+// get workflow by project id
+app.MapGet("/get-workflow-by-project-id/{projectId}", async (int projectId) =>
+{
+    Workflow workflowToReturn = await WorkflowsRepository.GetWorkflowByProjectIdAsync(projectId);
+
+    if (workflowToReturn != null)
+    {
+        return Results.Ok(workflowToReturn);
+    }
+    else
+    {
+        return Results.Ok("No Workflow.");
+    }
+}).WithTags("Workflows Endpoints");
+
+
+// create workflow
+app.MapPost("/create-workflow", async (Workflow workflowToCreate) =>
+{
+    bool createSuccessful = await WorkflowsRepository.CreateWorkflowAsync(workflowToCreate);
+
+    if (createSuccessful)
+    {
+        Workflow workflowToReturn = await WorkflowsRepository.GetWorkflowByProjectIdAsync(workflowToCreate.ProjectId);
+        return Results.Ok(workflowToReturn);
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("Workflows Endpoints");
+
+
+// update workflow
+app.MapPut("/update-workflow", async (Workflow workflowToUpdate) =>
+{
+    bool updateSuccessful = await WorkflowsRepository.UpdateWorkflowAsync(workflowToUpdate);
+
+    if (updateSuccessful)
+    {
+        return Results.Ok("Update successful.");
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("Workflows Endpoints");
+
+
+// delete action
+app.MapDelete("/delete-workflow-by-id/{workflowId}", async (int workflowId) =>
+{
+    bool deleteSuccessful = await WorkflowsRepository.DeleteWorkflowAsync(workflowId);
+
+    if (deleteSuccessful)
+    {
+        return Results.Ok("Delete successful.");
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+}).WithTags("Workflows Endpoints");
 
 
 

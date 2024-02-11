@@ -138,11 +138,11 @@ const MyTickets = ({user}) => {
                         fontSize: 'large',
                     }}
                 >
-                  {"My Tickets"}
+                  {"Workflows"}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description" >
-                  The "My Tickets" section displays a list of tickets or bug reports submitted by the user. It serves as a centralized hub where users can view, track, and manage the tickets they have created or are assigned to.
+                  The "Workflows" section serves as a collaborative whiteboard for visualizing project issues and timelines. Users can drag and drop project tickets, leaving comments as needed.
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -173,7 +173,7 @@ const MyTickets = ({user}) => {
                         marginLeft: '40px'
                         }}
                     >
-                    My Tickets By Project
+                    Go To Project Workflow
                     <FileSearchOutlined style={{ fontSize: '200%', marginLeft: '20px'}}/>
                 </div>
                 <InfoDialog/>

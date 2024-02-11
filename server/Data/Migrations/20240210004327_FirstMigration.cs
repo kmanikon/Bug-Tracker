@@ -106,6 +106,21 @@ namespace ticket_server.Data.Migrations
                     table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Workflows",
+                columns: table => new
+                {
+                    WorkflowId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProjectId = table.Column<int>(type: "INTEGER", nullable: false),
+                    NodesJSON = table.Column<string>(type: "TEXT", maxLength: 10000, nullable: false),
+                    EdgesJSON = table.Column<string>(type: "TEXT", maxLength: 10000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workflows", x => x.WorkflowId);
+                });
+
             migrationBuilder.InsertData(
                 table: "Projects",
                 columns: new[] { "ProjectId", "Description", "ProjectName", "UidString" },
@@ -119,6 +134,11 @@ namespace ticket_server.Data.Migrations
                     { 1, "0", "demoEmail1@gmail.com", "Password 1", "Demo Admin" },
                     { 2, "0", "demoEmail2@gmail.com", "Password 2", "Demo Developer" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Workflows",
+                columns: new[] { "WorkflowId", "EdgesJSON", "NodesJSON", "ProjectId" },
+                values: new object[] { 1, "Example JSON", "Example JSON", 0 });
         }
 
         /// <inheritdoc />
@@ -135,6 +155,9 @@ namespace ticket_server.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Workflows");
         }
     }
 }

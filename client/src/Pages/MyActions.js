@@ -141,11 +141,11 @@ const MyActions = ({user}) => {
                         fontSize: 'large',
                     }}
                 >
-                  {"My Actions"}
+                  {"Action Logs"}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description" >
-                  The "My Actions" section displays a history of user actions done within the bug tracker. This section is intended as a way to view and revert previous changes done by the user.
+                  The "Action Logs" section displays a history of user actions done within the bug tracker. This section is intended as a way to view and revert previous changes done by the user.
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
