@@ -4,20 +4,11 @@ import { CardActions, CardContent, CardMedia, Button, Typography, Box, Grid } fr
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
-import { Link } from 'react-router-dom'; 
 import UserProfileCard from '../Components/UserProfileCard/UserProfileCard';
 
 import { 
-
     UserOutlined,
     InfoCircleOutlined,
-    BellOutlined,
-    FolderOpenOutlined,
-    FileSearchOutlined,
-    DashboardOutlined,
-    FundProjectionScreenOutlined,
-    SnippetsOutlined
-          
   } 
   from '@ant-design/icons';
 
@@ -168,7 +159,6 @@ const MyActions = ({user}) => {
             <div style={{width: '93%'}}>
             <div className="table-container">
                 <div style={{marginLeft: '20px',
-
                     marginRight: '20px',
                     fontWeight: 'bold',
                     fontSize: 'large',
@@ -176,9 +166,11 @@ const MyActions = ({user}) => {
                     marginLeft: '40px'
                     }}
                 >
-                My Actions by Project
-                <UserOutlined style={{ fontSize: '200%', marginLeft: '20px'}}/>
 
+                <div style={{display: 'flex', marginBottom: '-20px'}}>
+                    My Actions by Project
+                    <UserOutlined style={{ fontSize: '200%', marginLeft: '20px', marginTop: '-10px'}}/>
+                </div>
             </div>
 
             <div style={{display: 'flex'}}>
@@ -202,7 +194,7 @@ const MyActions = ({user}) => {
         </div>
         </div>
 
-        {projects !== [] && actions !== [] &&
+        { true && /*projects?.length && actions?.length && projects?.length > 0 && actions?.length > 0 &&*/
 
         <UserProfileCard projects={projects} actions={actions} changeCount={changeCount}/>
 

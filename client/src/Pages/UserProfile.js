@@ -1,37 +1,17 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CardActions, CardContent, CardMedia, Button, Typography, Box, Grid } from '@material-ui/core/';
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
 import { Link } from 'react-router-dom'; 
-import UserProfileCard from '../Components/UserProfileCard/UserProfileCard';
-import MyActions from './MyActions';
-
-
 import { 
 
     UserOutlined,
-    InfoCircleOutlined,
-    BellOutlined,
-    FolderOpenOutlined,
-    FileSearchOutlined,
-    DashboardOutlined,
     FundProjectionScreenOutlined,
     SnippetsOutlined
           
   } 
   from '@ant-design/icons';
-
-import url from '../defs';
-
-
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-
 
 /*
 

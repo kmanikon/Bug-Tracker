@@ -13,8 +13,6 @@ import {
 from '@material-ui/core/';
 
 import { 
-  ContainerOutlined,
-  FileSearchOutlined,
   UserOutlined,
   BellOutlined,
   FolderOpenOutlined
@@ -22,6 +20,8 @@ import {
         
 } 
 from '@ant-design/icons';
+
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
  
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
@@ -134,7 +134,7 @@ const Home = () => {
           }}              
           >
     
-              <FileSearchOutlined style={{ fontSize: '400%'}}/>
+              <DashboardCustomizeOutlinedIcon style={{ fontSize: '400%'}}/>
               <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
                 Workflows
               </div>

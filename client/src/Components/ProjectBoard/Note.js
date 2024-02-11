@@ -148,7 +148,7 @@ export default memo(({ id, data, isConnectable }) => {
                         <div className="commentText">
                             {editDesc === false ?
                             <>
-                                <div style={{fontSize: 12}}>
+                                <div style={{fontSize: 12, lineHeight: 'normal'}}>
                                     {data?.description}
                                 </div>
                             </>
@@ -163,9 +163,8 @@ export default memo(({ id, data, isConnectable }) => {
                                     variant="outlined"
                                     size="small"
                                     InputLabelProps={{style: {fontSize: 12}}}
-                                    inputProps={{style: {fontSize: 12}}}
+                                    inputProps={{style: {fontSize: 12 }}}
                                     multiline
-                                    minRows={1}
                                 />
                                     <div style={{marginLeft: 'auto', marginRight: '5px', marginTop: '5px'}}>
                                         <div style={{ display: 'flex'}}>

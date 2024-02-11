@@ -1,30 +1,12 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
-import { 
-  CardActions, 
-  CardContent, 
-  CardMedia,  
+import {  
   Button, 
   Typography, 
-  Box, 
   Grid
 } 
 from '@material-ui/core/';
-
-import { 
-  ContainerOutlined,
-  FileSearchOutlined,
-  UserOutlined,
-  BellOutlined,
-  FolderOpenOutlined
-
-        
-} 
-from '@ant-design/icons';
- 
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { useNavigate } from "react-router-dom";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, BarElement, CategoryScale, LinearScale} from 'chart.js';
 import { Pie, Bar, Doughnut } from 'react-chartjs-2';
