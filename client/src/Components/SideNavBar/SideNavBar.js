@@ -35,7 +35,12 @@ const SideNavBar = ({user, height}) => {
                 <Sidebar 
                     className={classes.sideBar} 
                     width="120px" 
-                    style={{ height: height, marginTop: '60px', textAlign: 'center', alignItems: 'center'}}
+                    style={{ 
+                        height: height, 
+                        marginTop: '60px', 
+                        //textAlign: 'center', 
+                        //alignItems: 'center'
+                    }}
                     
                 >
                     <div>
@@ -76,7 +81,7 @@ const SideNavBar = ({user, height}) => {
                                 onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
                                 <Stack direction="column" alignItems="center" gap={1}>
-                                <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
+                                    <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
                                     <Typography variant="body1">Workflows</Typography>
                                 </Stack>
                             </MenuItem>
