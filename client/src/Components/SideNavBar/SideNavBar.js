@@ -62,15 +62,16 @@ const SideNavBar = ({user, height}) => {
                             >
 
 
-                                {/*}
-                                <Stack direction="column" alignItems="center">
+                                
+                                {/*<Stack direction="column" alignItems="center">*/}
                                     <HomeOutlinedIcon style={{fontSize: 60}}/>
-                                    <Typography variant="body1">Home</Typography>
-                                </Stack>
-                                */}
-                                    
+                                    <Typography variant="body1" alignItems="center">Home</Typography>
+                                {/*</Stack>*/}
+                                
+                                {/*
                                     <UserOutlined style={{fontSize: 50}}/>
                                     <div style={{marginTop: '10px'}}>Profile</div>
+                                */}
                             </MenuItem>
                         </div>
 
@@ -81,7 +82,7 @@ const SideNavBar = ({user, height}) => {
                             >
                                 
                                     <FolderOpenOutlined style={{fontSize: 50}}/>
-                                    <div style={{marginTop: '5px'}}>Projects</div>
+                                    <div style={{marginTop: '5px', textAlign: 'center'}}>Projects</div>
                             </MenuItem>
                         </div>
 
@@ -96,8 +97,8 @@ const SideNavBar = ({user, height}) => {
                                     <Typography variant="body1">Workflows</Typography>
                                 </Stack>
                                 */}
-                                    <UserOutlined style={{fontSize: 50}}/>
-                                    <div style={{marginTop: '10px'}}>Profile</div>
+                                    <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
+                                    <div style={{marginTop: '10px', textAlign: 'center'}}>Workflows</div>
                             </MenuItem>
                         </div>
 
