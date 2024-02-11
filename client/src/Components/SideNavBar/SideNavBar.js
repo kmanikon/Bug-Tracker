@@ -120,17 +120,12 @@ const SideNavBar = ({user, height}) => {
 
                         <div className={active === 'profile' ? classes.active : classes.inactive}>
                             <MenuItem 
-                                style={{height: '100px', textAlign: 'center'}}
+                                style={{height: '100px'}}
                                 onClick={() => setActive('profile')} component={<Link to="/profile" />}
                             >
-                                <div style={{alignItems: 'center'}}>
+                                <div style={{textAlign: 'center'}}>
                                     
-                                    <div 
-                                        style={{ 
-                                            //display: 'flex', 
-                                            //alignItems: 'center'
-                                            textAlign: 'center'
-                                    }}>
+                                    <div>
                                         <UserOutlined style={{fontSize: 50}}/>
                                         <div style={{marginTop: '5px'}}>Profile</div>
                                     </div>
