@@ -38,7 +38,7 @@ const SideNavBar = ({user, height}) => {
                     
                 >
 
-{/*
+
                     <div style={{marginTop: '10px'}}></div>
 
                     <Typography style={{textAlign: 'center', fontWeight: 'bold', fontSize: 'large'}}>
@@ -49,7 +49,7 @@ const SideNavBar = ({user, height}) => {
                     </Typography>
 
                     <div style={{marginBottom: '20px'}}></div>
-    */}
+    *
 
                     <div>
                     <Menu style={{ textAlign: 'center'}}>
@@ -61,35 +61,21 @@ const SideNavBar = ({user, height}) => {
                                 onClick={() => setActive('home')} component={<Link to="/home" />}
                             >
 
-                            <div>
-                                <div 
-                                    style={{ 
-                                        textAlign: 'center'
-                                    }}
-                                >
+                                <div>
                                     <HomeOutlinedIcon style={{fontSize: 60}}/>
                                     <div style={{marginTop: '-5px'}}>Home</div>
                                 </div>
-                            </div>
                             </MenuItem>
                         </div>
 
                         <div className={active === 'projects' ? classes.active : classes.inactive}>
                             <MenuItem 
-                                style={{height: '100px', textAlign: 'center'}}
+                                style={{height: '100px'}}
                                 onClick={() => setActive('projects')} component={<Link to="/projects" />}
                             >
                                 
-                                <div style={{alignItems: 'center'}}>
-
-
-                                    <div 
-                                        style={{ 
-                                            //display: 'flex', 
-                                            //alignItems: 'center'
-                                            textAlign: 'center'
-                                        }}
-                                    >
+                                <div>
+                                    <div>
                                         <FolderOpenOutlined style={{fontSize: 50}}/>
                                         <div style={{marginTop: '5px'}}>Projects</div>
                                     </div>
@@ -99,18 +85,12 @@ const SideNavBar = ({user, height}) => {
 
                         <div className={active === 'tickets' ? classes.active : classes.inactive}>
                             <MenuItem 
-                                style={{height: '100px', textAlign: 'center'}}
+                                style={{height: '100px'}}
                                 onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
                                 
                                 <div style={{alignItems: 'center'}}>
-                                    <div 
-                                        style={{ 
-                                            //display: 'flex', 
-                                            //alignItems: 'center'
-                                            textAlign: 'center'
-                                        }}
-                                    >
+                                    <div >
                                         <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
                                         <div style={{marginTop: '5px'}}>Workflows</div>
                                     </div>
@@ -123,7 +103,7 @@ const SideNavBar = ({user, height}) => {
                                 style={{height: '100px'}}
                                 onClick={() => setActive('profile')} component={<Link to="/profile" />}
                             >
-                                <div style={{textAlign: 'center'}}>
+                                <div>
                                     
                                     <div>
                                         <UserOutlined style={{fontSize: 50}}/>
