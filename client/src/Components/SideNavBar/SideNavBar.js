@@ -34,30 +34,16 @@ const SideNavBar = ({user, height}) => {
                 <Sidebar 
                     className={classes.sideBar} 
                     width="120px" 
-                    style={{ height: height, marginTop: '60px'}}
+                    style={{ height: height, marginTop: '60px' }}
                     
                 >
-
-
-                    <div style={{marginTop: '10px'}}></div>
-
-                    <Typography style={{textAlign: 'center', fontWeight: 'bold', fontSize: 'large'}}>
-                        {'Welcome'}
-                    </Typography>
-                    <Typography style={{textAlign: 'center', fontWeight: 'bold', fontSize: 'large'}}>
-                        {user.username + '!'}
-                    </Typography>
-
-                    <div style={{marginBottom: '20px'}}></div>
-    *
-
                     <div>
                     <Menu style={{ textAlign: 'center'}}>
 
                         <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
                         <div className={active === 'home' ? classes.active : classes.inactive} >
                             <MenuItem 
-                                style={{height: '100px', textAlign: 'center'}}
+                                style={{height: '100px' }}
                                 onClick={() => setActive('home')} component={<Link to="/home" />}
                             >
 
