@@ -1,4 +1,5 @@
 import React, { useState, } from 'react'
+import Stack from '@mui/material/Stack';
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
@@ -47,10 +48,10 @@ const SideNavBar = ({user, height}) => {
                                 onClick={() => setActive('home')} component={<Link to="/home" />}
                             >
 
-                                <div>
+                                <Stack direction="column" alignItems="center">
                                     <HomeOutlinedIcon style={{fontSize: 60}}/>
-                                    <div style={{marginTop: '-5px'}}>Home</div>
-                                </div>
+                                    <Typography variant="body1">Home</Typography>
+                                </Stack>
                             </MenuItem>
                         </div>
 
@@ -74,13 +75,10 @@ const SideNavBar = ({user, height}) => {
                                 style={{height: '100px'}}
                                 onClick={() => setActive('tickets')} component={<Link to="/myTickets" />}
                             >
-                                
-                                <div >
-                                    <div >
-                                        <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
-                                        <div style={{marginTop: '5px'}}>Workflows</div>
-                                    </div>
-                                </div>
+                                <Stack direction="column" alignItems="center" gap={1}>
+                                <DashboardCustomizeOutlinedIcon style={{fontSize: 50}}/>
+                                    <Typography variant="body1">Workflows</Typography>
+                                </Stack>
                             </MenuItem>
                         </div>
 
@@ -93,7 +91,7 @@ const SideNavBar = ({user, height}) => {
                                     
                                     <div>
                                         <UserOutlined style={{fontSize: 50}}/>
-                                        <div style={{marginTop: '5px'}}>Profile</div>
+                                        <div style={{marginTop: '10px'}}>Profile</div>
                                     </div>
                                 </div>
                             </MenuItem>
