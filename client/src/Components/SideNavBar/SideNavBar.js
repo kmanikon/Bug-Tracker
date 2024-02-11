@@ -46,7 +46,7 @@ const SideNavBar = ({user, height}) => {
                     <div>
                     <Menu>
 
-                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
+                        <SubMenu style={{height: '40px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
                         <div className={active === 'home' ? classes.active : classes.inactive} >
                             <MenuItem 
                                 style={{height: '100px' }}
