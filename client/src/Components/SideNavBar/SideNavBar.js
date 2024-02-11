@@ -55,7 +55,7 @@ const SideNavBar = ({user, height}) => {
                     <Menu style={{ textAlign: 'center'}}>
 
                         <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
-                        <div className={active === 'home' ? classes.active : classes.inactive}>
+                        <div className={active === 'home' ? classes.active : classes.inactive} style={{ textAlign: 'center'}}>
                             <MenuItem 
                                 style={{height: '100px'}}
                                 onClick={() => setActive('home')} component={<Link to="/home" />}
