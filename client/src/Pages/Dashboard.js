@@ -371,6 +371,7 @@ const Dashboard = ({user}) => {
                     variant="outlined"
                     size="large"
                     value={false}
+                    disableRipple
                     style={{
                         fontWeight: 'bold',
                         fontSize: 'large',
@@ -386,6 +387,7 @@ const Dashboard = ({user}) => {
                     variant="outlined"
                     size="large"
                     value={true}
+                    disableRipple
                     style={{
                         fontWeight: 'bold',
                         fontSize: 'large',
