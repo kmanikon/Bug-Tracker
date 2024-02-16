@@ -7,6 +7,8 @@ import {
   Grid
 } 
 from '@material-ui/core/';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, BarElement, CategoryScale, LinearScale} from 'chart.js';
 import { Pie, Bar, Doughnut } from 'react-chartjs-2';
@@ -98,74 +100,69 @@ const Dashboard = ({user}) => {
     }, [user]);
 
 
+    const handleShowSubmitted = () => {
+        setShowAssigned(false);
+
+        const submittedTickets = mytickets.filter((t) => t.submitterUid === user.userId);
+
+        const highPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'High').length
+        const medPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'Medium').length
+        const lowPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'Low').length
+
+
+        setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
+
+        
+        const bugsTickets = submittedTickets.filter((t) => t.ticketType === 'Bugs/Errors').length
+        const featureTickets = submittedTickets.filter((t) => t.ticketType === 'Feature Request').length
+        const taskTickets = submittedTickets.filter((t) => t.ticketType === 'Task').length
+        const otherTickets = submittedTickets.filter((t) => t.ticketType === 'Other').length
+
+        setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
+
+        
+
+        const pendingTickets = submittedTickets.filter((t) => t.ticketStatus === 'pending').length
+        const closedTickets = submittedTickets.filter((t) => t.ticketStatus === 'closed').length
+
+        setStatusData([pendingTickets, closedTickets]);      
+        
+        const ProjectTicketCounts = myprojects.map((p) => submittedTickets.filter((t) => t.projectId === p).length)
+        setProjectData(ProjectTicketCounts);
+    }
+
     const handleShowAssigned = () => {
 
-        // switching to submitted tickets
-        if (showAssigned) {
-            setShowAssigned(false);
 
-            const submittedTickets = mytickets.filter((t) => t.submitterUid === user.userId);
+        setShowAssigned(true);
 
-            const highPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'High').length
-            const medPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'Medium').length
-            const lowPrioTickets = submittedTickets.filter((t) => t.ticketPrio === 'Low').length
+        const assignedTickets = mytickets.filter((t) => t.asignedDevUid === user.userId);
 
-
-            setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
-
-         
-            const bugsTickets = submittedTickets.filter((t) => t.ticketType === 'Bugs/Errors').length
-            const featureTickets = submittedTickets.filter((t) => t.ticketType === 'Feature Request').length
-            const taskTickets = submittedTickets.filter((t) => t.ticketType === 'Task').length
-            const otherTickets = submittedTickets.filter((t) => t.ticketType === 'Other').length
-
-            setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
-
-            
-
-            const pendingTickets = submittedTickets.filter((t) => t.ticketStatus === 'pending').length
-            const closedTickets = submittedTickets.filter((t) => t.ticketStatus === 'closed').length
-
-            setStatusData([pendingTickets, closedTickets]);      
-            
-            const ProjectTicketCounts = myprojects.map((p) => submittedTickets.filter((t) => t.projectId === p).length)
-            setProjectData(ProjectTicketCounts);
+        const highPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'High').length
+        const medPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'Medium').length
+        const lowPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'Low').length
 
 
-          
-        }
-        // switching to assigned tickets
-        else {
-            setShowAssigned(true);
+        setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
 
-            const assignedTickets = mytickets.filter((t) => t.asignedDevUid === user.userId);
+        
+        const bugsTickets = assignedTickets.filter((t) => t.ticketType === 'Bugs/Errors').length
+        const featureTickets = assignedTickets.filter((t) => t.ticketType === 'Feature Request').length
+        const taskTickets = assignedTickets.filter((t) => t.ticketType === 'Task').length
+        const otherTickets = assignedTickets.filter((t) => t.ticketType === 'Other').length
 
-            const highPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'High').length
-            const medPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'Medium').length
-            const lowPrioTickets = assignedTickets.filter((t) => t.ticketPrio === 'Low').length
+        setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
 
+        
 
-            setPrioData([highPrioTickets, medPrioTickets, lowPrioTickets])
+        const pendingTickets = assignedTickets.filter((t) => t.ticketStatus === 'pending').length
+        const closedTickets = assignedTickets.filter((t) => t.ticketStatus === 'closed').length
 
-         
-            const bugsTickets = assignedTickets.filter((t) => t.ticketType === 'Bugs/Errors').length
-            const featureTickets = assignedTickets.filter((t) => t.ticketType === 'Feature Request').length
-            const taskTickets = assignedTickets.filter((t) => t.ticketType === 'Task').length
-            const otherTickets = assignedTickets.filter((t) => t.ticketType === 'Other').length
+        setStatusData([pendingTickets, closedTickets]);      
+        
+        const ProjectTicketCounts = myprojects.map((p) => assignedTickets.filter((t) => t.projectId === p).length)
+        setProjectData(ProjectTicketCounts);
 
-            setTypeData([bugsTickets, featureTickets, taskTickets, otherTickets])
-
-            
-
-            const pendingTickets = assignedTickets.filter((t) => t.ticketStatus === 'pending').length
-            const closedTickets = assignedTickets.filter((t) => t.ticketStatus === 'closed').length
-
-            setStatusData([pendingTickets, closedTickets]);      
-            
-            const ProjectTicketCounts = myprojects.map((p) => assignedTickets.filter((t) => t.projectId === p).length)
-            setProjectData(ProjectTicketCounts);
-          
-        }
       }
 
 
@@ -359,29 +356,53 @@ const Dashboard = ({user}) => {
               </Link>
             </Button>
 
-            <Typography style={{textAlign: 'center', fontWeight: 'bold', fontSize: 'large', marginTop: '10px'}}>
-                {showAssigned ? <>My Assigned Tickets</> : <>My Submitted Tickets</>}
-            </Typography>
-            
-            <Button color="black" size="large" variant="outlined"
+            <ToggleButtonGroup
+                value={showAssigned}
+                exclusive
+                aria-label="text alignment"
                 style={{
-                    //marginTop: '10px',
                     marginRight: '80px',
-                    //marginBottom: '20px',
                     fontWeight: 'bold',
                     fontSize: 'large',
                     height: '50px'
-
                 }}
-                onClick={handleShowAssigned}
             >
-              {showAssigned ? <>Show Submitted Tickets</> : <>Show Assigned Tickets</>}
-            </Button>
+                <ToggleButton 
+                    variant="outlined"
+                    size="large"
+                    value={false}
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        height: '50px',
+                        color: 'black'
+                    }}
+                    onClick={handleShowSubmitted}
+                >
+                     {'Submitted Tickets'}
+                </ToggleButton>
 
-            </div>
+                <ToggleButton 
+                    variant="outlined"
+                    size="large"
+                    value={true}
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        height: '50px',
+                        color: 'black'
+                    }}
+                    onClick={handleShowAssigned}
+                >
+                     {'Assigned Tickets'}
+                </ToggleButton>
+
+            </ToggleButtonGroup>
+
+        </div>
 
  
-      <Grid container rowSpacing={1} columnSpacing={1} style={{
+        <Grid container rowSpacing={1} columnSpacing={1} style={{
             marginLeft: '5%',
             marginTop: '3%',
             height: '75%',
