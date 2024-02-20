@@ -44,6 +44,9 @@ import SideNavBar from './Components/SideNavBar/SideNavBar';
 
 import TopNavBar from './Components/TopNavBar/TopNavBar';
 
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+
 
 const paths = [
   "/home",
@@ -75,6 +78,28 @@ const paths = [
 
 ]
 
+const theme = createTheme({
+  overrides: {
+    // Style sheet name ⚛️
+    MuiButton: {
+      // Name of the rule
+      text: {
+        //boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        transition: 'transform 0.35s',
+          '&:hover': {
+            transform: 'scale(1.025)',
+          },
+      },
+    },
+  },
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The default props to change
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+});
 
 function App() {
 
@@ -88,7 +113,7 @@ function App() {
   const [init, setInit] = useState(false);
 
   
-  
+
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem( 'currentUser' )));
     setCheckUser(1);
@@ -103,12 +128,12 @@ function App() {
   
 
     return (
-      
+      <ThemeProvider theme={theme}>
             
           <div style={{ display: 'flex' }}>
 
               
-
+          
 
 
             { 
@@ -179,12 +204,9 @@ function App() {
             
 
           </div>
-
           
+        </ThemeProvider>
 
-
-      
-    
   );
 }
 

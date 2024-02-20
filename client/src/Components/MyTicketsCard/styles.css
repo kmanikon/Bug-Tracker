@@ -49,14 +49,14 @@ a:link {
   
   a:hover {
     color: black;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
     background-color: transparent;
     
   }
   
   a:active {
     color: black;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
     background-color: transparent;
   }
 
