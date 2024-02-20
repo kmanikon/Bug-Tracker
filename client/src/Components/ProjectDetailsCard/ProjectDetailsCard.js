@@ -218,9 +218,9 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
                         fontWeight: 'bold',
                         fontSize: 'medium',
                         marginLeft: '40px',
-                        marginRight: '-20px'
+                        marginRight: '-20px',
+                        minWidth: '182px'
                      }}
-                    //onClick={handleDelete}
                     onClick={handleClickOpen}
                 >
                     Delete Project
@@ -347,7 +347,19 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',
-                    marginRight: '20px'
+                    marginRight: '20px',
+                    minWidth: '134px'
+                }}
+                onClick={routeChange}
+            >
+                Add Ticket
+            </Button>
+
+            <Button variant="outlined" style={{
+                    fontWeight: 'bold',
+                    fontSize: 'medium',
+                    marginRight: '20px',
+                    minWidth: '169px'
                 }}
                 onClick={routeChangeUsers}
             >
@@ -357,7 +369,8 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
              <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',
-                    marginRight: '-20px'
+                    marginRight: '-20px',
+                    minWidth: '190px'
                 }}
                 onClick={routeChangeHistory}
             >
@@ -372,7 +385,8 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
                     fontWeight: 'bold',
                     fontSize: 'medium',
                     marginRight: '-20px',
-                    marginLeft: '40px'
+                    marginLeft: '40px',
+                    minWidth: '185px'
                 }}
                 onClick={routeChangeUpdate}
             >
@@ -392,89 +406,14 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
         
 
 
-        <div style={{marginTop: '20px'}}></div>
+        <div style={{marginTop: '40px'}}></div>
         
 
-        <div style={{width: '93%'}}>
-        <div className="table-container">
-            <div style={{marginLeft: '20px',
-                marginBottom: '20px',
-                marginRight: '20px',
-                fontWeight: 'bold',
-                fontSize: 'large',
-                marginTop: '40px',
-                marginLeft: '40px'
-                }}
-            >
-                Project Tickets
-            </div>
-
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '-20px'
-                }}
-                onClick={routeChange}
-            >
-                Add Ticket
-            </Button>
-
-        </div>
-        </div>
-
-       
-
-        <div style={{marginTop: '20px', fontWeight: 'bold'}}></div>
+        <div style={{marginTop: '100px', fontWeight: 'bold'}}></div>
 
         <TicketTable tickets={tickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user}/>
 
         <div style={{marginTop: '40px'}}></div>
-        
-        {/*
-        <div style={{width: '93%'}}>
-        <div className="table-container">
-            <div style={{marginLeft: '20px',
-                marginBottom: '20px',
-                marginRight: '20px',
-                fontWeight: 'bold',
-                fontSize: 'large',
-                marginTop: '20px',
-                marginLeft: '40px'
-                }}
-            >
-                Project Users
-            </div>
-
-            
-            
-            <div>
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '20px'
-                }}
-                onClick={routeChangeUser}
-            >
-                Add User
-            </Button>
-
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '-20px'
-                }}
-                onClick={routeChangeUserRemove}
-            >
-                Remove User
-            </Button>
-            </div>
-
-        </div>
-        </div>
-
-
-        <UserTable users={projectUsers} project={project} changeCount={changeCount}/>
-            */}
 
         <div style={{marginTop: '60px', fontWeight: 'bold'}}></div>
 
