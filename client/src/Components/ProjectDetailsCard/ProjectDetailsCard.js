@@ -215,8 +215,8 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
                     style={{
                         fontWeight: 'bold',
                         fontSize: 'medium',
-                        minWidth: '182px',
-                        //marginLeft: '20px'
+                        maxHeight: '40px',
+                        width: '190px',
                     }}
                     onClick={handleClickOpen}
                 >
@@ -248,7 +248,6 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
                         <Button onClick={handleClose}>Close</Button>
                         </DialogActions>
                     </Dialog>
-
                 :
                     <Dialog
                         open={open}
@@ -285,21 +284,23 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
           } 
 
           /*
+          // Buttons row responsiveness
+          const buttonSizes = {
+            xs: 12,
+            sm: 12,
+            md: 12,
+            lg: 6
+          };
+          */
   // Buttons row responsiveness
   const buttonSizes = {
-    xs: 12,
-    sm: 12,
-    md: 12,
-    lg: 6
+    xs: 2,
+    sm: 2,
+    md: 2,
+    lg: 2
   };
-  */
-  // Buttons row responsiveness
-  const buttonSizes = {
-    xs: 12,
-    sm: 12,
-    md: 12,
-    lg: 12
-  };
+
+  const spacing = 1;
 
     return (
     <div>
@@ -333,115 +334,167 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
         <div style={{ marginBottom: '20px' }}></div>
       </Card>
   
+      {/*
       <div style={{ width: '93%', marginTop: '20px', marginLeft: '20px' }}>
-          <div style={{ display: 'flex', }}>
-              <Grid container spacing={0}>
-                  <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} >
-                      <div 
-                        style={{
-                          display: 'flex', 
-                          //justifyContent: 'flex-end'
-                          }}
-                        >
+          <div style={{ display: 'flex' }}>
+              <Grid container spacing={spacing}>
+                  <Grid 
+                    item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} 
+                  >
                       <Button 
                         variant="outlined" 
                         style={{
                           fontWeight: 'bold',
                           fontSize: 'medium',
-                          marginRight: '20px',
                           maxHeight: '40px',
-                          //minWidth: '120px',
-                          minWidth: '180px',
-                          marginLeft: '10px'
+                          width: '190px',
                         }}
                         onClick={routeChange}
                       >
                           Add Ticket
                       </Button>
+                    </Grid>
+
+                    <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} >
 
                       <Button 
                         variant="outlined" 
                         style={{
                           fontWeight: 'bold',
                           fontSize: 'medium',
-                          marginRight: '20px',
                           maxHeight: '40px',
-                          //minWidth: '190px'
-                          minWidth: '180px',
+                          width: '190px',
                         }} 
                         onClick={routeChangeUsers}
                       >
                           Manage Users
                       </Button>
+                    
+                    </Grid>
+
+                    <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} >
 
                       <Button 
                         variant="outlined" 
                         style={{
                           fontWeight: 'bold',
                           fontSize: 'medium',
-                          marginRight: '20px',
                           maxHeight: '40px',
-                          //minWidth: '190px'
-                          minWidth: '190px',
+                          width: '190px',
                         }}
                         onClick={routeChangeHistory}
                       >
                           Project History
                       </Button>
-                      
-                  {/*</Grid>*/}
-                  {/*}
-                  <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg}>
-                      <Button 
-                        variant="outlined" 
-                        style={{
-                          fontWeight: 'bold',
-                          fontSize: 'medium',
-                        }} 
-                        onClick={routeChangeUsers}
-                      >
-                          Manage Users
-                      </Button>
-                  </Grid>
-                  
-                  <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg}>
-                      <Button 
-                        variant="outlined" 
-                        style={{
-                          fontWeight: 'bold',
-                          fontSize: 'medium',
-                        }}
-                        onClick={routeChangeHistory}
-                      >
-                          Project History
-                      </Button>
-                  </Grid>
-                  */}
+                    
+                    </Grid>
+                   
                   {user && user.accessIdList.includes(project.projectId) && (
-                          <div style={{display: 'flex', }}>
+                        <>
+                         <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} >
                             <Button 
                               variant="outlined" 
                               style={{
                                 fontWeight: 'bold',
                                 fontSize: 'medium',
-                                marginRight: '20px',
                                 maxHeight: '40px',
-                                minWidth: '190px',
-                                //marginLeft: '60px'
+                                width: '190px',
                               }}
                               onClick={routeChangeUpdate}>
                                 Update Project
                             </Button>
+                          </Grid>
 
+                          <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} >
                             <DeleteDialog />
-                            </div>
+                          </Grid>
+                            </>
                        
                   )}
-                  </div>
                   </Grid>
-              </Grid>
-          </div>
+                  
+              </div>
+              
       </div>
+      */}
+
+<div style={{ width: '93%', marginTop: '20px', marginLeft: '20px' }}>
+  <Grid container spacing={spacing} alignItems="flex-start">
+    <Grid item xs={4} sm={8} md={4} lg={2}>
+      <Button 
+        variant="outlined" 
+        style={{
+          fontWeight: 'bold',
+          fontSize: 'medium',
+          maxHeight: '40px',
+          width: '100%',
+        }}
+        onClick={routeChange}
+      >
+        Add Ticket
+      </Button>
+    </Grid>
+
+    <Grid item xs={3} sm={5} md={4} lg={3}>
+      <Button 
+        variant="outlined" 
+        style={{
+          fontWeight: 'bold',
+          fontSize: 'medium',
+          maxHeight: '40px',
+          width: '100%',
+        }} 
+        onClick={routeChangeUsers}
+      >
+        Manage Users
+      </Button>
+    </Grid>
+
+    <Grid item xs={6} sm={3} md={4} lg={3}>
+      <Button 
+        variant="outlined" 
+        style={{
+          fontWeight: 'bold',
+          fontSize: 'medium',
+          maxHeight: '40px',
+          width: '100%',
+        }}
+        onClick={routeChangeHistory}
+      >
+        Project History
+      </Button>
+    </Grid>
+
+    {user && user.accessIdList.includes(project.projectId) && (
+      <>
+        <Grid item xs={7} sm={5} md={4} lg={2}>
+          <Button 
+            variant="outlined" 
+            style={{
+              fontWeight: 'bold',
+              fontSize: 'medium',
+              maxHeight: '40px',
+              width: '100%',
+            }}
+            onClick={routeChangeUpdate}
+          >
+            Edit Project
+          </Button>
+        </Grid>
+      </>
+      )}
+     {user && user.accessIdList.includes(project.projectId) && (
+      <>
+
+        <Grid item xs={12} sm={3} md={4} lg={2}>
+          <DeleteDialog />
+        </Grid>
+        </>
+        )}
+      
+    
+  </Grid>
+</div>
   
   
       <div style={{ marginTop: '50px', fontWeight: 'bold' }}></div>
