@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
-import styles from './styles';
 import { Link } from 'react-router-dom';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { Card, Button, Box, Grid } from '@material-ui/core/';
 import TicketTable from '../TicketTable/TicketTable';
-import UserTable from '../UserTable/UserTable';
 import { useNavigate } from "react-router-dom";
 
 import url from '../../defs';
@@ -212,19 +210,19 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
         const DeleteDialog = () => {
             return (
                 <div>
-                  <Button 
+                <Button 
                     variant="outlined" 
                     style={{
                         fontWeight: 'bold',
                         fontSize: 'medium',
-                        marginLeft: '40px',
-                        marginRight: '-20px',
-                        minWidth: '182px'
-                     }}
+                        minWidth: '182px',
+                        //marginLeft: '20px'
+                    }}
                     onClick={handleClickOpen}
                 >
                     Delete Project
                 </Button>
+            
 
                 {((user.userId == 1 || user.userId == 2) && (project.projectId == 1 || project.projectId == 2)) ?
                     <Dialog
@@ -286,139 +284,175 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
               );
           } 
 
+          /*
+  // Buttons row responsiveness
+  const buttonSizes = {
+    xs: 12,
+    sm: 12,
+    md: 12,
+    lg: 6
+  };
+  */
+  // Buttons row responsiveness
+  const buttonSizes = {
+    xs: 12,
+    sm: 12,
+    md: 12,
+    lg: 12
+  };
 
-  return (
-
-    <div >
-
-        
-            <Button color="black" size="large" variant="outlined"
-                style={{
-                    marginTop: '0px',
-                    marginLeft: '20px',
-                    marginBottom: '20px',
-                    fontWeight: 'bold',
-                    fontSize: 'large'
-                }}
-
-            >
-            <Link to="/projects" 
-                style={{ textDecoration: 'none' }}>
-
-                Back 
-              
-              </Link>
-            </Button>
-
-        
-        <div className={classes.projectInfo}>
-            <div className="projectsTitle">Project Details</div>
+    return (
+    <div>
+      <Button color="black" size="large" variant="outlined" style={{
+        marginTop: '0px',
+        marginLeft: '20px',
+        marginBottom: '20px',
+        fontWeight: 'bold',
+        fontSize: 'large'
+      }}>
+        <Link to="/projects" style={{ textDecoration: 'none' }}>
+          Back
+        </Link>
+      </Button>
+  
+      <div className={classes.projectInfo}>
+        <div className="projectsTitle">Project Details</div>
+      </div>
+  
+      <Card className={classes.headerCard} ref={ref}>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '35%', display: 'block' }}>
+            <Box className={classes.title} variant="h5" gutterBottom>Title</Box>
+            <Box className={classes.subTitle} variant="h5" gutterBottom>{proj.projectName}</Box>
+          </div>
+          <div style={{ width: '35%', display: 'block' }}>
+            <Box className={classes.titleRight} variant="h5" gutterBottom>Description</Box>
+            <Box className={classes.subTitleRight} variant="h5" gutterBottom>{proj.description}</Box>
+          </div>
         </div>
+        <div style={{ marginBottom: '20px' }}></div>
+      </Card>
+  
+      <div style={{ width: '93%', marginTop: '20px', marginLeft: '20px' }}>
+          <div style={{ display: 'flex', }}>
+              <Grid container spacing={0}>
+                  <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg} >
+                      <div 
+                        style={{
+                          display: 'flex', 
+                          //justifyContent: 'flex-end'
+                          }}
+                        >
+                      <Button 
+                        variant="outlined" 
+                        style={{
+                          fontWeight: 'bold',
+                          fontSize: 'medium',
+                          marginRight: '20px',
+                          maxHeight: '40px',
+                          //minWidth: '120px',
+                          minWidth: '180px',
+                          marginLeft: '10px'
+                        }}
+                        onClick={routeChange}
+                      >
+                          Add Ticket
+                      </Button>
 
-    
-        <Card className={classes.headerCard} ref={ref}>
-      
-            <div style={{display: 'flex'}}>
+                      <Button 
+                        variant="outlined" 
+                        style={{
+                          fontWeight: 'bold',
+                          fontSize: 'medium',
+                          marginRight: '20px',
+                          maxHeight: '40px',
+                          //minWidth: '190px'
+                          minWidth: '180px',
+                        }} 
+                        onClick={routeChangeUsers}
+                      >
+                          Manage Users
+                      </Button>
 
-                <div style={{width: '35%', display: 'block'}}>
-                    <Box className={classes.title} variant="h5" gutterBottom >Title</Box>
-                    <Box className={classes.subTitle} variant="h5" gutterBottom>{proj.projectName}</Box>
-                </div>
-            
-                <div style={{width: '35%', display: 'block'}}>
-                    <Box className={classes.titleRight} variant="h5" gutterBottom >Description</Box>
-                    <Box className={classes.subTitleRight} variant="h5" gutterBottom>{proj.description}</Box>
-                </div>
+                      <Button 
+                        variant="outlined" 
+                        style={{
+                          fontWeight: 'bold',
+                          fontSize: 'medium',
+                          marginRight: '20px',
+                          maxHeight: '40px',
+                          //minWidth: '190px'
+                          minWidth: '190px',
+                        }}
+                        onClick={routeChangeHistory}
+                      >
+                          Project History
+                      </Button>
+                      
+                  {/*</Grid>*/}
+                  {/*}
+                  <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg}>
+                      <Button 
+                        variant="outlined" 
+                        style={{
+                          fontWeight: 'bold',
+                          fontSize: 'medium',
+                        }} 
+                        onClick={routeChangeUsers}
+                      >
+                          Manage Users
+                      </Button>
+                  </Grid>
+                  
+                  <Grid item xs={buttonSizes.xs} sm={buttonSizes.sm} md={buttonSizes.md} lg={buttonSizes.lg}>
+                      <Button 
+                        variant="outlined" 
+                        style={{
+                          fontWeight: 'bold',
+                          fontSize: 'medium',
+                        }}
+                        onClick={routeChangeHistory}
+                      >
+                          Project History
+                      </Button>
+                  </Grid>
+                  */}
+                  {user && user.accessIdList.includes(project.projectId) && (
+                          <div style={{display: 'flex', }}>
+                            <Button 
+                              variant="outlined" 
+                              style={{
+                                fontWeight: 'bold',
+                                fontSize: 'medium',
+                                marginRight: '20px',
+                                maxHeight: '40px',
+                                minWidth: '190px',
+                                //marginLeft: '60px'
+                              }}
+                              onClick={routeChangeUpdate}>
+                                Update Project
+                            </Button>
 
-            </div>
-
-            <div style={{ marginBottom: '20px'}}></div>
-            
-        </Card>
-
-
-
-
-        <div style={{width: '93%', marginTop: '20px', marginBottom: '80px'}}>
-        <div style={{
-          display: 'flex',
-          float: 'right'
-        }}>
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '20px',
-                    minWidth: '134px'
-                }}
-                onClick={routeChange}
-            >
-                Add Ticket
-            </Button>
-
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '20px',
-                    minWidth: '169px'
-                }}
-                onClick={routeChangeUsers}
-            >
-                 Manage Users
-            </Button>
-
-             <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '-20px',
-                    minWidth: '190px'
-                }}
-                onClick={routeChangeHistory}
-            >
-                Project History
-            </Button>
-
-            {user ?
-            <>
-            {user.accessIdList.includes(project.projectId) ?
-            <>
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '-20px',
-                    marginLeft: '40px',
-                    minWidth: '185px'
-                }}
-                onClick={routeChangeUpdate}
-            >
-                Update Project
-            </Button>
-
-            <DeleteDialog />
-            </>
-            : null}
-            </>
-            : null}
-
-        </div>
-
-        </div>
-
-        
-
-
-        <div style={{marginTop: '40px'}}></div>
-        
-
-        <div style={{marginTop: '100px', fontWeight: 'bold'}}></div>
-
-        <TicketTable tickets={tickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user}/>
-
-        <div style={{marginTop: '40px'}}></div>
-
-        <div style={{marginTop: '60px', fontWeight: 'bold'}}></div>
-
+                            <DeleteDialog />
+                            </div>
+                       
+                  )}
+                  </div>
+                  </Grid>
+              </Grid>
+          </div>
+      </div>
+  
+  
+      <div style={{ marginTop: '50px', fontWeight: 'bold' }}></div>
+  
+      <TicketTable tickets={tickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user} />
+  
+      <div style={{ marginTop: '40px' }}></div>
+  
+      <div style={{ marginTop: '60px', fontWeight: 'bold' }}></div>
     </div>
-  )
+  );
 }
 
 export default ProjectDetailsCard
