@@ -13,17 +13,16 @@ table th, table td {
     /*border: 1px solid #ddd;*/
 }
 
- 
 table tr:hover {
-    background-color: #ddd;
-}
+    background-color: #f8f8f8;
+  }
  
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
     background-color: #B8E2F2; /*#2bd3f1;*/ /*#ff993b*/
-    color: #3c3b3b;
+    color: #333333;
     font-weight: bold;
     font-size: large;
 }

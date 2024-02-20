@@ -15,13 +15,8 @@ table th, table td {
     border-color: transparent;
 }
  
-table tr:nth-child(even) {
-    /*background-color: #f2f2f2;*/
-    background-color: transparent;
-}
- 
 table tr:hover {
-    background-color: #ddd;
+  background-color: #f8f8f8;
 }
  
 table th {
@@ -29,7 +24,7 @@ table th {
     padding-bottom: 12px;
     text-align: center;
     background-color: #2bd3f1; /*#ff993b*/
-    color: #3c3b3b; /* */
+    color: #333333;
     font-weight: bold;
     font-size: large;
     
