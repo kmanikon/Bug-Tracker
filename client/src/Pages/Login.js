@@ -741,7 +741,8 @@ const makeAPICallPut = async (route, post) => {
             flex: 0,
             justifyContent: 'center',
             flexDirection: 'row',
-            display: 'block'
+            display: 'block',
+            paddingTop: '15px'
           }}
           onClick={handleSignInDemoAdmin}              
           >
@@ -769,7 +770,8 @@ const makeAPICallPut = async (route, post) => {
             flex: 0,
             justifyContent: 'center',
             flexDirection: 'row',
-            display: 'block'
+            display: 'block',
+            paddingTop: '15px'
           }}     
           onClick={handleSignInDemoDev}                  
           >
