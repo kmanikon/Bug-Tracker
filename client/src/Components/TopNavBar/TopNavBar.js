@@ -93,8 +93,8 @@ const TopNavBar = ({user, setUser, init}) => {
     
                 <div className={classes.notifications}>
                     <Link to="/home" style={{ textDecoration: 'none' }}>
-                    <Button >
-                        <WindowsOutlined style={{ marginRight: '10px'}}/>
+                    <Button style={{ transition: 'none' }}>
+                        <WindowsOutlined style={{ marginRight: '10px' }}/>
                         Home
                     </Button>
                     </Link>
@@ -102,7 +102,7 @@ const TopNavBar = ({user, setUser, init}) => {
 
                 <div className={classes.notifications}>
                     <Link to="/notifications" style={{ textDecoration: 'none' }}>
-                    <Button style={{position: 'relative'}}>
+                    <Button style={{position: 'relative', transition: 'none'}}>
                         <BellOutlined style={{ marginRight: '10px'}}/>
                     
                         Notifications
@@ -129,7 +129,7 @@ const TopNavBar = ({user, setUser, init}) => {
                 </div>
 
                 <div className={classes.profile}>
-                    <Button onClick={handleLogout}>
+                    <Button onClick={handleLogout} style={{transition: 'none'}}>
                         <UserOutlined style={{ marginRight: '10px'}}/>
                         Logout
                     </Button>
