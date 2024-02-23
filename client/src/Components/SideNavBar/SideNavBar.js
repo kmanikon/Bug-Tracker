@@ -24,6 +24,12 @@ const SideNavBar = ({user, height}) => {
 
     const [active, setActive] = useState();
 
+    const [open, setOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setOpen(!open);
+        console.log('hry')
+    }
 
     return (
         <div >
@@ -32,6 +38,21 @@ const SideNavBar = ({user, height}) => {
                 style={{marginTop: '-60px'}}
             >
 
+                {open === false ?
+                <Sidebar 
+                    className={classes.sideBar} 
+                    width="120px" 
+                    style={{ 
+                        height: '60px', 
+                        marginTop: '60px', 
+                    }}
+                    
+                >
+                    <Menu >
+                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" onClick={toggleMenu}/>
+                    </Menu>
+                </Sidebar>
+                :
                 <Sidebar 
                     className={classes.sideBar} 
                     width="120px" 
@@ -44,9 +65,9 @@ const SideNavBar = ({user, height}) => {
                     
                 >
                     <div>
-                    <Menu>
+                    <Menu >
 
-                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
+                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true"  onClick={toggleMenu}>
                         <div 
                             className={active === 'home' ? classes.active : classes.inactive} 
                             style={{ 
@@ -115,6 +136,7 @@ const SideNavBar = ({user, height}) => {
 
                 
                 </Sidebar>
+                }
                 
             </AppBar>
         </div>
