@@ -153,8 +153,9 @@ function App() {
        
               </div>
     
-              <div style={{ minWidth: "140px", height: '100vh' }}></div>
-  
+              <div style={{ minWidth: "60px", height: '100vh' }}></div>
+              {/* style={{width: '100%', marginLeft: -60, marginRight: 60 }} */}
+
               
               </>
             : null}
