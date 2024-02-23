@@ -17,7 +17,7 @@ import useStyles from './styles';
 
 
 
-const SideNavBar = ({user, height}) => {
+const SideNavBar = ({user }) => {
 
     const classes = useStyles();
 
@@ -26,27 +26,37 @@ const SideNavBar = ({user, height}) => {
 
 
     return (
-        <div >
+        <div>
             
-            <AppBar position="static" color="inherit" elevation={3} 
+            <AppBar position="static" color="white" 
                 style={{marginTop: '-60px'}}
             >
 
-                <Sidebar 
+                <div 
                     className={classes.sideBar} 
                     width="120px" 
                     style={{ 
-                        height: height, 
-                        marginTop: '60px', 
+                        height: 'calc(100vh - 60px)', 
+                        marginTop: '120px', 
                         //textAlign: 'center', 
                         //alignItems: 'center'
+                        elevation: '1',
+                        position: 'fixed',
+                        //background: 'black',
+                        //backgroundColor: 'transparent',
+                        marginLeft: 1,
+                        //borderRight: '1px solid #f8f8f8',
+                        zIndex: '3',
+                        boxShadow: '1px 1px 1px grey'
+
                     }}
                     
                 >
                     <div>
                     <Menu>
 
-                        <SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >
+                        
+                        {/*<SubMenu style={{height: '40px', marginLeft: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px'}} icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  defaultOpen="true" >*/}
                         <div 
                             className={active === 'home' ? classes.active : classes.inactive} 
                             style={{ 
@@ -108,13 +118,13 @@ const SideNavBar = ({user, height}) => {
                                 </div>
                             </MenuItem>
                         </div>
-                        </SubMenu>
+                        {/*</SubMenu>*/}
                     </Menu>
 
                     </div>
 
                 
-                </Sidebar>
+                </div>
                 
             </AppBar>
         </div>

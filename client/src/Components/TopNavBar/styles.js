@@ -10,10 +10,11 @@ export default makeStyles((theme) => ({
     height: '60px',
     marginBottom: '50px',
     position: 'fixed',
-    width: '100%',
-    justifyContent: 'flex-end',
+    //width: '1600px',
     minWidth: '830px',
-    marginLeft: '-20px',
+    //marginLeft: '-20px',
+    zIndex: '1',
+    width: '100vw',
 
     "&::after": {
       position: "absolute",
@@ -40,7 +41,7 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
-    //marginRight: '-120px'
+    marginRight: '-120px',
   },
   profile: {
     display: 'flex',

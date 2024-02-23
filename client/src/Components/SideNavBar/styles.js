@@ -10,7 +10,8 @@ export default makeStyles((theme) => ({
     //marginTop: '-80px'
   },
   sideBar: {
-    height: '100vh'
+    height: '100vh',
+    backgroundColor: '#FFFFFF'
     
   },
   active: {

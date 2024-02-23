@@ -113,6 +113,7 @@ function App() {
   const [init, setInit] = useState(false);
 
   
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem( 'currentUser' )));
@@ -123,6 +124,20 @@ function App() {
   
 
 
+
+  const CommonLayout = ({ children, currentUser, setCurrentUser, sidebarOpen, setSidebarOpen }) => {
+    return (
+      <div>
+        <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: sidebarOpen ? '120px' : '0px' }}></div>
+          <div style={{width: sidebarOpen ? 'calc(100vw - 120px)' : 'calc(100vw)'}}>
+          {children}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
 
   
@@ -138,23 +153,31 @@ function App() {
 
             { 
             //location.pathname !== '/login' && location.pathname !== '/' ? 
-            paths.includes(location.pathname) ?
+            paths.includes(location.pathname) && sidebarOpen ?
               <>
               
  
 
-              
-              
+              <div >
+              <SideNavBar user={currentUser} />
+              </div>
+
               <div>
 
-                <div style={{position: 'fixed'}}>
-                  <SideNavBar user={currentUser}/>
+                <div 
+                  //style={{position: 'fixed'}}
+                >
+                  
                 </div>
        
               </div>
     
-              <div style={{ minWidth: "140px", height: '100vh' }}></div>
-  
+              <div 
+                //style={{ minWidth: "140px", height: '100vh' }}
+              ></div>
+            
+              {/* style={{width: '100%', marginLeft: -60, marginRight: 60 }} */}
+
               
               </>
             : null}
@@ -168,10 +191,11 @@ function App() {
             
             
 
+            {/*
             <Routes> 
                 <Route exact path="/home" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Home/></div>}/>
-                <Route path="/projects" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><Projects user={currentUser} setUser={setCurrentUser}/></div>}/>
-                <Route path="/projectDetails" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} /><ProjectDetails user={currentUser} /></div>}/>
+                <Route path="/projects" element={<div><TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/><div style={{display: 'flex'}}><div style={{width: sidebarOpen ? '120px': '0px' }}></div><Projects user={currentUser} setUser={setCurrentUser} /></div></div>}/>
+                <Route path="/projectDetails" element={<div style={{width: '100%'}}><TopNavBar setUser={setCurrentUser} user={currentUser} /><ProjectDetails user={currentUser} /></div>}/>
                 <Route path="/ticketDetails" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><TicketDetails user={currentUser}/></div>}/>
                 <Route path="/addTicket" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><AddTicket user={currentUser}/></div>}/>
                 <Route path="/editTicket" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><EditTicket user={currentUser}/></div>}/>
@@ -196,8 +220,164 @@ function App() {
                 <Route exact path="/dashboard" element={<div style={{width: '100%', height: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} init={init} /><Dashboard user={currentUser}/></div>}/>
                 <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
                 <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
-                {/*<Route path="*" element={<div style={{width: '100%' }}><TopNavBar setUser={setCurrentUser} user={currentUser} /><Home/></div>}/> */}
             </Routes>
+            */}
+
+          <Routes> 
+            <Route exact path="/home" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <div style={{ width: '100%' }}>
+                  <Home/>
+                </div>
+              </CommonLayout>
+            }/>
+
+            <Route path="/projects" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <Projects user={currentUser} setUser={setCurrentUser} />
+              </CommonLayout>
+            }/>
+
+            <Route path="/projectDetails" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <ProjectDetails user={currentUser} />
+              </CommonLayout>
+            }/>
+
+            <Route path="/ticketDetails" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <TicketDetails user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/addTicket" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <AddTicket user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            
+
+          <Route path="/editTicket" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <EditTicket user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/addProject" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <AddProject user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/editProject" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <EditProject user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/projectHistory" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <ProjectHistory user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
+
+            <Route path="/addProjectUser" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <AddProjectUser/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/removeProjectUser" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <RemoveProjectUser/>
+              </CommonLayout>
+            }/>
+
+
+
+
+          <Route exact path="/ticketHistoryDetails" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <TicketHistoryDetails user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route exact path="/profile" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <UserProfile user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route exact path="/profileHistory" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <UserProfileHistory user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/editUserProfile" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <EditUserProfile user={currentUser} setUser={setCurrentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/myTickets" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <MyTickets user={currentUser} setUser={setCurrentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/myProjectTickets" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <MyProjectsTickets user={currentUser} setUser={setCurrentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/manageUsers" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <ManageProjectUsers user={currentUser} setUser={setCurrentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/editUserRole" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <EditUserRole/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/myActions" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <MyActions user={currentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/notifications" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <Notifications user={currentUser} setUser={setCurrentUser}/>
+              </CommonLayout>
+            }/>
+
+            <Route path="/notificationsHistory" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <NotificationsHistory user={currentUser} setUser={setCurrentUser}/>
+              </CommonLayout>
+            }/>
+
+          <Route exact path="/dashboard" element={
+              <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+                <div style={{ width: '100%', height: '100%' }}>
+                  <Dashboard user={currentUser}/>
+                </div>
+              </CommonLayout>
+            }/>
+
+            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
+            
+            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit}/>}/>
+
+          </Routes>
 
 
           

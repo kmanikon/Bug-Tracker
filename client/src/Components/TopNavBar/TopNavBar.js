@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
-import { PaperClipOutlined, UserOutlined, BellOutlined, WindowsOutlined } from '@ant-design/icons';
+import { PaperClipOutlined, UserOutlined, BellOutlined, WindowsOutlined, MenuOutlined } from '@ant-design/icons';
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+
 import { useNavigate } from "react-router-dom";
 
 import url from '../../defs';
@@ -18,7 +20,7 @@ import useStyles from './styles';
 
 
 
-const TopNavBar = ({user, setUser, init}) => {
+const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen}) => {
 
     const classes = useStyles();
 
@@ -62,7 +64,9 @@ const TopNavBar = ({user, setUser, init}) => {
     });
 }
 
-
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    }
 
     useEffect(() => {
 
@@ -74,7 +78,25 @@ const TopNavBar = ({user, setUser, init}) => {
       }, [user, location.pathname, init])
 
     return (
-        <AppBar className={classes.appBar} position="static" color="inherit" elevation={3}>
+        <>
+        <AppBar className={classes.appBar} position="static" color="inherit" elevation={3} style={{width: '100vw'}}>
+
+            <Menu>
+                <SubMenu 
+                    style={{
+                        height: '40px',
+                        marginLeft: '20px', 
+                        marginRight: '20px', 
+                        marginTop: '10px', 
+                        marginBottom: '10px',
+                        zIndex: '2'
+
+                    }} 
+                    icon={<MenuOutlined style={{fontSize: 30, color: 'black'}}/>}  
+                    defaultOpen="true" 
+                    onClick={toggleSidebar}
+                />
+            </Menu>
             <Toolbar className={classes.toolbar}>
 
             <div style={{marginTop: '10px'}}></div>
@@ -137,6 +159,7 @@ const TopNavBar = ({user, setUser, init}) => {
             </Toolbar>
 
         </AppBar>
+        </>
     )
 }
 
