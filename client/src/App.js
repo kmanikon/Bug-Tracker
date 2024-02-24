@@ -128,10 +128,10 @@ function App() {
   const CommonLayout = ({ children, currentUser, setCurrentUser, sidebarOpen, setSidebarOpen }) => {
     return (
       <div>
-        <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
+        {/* <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/> */}
         <div style={{ display: 'flex' }}>
           <div style={{ width: sidebarOpen ? '120px' : '0px' }}></div>
-          <div style={{width: sidebarOpen ? 'calc(100vw - 120px)' : 'calc(100vw)'}}>
+          <div style={{width: sidebarOpen ? 'calc(100vw - 160px)' : 'calc(100vw - 40px)', marginLeft: '20px'}}>
           {children}
           </div>
         </div>
@@ -223,6 +223,9 @@ function App() {
             </Routes>
             */}
 
+          { location.pathname !== '/login' && location.pathname !== '/' && 
+            <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
+          }
           <Routes> 
             <Route exact path="/home" element={
               <CommonLayout currentUser={currentUser} setCurrentUser={setCurrentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>

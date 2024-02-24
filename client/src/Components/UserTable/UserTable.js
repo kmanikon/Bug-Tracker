@@ -131,7 +131,7 @@ const UserTable = ({users, project, changeCount}) => {
     </div>
     */}
     <div className="tableContainer">
-  <table {...getTableProps()}>
+  <table {...getTableProps()} style={{width: '93%'}}>
     <colgroup>
       <col className="username-column" />
       <col className="email-column" />

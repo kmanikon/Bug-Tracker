@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     //width: '1600px',
     minWidth: '830px',
     //marginLeft: '-20px',
-    zIndex: '1',
+    zIndex: '2',
     width: '100vw',
 
     "&::after": {

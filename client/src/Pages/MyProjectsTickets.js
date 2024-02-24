@@ -251,7 +251,7 @@ const makeAPICallGetHistory = async (route) => {
 
 
             {/* Board Here */}
-            <div style={{ width: '85vw', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid',}}>
+            <div style={{ width: '93%', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid',}}>
               <ProjectBoard
                 tickets={tickets}
                 project={project}

@@ -322,15 +322,13 @@ const Dashboard = ({user}) => {
       
 
 
-    
+    const graphHeight = '240px';
+    const graphMargin = '20px';
 
 
-
-    var { innerWidth: width, innerHeight: height } = window;
-    width -= 200
     
     return (
-      <div style={{ height: '700px', minWidth: '800px' }}>
+      <div style={{ height: 'calc(100vh - 200px)', minWidth: '800px' }}>
 
       <div style={{marginTop: '100px'}}></div>
 
@@ -409,14 +407,14 @@ const Dashboard = ({user}) => {
             marginTop: '3%',
             height: '75%',
             width: '92%',
-            marginRight: '5%',
+            marginRight: '5%'
           }}
         >
 
 
-        <Grid item xs={6} style={{ borderRight: "1px solid black", borderBottom: "1px solid black"}}>
+        <Grid item xs={6} style={{ borderRight: "1px solid black", borderBottom: "1px solid black" }}>
 
-            <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
+            <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByPriodata} 
                     options={{
@@ -455,7 +453,7 @@ const Dashboard = ({user}) => {
 
 
         <Grid item xs={6} style={{ borderBottom: "1px solid black"}}>
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
+        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
                 <Doughnut 
                     data={TicketsByTypedata} 
                     options={{
@@ -492,7 +490,7 @@ const Dashboard = ({user}) => {
             </div>
         </Grid>
         <Grid item xs={6} style={{ borderRight: "1px solid black"}}>
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
+        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
             <Bar
                 data={TicketsByProjectdata}
                 height={200}
@@ -537,7 +535,7 @@ const Dashboard = ({user}) => {
         <Grid item xs={6}>
 
 
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center'}}>
+        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByStatusdata} 
                     options={{

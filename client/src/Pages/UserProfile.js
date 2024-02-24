@@ -95,14 +95,14 @@ const UserProfile = ({user}) => {
 
 
     return (
-        <div style={{ width: '100%', height: '85%' }}>
-            <div style={{marginTop: '80px'}}></div>
+        <div style={{ width: '100%', height: 'calc(100vh - 160px)' }}>
+            <div style={{marginTop: '160px'}}></div>
 
 
 
             <Grid container rowSpacing={1} columnSpacing={1} style={{
                 marginLeft: '5%',
-                marginTop: '3%',
+                //marginTop: '20px',
                 height: '75%',
                 width: '92%',
                 marginRight: '5%',
