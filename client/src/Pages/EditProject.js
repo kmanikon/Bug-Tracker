@@ -189,7 +189,8 @@ const EditProject = ({user}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
 
             >
@@ -208,7 +209,8 @@ const EditProject = ({user}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
                 onClick={handleSubmit}
             >

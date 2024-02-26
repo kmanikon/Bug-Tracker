@@ -170,7 +170,7 @@ const EditUserRole = () => {
         <div>
 
 
-            <div style={{ marginLeft: '20px' }}>
+            <div style={{ marginLeft: '20px', maxWidth: '990px' }}>
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>
@@ -178,7 +178,7 @@ const EditUserRole = () => {
 
                 <Button color="black" size="large" variant="outlined"
                     style={{
-                        marginTop: '10px',
+                        //marginTop: '10px',
                         marginLeft: '20px',
                         marginBottom: '20px',
                         fontWeight: 'bold',
@@ -247,12 +247,13 @@ const EditUserRole = () => {
 
                         <Button color="black" size="large" 
                             style={{
-                                marginTop: '10px',
+                                marginTop: '20px',
                                 marginLeft: '100px',
                                 fontWeight: 'bold',
                                 fontSize: 'large',
-                                minWidth: '125px',
-                                maxWidth: '125px'
+                                minWidth: '200px',
+                                transition: 'none'
+                                //maxWidth: '125px'
                             }}
                             onClick={handleSubmit}
                         >

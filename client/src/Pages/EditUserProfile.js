@@ -230,7 +230,8 @@ const EditUserProfile = ({user, setUser}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
 
             >
@@ -248,7 +249,8 @@ const EditUserProfile = ({user, setUser}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
                 onClick={handleSubmit}
             >

@@ -140,7 +140,7 @@ const AddProject = ({user}) => {
     return (
         <div>
 
-        <div style={{ marginLeft: '20px' }}>
+        <div style={{ marginLeft: '20px', maxWidth: '950px', marginRight: '20px' }}>
         <div>
             
             <div style={{marginTop: '110px'}}></div>
@@ -171,7 +171,7 @@ const AddProject = ({user}) => {
 
                         <Box className={classes.title} variant="h5" gutterBottom >Description</Box>
                         <TextField id="outlined-basic" variant="outlined" multiline="true"
-                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px', minWidth: '500px'}}
+                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px'}}
                             value={description} 
                             onChange={(e) => setDescription(e.target.value)}
                         />
@@ -202,7 +202,8 @@ const AddProject = ({user}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
 
             >
@@ -220,7 +221,8 @@ const AddProject = ({user}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
                 onClick={handleSubmit}
             >
