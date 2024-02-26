@@ -502,6 +502,87 @@ const handleUpdate = () => {
 
   return (
     <div>
+      <div style={{width: '93%'}}>
+        <div style={{
+          display: 'flex',
+          //float: 'right',
+          marginBottom: '20px'
+
+
+        }}>
+
+
+          <Button 
+            variant="outlined" 
+            style={{
+                fontWeight: 'bold',
+                fontSize: 'medium',
+                marginLeft: '20px',
+                marginRight: '-20px'
+            }}
+            >
+
+            {userProfile === 0 ?
+            <Link to="/projectHistory" 
+                state={{ project: project, tickets: tickets, history: history, changeCount: changeCount }} 
+                style={{ textDecoration: 'none' }}>
+
+                Back 
+              
+              </Link>
+              :
+              null }
+
+            {userProfile === 1 ?
+              <Link to="/profileHistory" 
+                state={{'project': project, history: history, changeCount: changeCount}} 
+                style={{ textDecoration: 'none' }}>
+
+                Back 
+            
+              </Link>
+              : null
+              }
+
+            {userProfile === 3 ?
+              <Link to="/notificationsHistory" 
+                state={{'project': project, history: history, changeCount: changeCount}} 
+                style={{ textDecoration: 'none' }}>
+
+                Back 
+            
+              </Link>
+              : null
+              }
+              
+          </Button>
+
+            {userProfile !== 3 ? 
+            <>
+          {action === "Created Ticket" ?
+            <CreateDialog />
+              : 
+              <>
+              {action === "Deleted Ticket" ?
+                <DeleteDialog />
+                  : <UpdateDialog /> 
+                } 
+              </>
+                
+              }
+            
+            </>
+            : null}
+
+
+              
+            
+        
+
+        </div>
+
+        </div>
+
         <div className={classes.projectInfo}>
           <div className="projectsTitle">Changes for Ticket #{ticket.ticketNumber}</div>
       </div>
@@ -576,7 +657,7 @@ const handleUpdate = () => {
 
       <div style={{marginTop: '20px'}}></div>
 
-
+      {/*
       <div style={{width: '93%'}}>
         <div style={{
           display: 'flex',
@@ -655,6 +736,7 @@ const handleUpdate = () => {
         </div>
 
         </div>
+        */}
 
         <Typography style={{marginLeft: '20px', fontWeight: 'bold'}}>
           {errorString}

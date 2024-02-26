@@ -19,7 +19,7 @@ const TicketHistoryDetails = ({user}) => {
 
     return (
         <div style={{ marginLeft: '20px'}}>
-                <div style={{marginTop: '110px'}}></div>
+                <div style={{marginTop: '90px'}}></div>
 
                 {ticket ? 
                     <TicketHistoryDetailsCard action={action} user={user} ticket={ticket} project={project} tickets={tickets} history={history} changeCount={changeCount} userProfile={userProfile}/>

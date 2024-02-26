@@ -22,7 +22,7 @@ const TicketDetails = ({user}) => {
   
     return (
       <div style={{ marginLeft: '20px', marginRight: '20px'}}>
-          <div style={{marginTop: '110px'}}></div>
+          <div style={{marginTop: '90px'}}></div>
   
           <div>
             <TicketDetailsCard ticket={ticket} ticketNum={ticketNum} project={project} devList={devList} changeCount={changeCount} user={user} myTickets={myTickets}/>
