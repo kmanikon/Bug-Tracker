@@ -337,64 +337,6 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
       <div style={{marginTop: '20px'}}></div>
 
 
-      {/*
-      <div style={{width: '93%'}}>
-        <div style={{
-          display: 'flex',
-          float: 'right'
-
-        }}>
-            <Button variant="outlined" style={{
-              fontWeight: 'bold',
-              fontSize: 'medium',
-              marginRight: '20px'
-            }}
-            >
-
-              {myTickets === true ? 
-                <Link to="/myProjectTickets" 
-                state={{ project: project, changeCount: changeCount }} 
-                style={{ textDecoration: 'none' }}>
-
-                Back 
-              
-              </Link>
-              :
-                <Link to="/projectDetails" 
-                  state={{ ticket: tick, ticketNum: ticknum, project: project, devList: devList, changeCount: changeCount }} 
-                  style={{ textDecoration: 'none' }}>
-
-                  Back 
-                
-                </Link>
-              }
-                                
-             </Button>
-
-            <Button variant="outlined" style={{
-                    fontWeight: 'bold',
-                    fontSize: 'medium',
-                    marginRight: '-20px'
-                }}
-                onClick={routeChangeUpdate}
-            >
-                Update Ticket
-            </Button>
-
-            <DeleteDialog />
-
-        </div>
-
-        </div>
-        */}
-      
-
-      
-
-
-
-
-
     </div>
   )
 }

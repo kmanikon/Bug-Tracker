@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box, Grid } from '@material-ui/core/';
+import { Button, CircularProgress } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +26,8 @@ const MyActions = ({user}) => {
     const location = useLocation();
     const [projects, setProjects] = useState([]);
     const [actions, setActions] = useState([]);
+
+    const [loading, setLoading] = useState(false);
 
     var { innerWidth: width, innerHeight: height } = window;
     width -= 200
@@ -79,13 +81,27 @@ const MyActions = ({user}) => {
       });
   }
 
+  const handleLoading = async () => {
+    setLoading(true);
+    
+    try {
+        await Promise.all([
+            makeAPICallProjects('get-projects-by-user-id/' + user.userId),
+            makeAPICallActions('get-actions-by-user-id/' + user.userId)
+        ]);
+    } catch (error) {
+        // Handle errors here if needed
+        console.error("Error fetching data:", error);
+    }
+
+    setLoading(false);
+}
+
   
   useEffect( () => {
-
-      if (user){
-          makeAPICallProjects('get-projects-by-user-id/' + user.userId);
-          makeAPICallActions('get-actions-by-user-id/' + user.userId);
-      }
+    if (user){
+        handleLoading();
+    }
   }, [changeCount, location, user]);
 
   
@@ -196,7 +212,17 @@ const MyActions = ({user}) => {
 
         { true && /*projects?.length && actions?.length && projects?.length > 0 && actions?.length > 0 &&*/
 
-        <UserProfileCard projects={projects} actions={actions} changeCount={changeCount}/>
+        <>
+            {!loading ?
+                <div style={{width: '100%'}}>
+                    <UserProfileCard projects={projects} actions={actions} changeCount={changeCount}/>
+                </div>
+                :
+                <div style={{marginLeft: '100px', marginTop: '50px'}}>
+                    <CircularProgress size={50}/>
+                </div>
+            }
+        </>
 
         }
         

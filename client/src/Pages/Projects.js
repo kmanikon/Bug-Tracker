@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { CardActions, CardContent, CardMedia, Button, Typography, Box, CircularProgress } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import ProjectCard from '../Components/Card/ProjectCard';
 
@@ -41,6 +41,8 @@ const Projects = ({ user, setUser }) => {
 
     const [projects, setProjects] = useState([]);
 
+    const [loading, setLoading] = useState(false);
+
     let navigate = useNavigate(); 
     const routeChange = () => { 
         let path = `/addProject`; 
@@ -60,11 +62,17 @@ const Projects = ({ user, setUser }) => {
         });
     }
 
+    const handleLoading = async () => {
+        setLoading(true);
+        await makeAPICallProjects('get-projects-by-user-id/' + user.userId);
+        setLoading(false);
+    }
+
     
     useEffect( () => {
 
         if (user){
-            makeAPICallProjects('get-projects-by-user-id/' + user.userId);
+            handleLoading();
         }
     }, [changeCount, location, user]);
 
@@ -171,9 +179,16 @@ const Projects = ({ user, setUser }) => {
         </div>
         </div>
         
-        <div style={{width: '100%'}}>
-            <ProjectCard projects={projects} changeCount={changeCount} />
-        </div>
+        {!loading ?
+            <div style={{width: '100%'}}>
+                <ProjectCard projects={projects} changeCount={changeCount} />
+            </div>
+            :
+            <div style={{marginLeft: '100px', marginTop: '50px'}}>
+                <CircularProgress size={50}/>
+            </div>
+        }
+        
         
         </div>
     )
