@@ -51,7 +51,7 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    var { innerWidth: width, innerHeight: height } = window;
+    //var { innerWidth: width, innerHeight: height } = window;
     //width -= 200
 
 
@@ -204,7 +204,7 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
     }
 
     return (
-        <div style={{width: width}}>
+        <div style={{width: '100%'}}>
             <Button color="black" size="large" variant="outlined"
                 style={{
                     marginTop: '0px',
@@ -255,7 +255,7 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
         />
         </div>
 
-            <table {...getTableProps()} >
+            <table {...getTableProps()} style={{width: '93%'}}>
             <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

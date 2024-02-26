@@ -140,7 +140,7 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
 
 
     return (
-        <div style={{width: width}}>
+        <div style={{width: '100%'}}>
             <Button color="black" size="large" variant="outlined"
                 style={{
                     marginTop: '0px',
@@ -191,7 +191,7 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
         />
         </div>
 
-            <table {...getTableProps()} >
+            <table {...getTableProps()} style={{width: '93%'}}>
             <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

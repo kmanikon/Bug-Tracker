@@ -137,7 +137,7 @@ const UserHistoryTable = ({project, history, tickets, changeCount, userProfile})
     }
 
     return (
-        <div style={{width: width}}>
+        <div style={{width: '100%'}}>
             
 
         <div style={{display: 'flex'}}>
@@ -172,7 +172,7 @@ const UserHistoryTable = ({project, history, tickets, changeCount, userProfile})
         />
         </div>
 
-            <table {...getTableProps()} >
+            <table {...getTableProps()} style={{width: '93%'}}>
             <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

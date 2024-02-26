@@ -106,11 +106,29 @@ const AddProjectUser = () => {
     return (
         <div>
 
-
-            <div style={{ width: '100%', marginLeft: '20px'}}>
+            <div style={{ width: '100%', marginLeft: '20px', maxWidth: '900px', marginRight: '20px'}}>
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>
+
+                 <Button color="black" size="large" variant="outlined"
+                    style={{
+                        //marginTop: '10px',
+                        marginLeft: '20px',
+                        marginBottom: '20px',
+                        fontWeight: 'bold',
+                        fontSize: 'large'
+                    }}
+
+                >
+                <Link to="/manageUsers" 
+                    state={{ projectUsers: projectUsers, project: project, devList: devList, changeCount: changeCount }} 
+                    style={{ textDecoration: 'none' }}>
+
+                    Back 
+                
+                </Link>
+                </Button>
                 
                 <div className={classes.projectInfo}>
                     <div className="projectsTitle">Add User</div>
@@ -146,6 +164,27 @@ const AddProjectUser = () => {
                         
                     </div>
 
+                    <Button color="black" size="large" 
+                        style={{
+                            marginTop: '30px',
+                            marginLeft: '20px',
+                            fontWeight: 'bold',
+                            fontSize: 'large',
+                            minWidth: '200px',
+                            maxWidth: '200px',
+                            transition: 'none'
+
+                            //position: 'fixed',
+    
+                        }}
+                        onClick={handleSubmit}
+                    >
+                        
+                        Submit
+                        <RightOutlined size="large" style={{marginLeft: '10px'}}/>
+                
+                    </Button>
+
                 </div>
 
                 <div style={{ marginBottom: '20px'}}></div>
@@ -174,46 +213,7 @@ const AddProjectUser = () => {
             null
         }
 
-            <div style={{
-                    display: 'flex',
-
-                    }}>
-            
- 
-                <Button color="black" size="large" 
-                    style={{
-                        marginTop: '10px',
-                        marginLeft: '30px',
-                        fontWeight: 'bold',
-                        fontSize: 'large'
-                    }}
-
-                >
-                <Link to="/manageUsers" 
-                    state={{ projectUsers: projectUsers, project: project, devList: devList, changeCount: changeCount }} 
-                    style={{ textDecoration: 'none' }}>
-
-                    Back 
-                
-                </Link>
-                </Button>
-                
-
-                <Button color="black" size="large" 
-                    style={{
-                        marginTop: '10px',
-                        marginLeft: '30px',
-                        fontWeight: 'bold',
-                        fontSize: 'large'
-                    }}
-                    onClick={handleSubmit}
-                >
-                    
-                    Submit
-                    <RightOutlined size="large" style={{marginLeft: '10px'}}/>
-                </Button>
-            </div>
-
+           
 
             </div>
 

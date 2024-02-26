@@ -161,14 +161,14 @@ const RemoveProjectUser = () => {
         <div>
 
 
-            <div style={{ width: '100%', marginLeft: '20px', maxWidth: '800px'}}>
+            <div style={{ width: '100%', marginLeft: '20px', maxWidth: '700px'}}>
             <div>
                 
                 <div style={{marginTop: '110px'}}></div>
 
                 <Button color="black" size="large" variant="outlined"
                     style={{
-                        marginTop: '10px',
+                        //marginTop: '10px',
                         marginLeft: '20px',
                         fontWeight: 'bold',
                         fontSize: 'large',
@@ -238,11 +238,12 @@ const RemoveProjectUser = () => {
                         <Button color="black" size="large" 
                             style={{
                                 marginTop: '10px',
-                                marginLeft: '100px',
+                                marginLeft: '20px',
                                 fontWeight: 'bold',
                                 fontSize: 'large',
                                 minWidth: '200px',
                                 maxWidth: '200px',
+                                transition: 'none'
 
                                 //position: 'fixed',
       

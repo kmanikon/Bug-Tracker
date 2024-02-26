@@ -16,8 +16,10 @@ import url from '../defs';
 
 const NotificationsHistory = ({user}) => {
 
+    /*
     var { innerWidth: width, innerHeight: height } = window;
     width -= 200
+    */
 
     const location = useLocation();
 
@@ -77,7 +79,7 @@ const NotificationsHistory = ({user}) => {
 
 
     return (
-        <div style={{ width: width, marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px'}}>
             <div style={{marginTop: '110px'}}></div>
 
             

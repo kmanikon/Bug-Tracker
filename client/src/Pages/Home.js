@@ -36,7 +36,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 
-    const location = useLocation();
+    //const location = useLocation();
 
 
     return (
@@ -84,9 +84,10 @@ const Home = () => {
       <Grid container rowSpacing={1} columnSpacing={1} style={{
             marginLeft: '5%',
             marginTop: '3%',
-            height: '75%',
+            //height: '75%',
             width: '92%',
-            marginRight: '5%'
+            marginRight: '5%',
+            height: '80vh'
           }}
         >
         <Grid item xs={6}>

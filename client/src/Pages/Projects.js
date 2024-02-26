@@ -171,8 +171,9 @@ const Projects = ({ user, setUser }) => {
         </div>
         </div>
         
+        <div style={{width: '100%'}}>
             <ProjectCard projects={projects} changeCount={changeCount} />
-  
+        </div>
         
         </div>
     )

@@ -87,7 +87,7 @@ const ProjectCard = ({projects, changeCount }) => {
                 }}
             />
 
-            <table {...getTableProps()} >
+            <table {...getTableProps()} style={{width: '93%'}}>
 
 
             <tbody {...getTableBodyProps()}>

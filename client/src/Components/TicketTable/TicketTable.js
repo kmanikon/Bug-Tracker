@@ -367,7 +367,7 @@ const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }
 
     
         <div className="tableContainer">
-  <table {...getTableProps()}>
+  <table {...getTableProps()} style={{width: '93%'}}>
     <colgroup>
       <col className="title-column" />
       <col className="status-column" />

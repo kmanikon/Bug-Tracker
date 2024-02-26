@@ -126,7 +126,7 @@ const AddTicket = ({user}) => {
     return (
         <div>
 
-        <div style={{ marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px', maxWidth: '950px', marginRight: '20px'}}>
         <div>
             
             <div style={{marginTop: '110px'}}></div>
@@ -237,7 +237,8 @@ const AddTicket = ({user}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
 
             >
@@ -256,7 +257,8 @@ const AddTicket = ({user}) => {
                     marginTop: '10px',
                     marginLeft: '30px',
                     fontWeight: 'bold',
-                    fontSize: 'large'
+                    fontSize: 'large',
+                    transition: 'none'
                 }}
                 onClick={handleSubmit}
             >

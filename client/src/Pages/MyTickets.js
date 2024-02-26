@@ -140,7 +140,7 @@ const MyTickets = ({user}) => {
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description" >
-                  The "Workflows" section serves as a collaborative whiteboard for visualizing project issues and timelines. Users can drag and drop project tickets, leaving comments as needed.
+                  The "Workflows" section serves as a collaborative whiteboard for visualizing project issues and timelines. Users can drag and drop project tickets while leaving comments as needed.
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
