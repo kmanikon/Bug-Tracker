@@ -62,13 +62,13 @@ const ManageProjectUsers = ({user}) => {
 
 
     return (
-        <div style={{ width: '100%', marginLeft: '20px'}}>
+        <div style={{ width: 'calc(100% - 10px)', marginLeft: '10px'}}>
             <div style={{marginTop: '110px'}}></div>
 
             <Button color="black" size="large" variant="outlined"
                 style={{
                     marginTop: '0px',
-                    marginLeft: '20px',
+                    marginLeft: '30px',
                     marginBottom: '20px',
                     fontWeight: 'bold',
                     fontSize: 'large'
@@ -83,73 +83,7 @@ const ManageProjectUsers = ({user}) => {
               </Link>
           </Button>
 
-
-
-            <div style={{width: '93%'}}>
-                    <div className="table-container">
-                        <div style={{marginLeft: '20px',
-                            marginBottom: '20px',
-                            marginRight: '20px',
-                            fontWeight: 'bold',
-                            fontSize: 'large',
-                            marginTop: '20px',
-                            marginLeft: '40px'
-                            }}
-                        >
-                            Project Users
-                        </div>
-
-                        
-                        
-                        <div>
-                        {user ?
-                        <>
-                        {user.accessIdList.includes(project.projectId) ?
-                        <>
-                        <Button variant="outlined" style={{
-                                fontWeight: 'bold',
-                                fontSize: 'medium',
-                                marginRight: '20px'
-                            }}
-                            onClick={routeChangeUser}
-                        >
-                            Add User
-                        </Button>
-
-                        <Button variant="outlined" style={{
-                                fontWeight: 'bold',
-                                fontSize: 'medium',
-                                marginRight: '-20px'
-                            }}
-                            onClick={routeChangeUserRemove}
-                        >
-                            Remove User
-                        </Button>
-
-                        <Button variant="outlined" style={{
-                                fontWeight: 'bold',
-                                fontSize: 'medium',
-                                marginLeft: '40px'
-                            }}
-                            onClick={routeChangeUserRole}
-                        >
-                            Change User Roles
-                        </Button>
-                        </>
-                        : null}
-                        </> 
-                        : null}
-                        </div>
-
-                        
-                        
-                        
-
-                    </div>
-                    </div>
-
-
-                    <UserTable users={projectUsers} project={project} changeCount={changeCount}/>
+            <UserTable devList={devList} user={user} users={projectUsers} project={project} changeCount={changeCount}/>
 
 
         </div>

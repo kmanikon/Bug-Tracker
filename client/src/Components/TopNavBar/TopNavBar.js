@@ -106,7 +106,7 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen}) => {
 
                 <div className={classes.notifications}>
                         <Link to="/profile" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{backgroundColor: '#B8E2F2'}}>
+                        <Button variant="contained" style={{backgroundColor: '#B8E2F2', whiteSpace: 'nowrap'}}>
                             <PaperClipOutlined style={{ marginRight: '10px'}}/>
                             {user ? user.username : ''}
                         </Button>

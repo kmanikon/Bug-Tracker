@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconButton, SearchIcon, TextField, Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
 import './styles.css';
 import AutoScrollContainer from 'auto-scroll-container'
@@ -32,8 +32,10 @@ const COLUMNS = [
   ];
 
 
-const UserTable = ({users, project, changeCount}) => {
+const UserTable = ({devList, user, users, project, changeCount}) => {
 
+
+    let navigate = useNavigate();
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -61,9 +63,24 @@ const UserTable = ({users, project, changeCount}) => {
 
     const { getTableProps, getTableBodyProps, headerGroups, footerGroups, rows, prepareRow} = tableInstance
 
+    const routeChangeUser = () =>{ 
+      let path = `/addProjectUser`; 
+      navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount, projectUsers: users}});
+    }
+
+    const routeChangeUserRemove = () =>{ 
+        let path = `/removeProjectUser`; 
+        navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount}});
+    }
+
+    const routeChangeUserRole = () =>{ 
+        let path = `/editUserRole`; 
+        navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount}});
+    }
+
   return (
     <div >
-
+        <div style={{display: 'flex', justifyContent: 'space-between', marginRight: '7%'}}>
         <TextField
             id="search-bar"
             className="text"
@@ -78,6 +95,42 @@ const UserTable = ({users, project, changeCount}) => {
                 marginBottom: '20px'
             }}
         />
+                <div>
+                      {user && user.accessIdList.includes(project.projectId) ?
+                        <>
+                        <Button variant="outlined" style={{
+                                fontWeight: 'bold',
+                                fontSize: 'medium',
+                                marginRight: '20px'
+                            }}
+                            onClick={routeChangeUser}
+                        >
+                            Add User
+                        </Button>
+
+                        <Button variant="outlined" style={{
+                                fontWeight: 'bold',
+                                fontSize: 'medium',
+                                marginRight: '-20px'
+                            }}
+                            onClick={routeChangeUserRemove}
+                        >
+                            Remove User
+                        </Button>
+
+                        <Button variant="outlined" style={{
+                                fontWeight: 'bold',
+                                fontSize: 'medium',
+                                marginLeft: '40px'
+                            }}
+                            onClick={routeChangeUserRole}
+                        >
+                            Change User Roles
+                        </Button>
+                        </>
+                      : null}
+                      </div>
+                </div>
 
 {/*
     <div className="tableContainer">
