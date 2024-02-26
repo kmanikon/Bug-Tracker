@@ -102,13 +102,13 @@ function App() {
       <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       }
       <div style={{ display: 'flex' }}>
-        {paths.includes(location.pathname) && sidebarOpen && (
+        {paths.includes(location.pathname) && sidebarOpen && location.pathname !== '/login' && location.pathname !== '/' && (
           <div>
             <SideNavBar user={currentUser} />
           </div>
         )}
 
-        <div style={{ width: '100%', marginLeft: sidebarOpen ? '120px' : '0px' }}>
+        <div style={{ width: '100%', marginLeft: (sidebarOpen && location.pathname !== '/login' && location.pathname !== '/') ? '120px' : '0px' }}>
           <Routes>
             {/* Define your routes here */}
             <Route path="/home" element={<Home />} />
