@@ -75,9 +75,7 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen}) => {
             makeAPICallReads('get-unread-actions-by-user-id/' + user.userId);
         }
     
-      }, [user, 
-        //location.pathname, init
-    ])
+      }, [user, location.pathname, init])
 
     return (
         <>
