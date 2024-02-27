@@ -42,7 +42,7 @@ const demoUser2 = {
 }
 
 
-const Login = ({user, setUser, setInit}) => {
+const Login = ({user, setUser, setInit, setTotalNotifications}) => {
 
   setUser(null);
 
@@ -186,7 +186,7 @@ const Login = ({user, setUser, setInit}) => {
       //setTotalNotifications(sum)
       if (sum === 0){
         setInitialNotification(resuser)
-        //setTotalNotifications(1);
+        setTotalNotifications(1);
       }
 
 

@@ -122,7 +122,7 @@ function App() {
             <Route path="/addProject" element={<AddProject user={currentUser} />} />
             <Route path="/editProject" element={<EditProject user={currentUser} />} />
             <Route path="/projectHistory" element={<ProjectHistory user={currentUser} />} />
-            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setTotalNotifications={setTotalNotifications}/>} />
             <Route path="/addProjectUser" element={<AddProjectUser />} />
             <Route path="/removeProjectUser" element={<RemoveProjectUser />} />
             <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} />} />
@@ -137,8 +137,8 @@ function App() {
             <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/dashboard" element={<Dashboard user={currentUser} />} />
-            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setTotalNotifications={setTotalNotifications}/>} />
           </Routes>
         </div>
       </div>
