@@ -186,7 +186,7 @@ const Login = ({user, setUser, setInit, setTotalNotifications}) => {
       //setTotalNotifications(sum)
       if (sum === 0){
         setInitialNotification(resuser)
-        setTotalNotifications(1);
+        //setTotalNotifications(1);
       }
 
 

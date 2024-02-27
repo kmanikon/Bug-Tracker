@@ -91,6 +91,7 @@ function App() {
   const [checkUser, setCheckUser] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  const [init, setInit] = useState(false);
   const [totalNotifications, setTotalNotifications] = useState(0);
 
   useEffect(() => {
@@ -101,7 +102,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {location.pathname !== '/login' && location.pathname !== '/' &&
-      <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} totalNotifications={totalNotifications} setTotalNotifications={setTotalNotifications}/>
+      <TopNavBar setUser={setCurrentUser} user={currentUser} init={init} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} totalNotifications={totalNotifications} setTotalNotifications={setTotalNotifications}/>
       }
       <div style={{ display: 'flex' }}>
         {paths.includes(location.pathname) && sidebarOpen && location.pathname !== '/login' && location.pathname !== '/' && (
@@ -122,7 +123,7 @@ function App() {
             <Route path="/addProject" element={<AddProject user={currentUser} />} />
             <Route path="/editProject" element={<EditProject user={currentUser} />} />
             <Route path="/projectHistory" element={<ProjectHistory user={currentUser} />} />
-            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
             <Route path="/addProjectUser" element={<AddProjectUser />} />
             <Route path="/removeProjectUser" element={<RemoveProjectUser />} />
             <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} />} />
@@ -137,8 +138,8 @@ function App() {
             <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/dashboard" element={<Dashboard user={currentUser} />} />
-            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setTotalNotifications={setTotalNotifications}/>} />
-            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
           </Routes>
         </div>
       </div>

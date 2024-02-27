@@ -59,7 +59,7 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
 
       setTotalNotifications(sum)
 
-      
+ 
       
     });
 }
