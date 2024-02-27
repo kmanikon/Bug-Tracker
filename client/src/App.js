@@ -91,6 +91,8 @@ function App() {
   const [checkUser, setCheckUser] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  const [totalNotifications, setTotalNotifications] = useState(0);
+
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem('currentUser')));
     setCheckUser(1);
@@ -99,7 +101,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {location.pathname !== '/login' && location.pathname !== '/' &&
-      <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <TopNavBar setUser={setCurrentUser} user={currentUser} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} totalNotifications={totalNotifications} setTotalNotifications={setTotalNotifications}/>
       }
       <div style={{ display: 'flex' }}>
         {paths.includes(location.pathname) && sidebarOpen && location.pathname !== '/login' && location.pathname !== '/' && (

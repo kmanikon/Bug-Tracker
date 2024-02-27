@@ -20,7 +20,7 @@ import useStyles from './styles';
 
 
 
-const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen}) => {
+const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotifications, setTotalNotifications}) => {
 
     const classes = useStyles();
 
@@ -40,7 +40,7 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen}) => {
     }
 
 
-    const [totalNotifications, setTotalNotifications] = useState(0);
+    //const [totalNotifications, setTotalNotifications] = useState(0);
 
 
 
