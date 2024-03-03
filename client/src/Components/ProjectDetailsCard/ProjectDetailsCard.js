@@ -26,15 +26,20 @@ import useStyles from './styles';
 const ProjectDetailsCard = ({project, changeCount, user}) => {
 
     const [tickets, setTickets] = useState([]);
-
     const [history, setHistory] = useState([]);
-
     const [projectUsers, setProjectUsers] = useState([]);
+
+    const ref = useRef(null);
+    const classes = useStyles();
+    const proj = project;
+    let navigate = useNavigate(); 
+
+    const [open, setOpen] = useState(false);
+
+    var devList = projectUsers.map((user) => [user.userId, user.email, user.username, user.username + ", " + user.email]);
 
 
     const makeAPICallGetHistory = async (route) => {
-
-    
         fetch(url + route, {
             method: 'GET'
         }) 
@@ -49,19 +54,68 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
         });
     }
 
+    const makeAPICallDelete = async (route) => {
+        fetch(url + route, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(post)
+        })
+        .then(response => response.json())
+        .then(response => {
+        });
+    }
+
+    const makeAPICallProjects = async (route) => {
+        fetch(url + route, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(postsFromServer => {
+            // keep an eye of this
+            const formatTickets = postsFromServer.map((obj, index) => ({ ...obj, index }));
+            setTickets(formatTickets);  
+        });
+    }
+
+    const makeAPICallUsers = async (route) => {
+        fetch(url + route, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(postsFromServer => {
+            setProjectUsers(postsFromServer);
+        });
+    }
+
+    const handleDelete = () => {
+        setOpen(false);
+        changeCount++;
+        makeAPICallDelete('delete-project-by-id/' + proj.projectId)
+        routeChangeDelete();
+    }
+
     useEffect( () => {
-        
         if (user){
             makeAPICallGetHistory('get-actions-by-project-id/' + project.projectId + '/' + user.userId)
         }
     }, [user]);
+
+    useEffect( () => {
+        if (user){
+            makeAPICallProjects('get-posts-by-project/' + proj.projectId + '/' + user.userId);
+            makeAPICallUsers('get-users-by-project-id/' + proj.projectId);
+        }
+    }, [changeCount, user]);
     
 
-    let navigate = useNavigate(); 
+
+
+
+
     const routeChange = () =>{ 
         let path = `/addTicket`; 
-
-
         if (history.length > 0){
             var newTicketNumber = Math.max(...history.map(o => o.ticketNumber)) + 1;
             navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount, ticketNumber: newTicketNumber}});
@@ -70,20 +124,7 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
             var newTicketNumber = 1;
             navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount, ticketNumber: newTicketNumber}});
         }
-
     }
-
-    /*
-    const routeChangeUser = () =>{ 
-        let path = `/addProjectUser`; 
-        navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount}});
-    }
-
-    const routeChangeUserRemove = () =>{ 
-        let path = `/removeProjectUser`; 
-        navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount}});
-    }
-    */
 
     const routeChangeUsers = () =>{ 
         let path = `/manageUsers`; 
@@ -100,45 +141,13 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
         navigate(path, {state:{'project': project, tickets: tickets, history: history, changeCount: changeCount}});
     }
 
-
-
-
-    const ref = useRef(null);
-
-
-
-
-
-    const classes = useStyles();
-
-    const proj = project;
-
-
-    
-
     const routeChangeDelete = () =>{ 
         let path = `/projects`; 
         navigate(path, {state:{changeCount: changeCount}});
     }
 
 
-    const makeAPICallDelete = async (route) => {
-
-
-        fetch(url + route, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            //body: JSON.stringify(post)
-        })
-
-        .then(response => response.json())
-        .then(response => {
-        });
-    }
-
-    const [open, setOpen] = useState(false);
+    
 
 
     const handleClickOpen = () => {
@@ -151,137 +160,81 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
     
 
 
-    const handleDelete = () => {
-        setOpen(false);
-        changeCount++;
-        makeAPICallDelete('delete-project-by-id/' + proj.projectId)
-        routeChangeDelete();
-    }
-
-
-    
-    
-    const makeAPICallProjects = async (route) => {
-
-    
-        fetch(url + route, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(postsFromServer => {
-            // keep an eye of this
-            const formatTickets = postsFromServer.map((obj, index) => ({ ...obj, index }));
-            setTickets(formatTickets);
- 
-            
-        });
-    }
-
-    const makeAPICallUsers = async (route) => {
-
-    
-        fetch(url + route, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(postsFromServer => {
-            setProjectUsers(postsFromServer);
-        });
-    }
-
-    
-    useEffect( () => {
-        if (user){
-        makeAPICallProjects('get-posts-by-project/' + proj.projectId + '/' + user.userId)
-        makeAPICallUsers('get-users-by-project-id/' + proj.projectId)
+    const DeleteDialog = () => {
+        return (
+            <div>
+            <Button 
+                variant="outlined" 
+                style={{
+                    fontWeight: 'bold',
+                    fontSize: 'medium',
+                    maxHeight: '40px',
+                    width: '190px',
+                }}
+                onClick={handleClickOpen}
+            >
+                Delete Project
+            </Button>
         
-        }
-        
-    }, [changeCount, user]);
 
-
-    var devList = projectUsers.map((user) => [user.userId, user.email, user.username, user.username + ", " + user.email]);
-
-    
-    
-    
-
-
-        const DeleteDialog = () => {
-            return (
-                <div>
-                <Button 
-                    variant="outlined" 
-                    style={{
-                        fontWeight: 'bold',
-                        fontSize: 'medium',
-                        maxHeight: '40px',
-                        width: '190px',
-                    }}
-                    onClick={handleClickOpen}
+            {((user.userId == 1 || user.userId == 2) && (project.projectId == 1 || project.projectId == 2)) ?
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
                 >
-                    Delete Project
-                </Button>
-            
-
-                {((user.userId == 1 || user.userId == 2) && (project.projectId == 1 || project.projectId == 2)) ?
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
+                    <DialogTitle id="alert-dialog-title" variant="h5" 
+                        style={{
+                            fontWeight: 'bold',
+                            fontSize: 'large',
+                        }}
                     >
-                        <DialogTitle id="alert-dialog-title" variant="h5" 
-                            style={{
-                                fontWeight: 'bold',
-                                fontSize: 'large',
-                            }}
-                        >
-                        {"Demo Access Restrictions"}
-                        </DialogTitle>
-                        <DialogContent>
-                        <DialogContentText id="alert-dialog-description" >
-                            Sorry! As a demo user, you are not permitted to perform this action.
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button onClick={handleClose}>Close</Button>
-                        </DialogActions>
-                    </Dialog>
-                :
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
+                    {"Demo Access Restrictions"}
+                    </DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description" >
+                        Sorry! As a demo user, you are not permitted to perform this action.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                    </DialogActions>
+                </Dialog>
+            :
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title" variant="h5" 
+                        style={{
+                            fontWeight: 'bold',
+                            fontSize: 'large',
+                        }}
                     >
-                        <DialogTitle id="alert-dialog-title" variant="h5" 
-                            style={{
-                                fontWeight: 'bold',
-                                fontSize: 'large',
-                            }}
-                        >
-                        {"Delete Project Confirmation"}
-                        </DialogTitle>
-                        <DialogContent>
-                        <DialogContentText id="alert-dialog-description" >
-                            Delete {proj.projectName}?
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleDelete} autoFocus>
-                            Delete
-                        </Button>
-                        </DialogActions>
-                    </Dialog>
-                }
+                    {"Delete Project Confirmation"}
+                    </DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description" >
+                        Delete {proj.projectName}?
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleDelete} autoFocus>
+                        Delete
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+            }
 
 
 
-                </div>
-              );
-          } 
+            </div>
+          );
+      } 
 
     return (
     <div>
