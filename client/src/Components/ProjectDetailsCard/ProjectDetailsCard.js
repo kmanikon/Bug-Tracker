@@ -98,7 +98,8 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
 
     useEffect( () => {
         if (user){
-            makeAPICallGetHistory('get-actions-by-project-id/' + project.projectId + '/' + user.userId)
+          makeAPICallGetHistory('get-actions-by-project-id-notifications/' + project.projectId)
+            //makeAPICallGetHistory('get-actions-by-project-id/' + project.projectId + '/' + user.userId)
         }
     }, [user]);
 

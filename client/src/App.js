@@ -101,18 +101,19 @@ const makeAPICallReads = async (route) => {
     });
     const postsFromServer = await response.json();
     const sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
-    setTotalNotifications(sum);
-    //return sum;
+    //setTotalNotifications(sum);
+    return sum;
 }
 
-
+/*
 useEffect(() => {
     if (currentUser){
         makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId);
     }
   }, [currentUser, location.pathname, init]) // location.pathname,
+*/
 
-/*
+
 const memoizedTotalNotifications = useMemo(() => {
     if (currentUser) {
         makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId)
@@ -124,7 +125,7 @@ const memoizedTotalNotifications = useMemo(() => {
             });
     }
 }, [currentUser, init]); // location.pathname
-*/
+
 
   
   useEffect(() => {

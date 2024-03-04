@@ -101,8 +101,9 @@ const makeAPICallGetHistory = async (route) => {
       makeAPICallUsers('get-users-by-project-id/' + project.projectId)
 
       // calling here to update notifications
-      makeAPICallGetHistory('get-actions-by-project-id/' + project.projectId + '/' + user.userId)
-      }
+      //makeAPICallGetHistory('get-actions-by-project-id/' + project.projectId + '/' + user.userId)
+      makeAPICallGetHistory('get-actions-by-project-id-notifications/' + project.projectId)
+    }
       
   }, [changeCount, user]);
 
