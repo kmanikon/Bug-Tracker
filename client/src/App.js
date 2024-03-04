@@ -110,7 +110,7 @@ useEffect(() => {
     if (currentUser){
         makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId);
     }
-  }, [currentUser, init]) // location.pathname,
+  }, [currentUser, location.pathname, init]) // location.pathname,
 
 /*
 const memoizedTotalNotifications = useMemo(() => {
