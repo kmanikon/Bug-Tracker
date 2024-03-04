@@ -43,31 +43,28 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
     //const [totalNotifications, setTotalNotifications] = useState(0);
 
 
+    /*
+    const makeAPICallReads = async (route) => {
+        fetch(url + route, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(postsFromServer => {
 
-  const makeAPICallReads = async (route) => {
+        //setReads(postsFromServer);
 
+        var sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
 
-    fetch(url + route, {
-        method: 'GET'
-    })
-    .then(response => response.json())
-    .then(postsFromServer => {
-
-      //setReads(postsFromServer);
-
-      var sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
-
-      setTotalNotifications(sum)
-
- 
-      
-    });
-}
+        setTotalNotifications(sum)
+        });
+    }
+    */
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
+    /*
     useEffect(() => {
 
         if (user){
@@ -76,6 +73,7 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
         }
     
       }, [user, location.pathname, init])
+      */
 
     return (
         <>

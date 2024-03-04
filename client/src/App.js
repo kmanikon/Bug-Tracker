@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import StickyBox from "react-sticky-box";
 import SideNavBar from './Components/SideNavBar/SideNavBar';
 import TopNavBar from './Components/TopNavBar/TopNavBar';
 import Home from './Pages/Home';
@@ -31,6 +30,8 @@ import Notifications from './Pages/Notifications';
 import NotificationsHistory from './Pages/NotificationsHistory';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+
+import url from './defs';
 
 const paths = [
   "/home",
@@ -94,6 +95,36 @@ function App() {
   const [init, setInit] = useState(false);
   const [totalNotifications, setTotalNotifications] = useState(0);
 
+const makeAPICallReads = async (route) => {
+    const response = await fetch(url + route, {
+        method: 'GET'
+    });
+    const postsFromServer = await response.json();
+    const sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
+    return sum;
+}
+
+/*
+useEffect(() => {
+    if (currentUser){
+        makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId);
+    }
+  }, [currentUser, init]) // location.pathname,
+*/
+
+const memoizedTotalNotifications = useMemo(() => {
+    if (currentUser) {
+        makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId)
+            .then(sum => {
+                setTotalNotifications(sum);
+            })
+            .catch(error => {
+                // Handle error
+            });
+    }
+}, [currentUser, init]); // location.pathname
+
+  
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem('currentUser')));
     setCheckUser(1);
