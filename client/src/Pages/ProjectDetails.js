@@ -14,24 +14,18 @@ import ProjectDetailsCard from '../Components/ProjectDetailsCard/ProjectDetailsC
 
 
 
-const ProjectDetails = ({user}) => {
+const ProjectDetails = ({user, changeCount, setChangeCount}) => {
 
   const location = useLocation();
-  var { project, changeCount } = location.state;
+  var { project } = location.state;
 
   
-
-  
-
-
-
-
   return (
     <div style={{ minWidth: '900px'}}>
         <div style={{marginTop: '110px'}}></div>
 
         <div style={{marginLeft: '20px'}}>
-          <ProjectDetailsCard project={project} changeCount={changeCount} user={user} />
+          <ProjectDetailsCard project={project} changeCount={changeCount} setChangeCount={setChangeCount} user={user} />
         </div>
     </div>
   )

@@ -23,7 +23,7 @@ import useStyles from './styles';
 
 
 
-const ProjectDetailsCard = ({project, changeCount, user}) => {
+const ProjectDetailsCard = ({project, changeCount, setChangeCount, user}) => {
 
     const [tickets, setTickets] = useState([]);
     const [history, setHistory] = useState([]);
@@ -64,6 +64,7 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
         })
         .then(response => response.json())
         .then(response => {
+          setChangeCount(changeCount + 1);
         });
     }
 
@@ -91,7 +92,8 @@ const ProjectDetailsCard = ({project, changeCount, user}) => {
 
     const handleDelete = () => {
         setOpen(false);
-        changeCount++;
+        //setChangeCount(changeCount + 1);
+        //changeCount = changeCount + 1;
         makeAPICallDelete('delete-project-by-id/' + proj.projectId)
         routeChangeDelete();
     }

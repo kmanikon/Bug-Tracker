@@ -27,7 +27,7 @@ const COLUMNS = [
 
 
 
-const MyTicketsCard = ({projects, actions, changeCount}) => {
+const MyTicketsCard = ({projects, changeCount}) => {
     
     const [searchTerm, setSearchTerm] = useState('');
 

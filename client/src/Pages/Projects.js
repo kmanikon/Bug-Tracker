@@ -31,7 +31,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const Projects = ({ user, setUser }) => {
+const Projects = ({ projects, loading, user, setUser }) => {
 
     const location = useLocation();
 
@@ -39,16 +39,17 @@ const Projects = ({ user, setUser }) => {
     //var [changeCount, setChangeCount] = useState(0);
     var changeCount = 0;
 
-    const [projects, setProjects] = useState([]);
+    //const [projects, setProjects] = useState([]);
 
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
 
     let navigate = useNavigate(); 
     const routeChange = () => { 
         let path = `/addProject`; 
-        navigate(path, {state:{changeCount: changeCount}});
+        navigate(path);
     }
     
+    /*
     const makeAPICallProjects = async (route) => {
 
     
@@ -75,6 +76,7 @@ const Projects = ({ user, setUser }) => {
             handleLoading();
         }
     }, [changeCount, location, user]);
+    */
 
 
 
@@ -179,7 +181,7 @@ const Projects = ({ user, setUser }) => {
         </div>
         </div>
         
-        {!loading ?
+        {!loading && projects ?
             <div style={{width: '100%'}}>
                 <ProjectCard projects={projects} changeCount={changeCount} />
             </div>

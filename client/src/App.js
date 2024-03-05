@@ -94,37 +94,77 @@ function App() {
 
   const [init, setInit] = useState(false);
   const [totalNotifications, setTotalNotifications] = useState(0);
+  const [readCounts, setReadCounts] = useState([]);
 
-const makeAPICallReads = async (route) => {
-    const response = await fetch(url + route, {
-        method: 'GET'
-    });
-    const postsFromServer = await response.json();
-    const sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
-    //setTotalNotifications(sum);
-    return sum;
-}
-
-/*
-useEffect(() => {
-    if (currentUser){
-        makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId);
-    }
-  }, [currentUser, location.pathname, init]) // location.pathname,
-*/
+  const [projects, setProjects] = useState([]);
+  const [projectsLoading, setProjectsLoading] = useState(false);
+  const [projectChangeCount, setProjectChangeCount] = useState(0);
+  //var projectChangeCount = 0;
 
 
-const memoizedTotalNotifications = useMemo(() => {
-    if (currentUser) {
-        makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId)
-            .then(sum => {
-                setTotalNotifications(sum);
-            })
-            .catch(error => {
-                // Handle error
-            });
-    }
-}, [currentUser, init]); // location.pathname
+
+  const makeAPICallReads = async (route) => {
+      const response = await fetch(url + route, {
+          method: 'GET'
+      });
+      const postsFromServer = await response.json();
+      setReadCounts(postsFromServer);
+      const sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
+      //setTotalNotifications(sum);
+      return sum;
+  }
+
+  /*
+  useEffect(() => {
+      if (currentUser){
+          makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId);
+      }
+    }, [currentUser, location.pathname, init]) // location.pathname,
+  */
+ 
+
+  const memoizedTotalNotifications = useMemo(() => {
+      if (currentUser) {
+          makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId)
+              .then(sum => {
+                  setTotalNotifications(sum);
+              })
+              .catch(error => {
+                  // Handle error
+              });
+      }
+  }, [currentUser, init]); // location.pathname
+
+
+
+
+
+  const makeAPICallProjects = async (route) => {
+      fetch(url + route, {
+          method: 'GET'
+      })
+      .then(response => response.json())
+      .then(postsFromServer => {
+
+          setProjects(postsFromServer);
+      });
+  }
+
+  const handleProjectLoading = async () => {
+      setProjectsLoading(true);
+      await makeAPICallProjects('get-projects-by-user-id/' + currentUser.userId);
+      setProjectsLoading(false);
+  }
+
+
+  const memoizedProjects = useMemo(() => {
+  //useEffect( () => {
+      if (currentUser){
+        handleProjectLoading();
+      }
+  }, [projectChangeCount, currentUser]);
+
+
 
 
   
@@ -132,6 +172,9 @@ const memoizedTotalNotifications = useMemo(() => {
     setCurrentUser(JSON.parse(localStorage.getItem('currentUser')));
     setCheckUser(1);
   }, []);
+
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -149,12 +192,12 @@ const memoizedTotalNotifications = useMemo(() => {
           <Routes>
             {/* Define your routes here */}
             <Route path="/home" element={<Home />} />
-            <Route path="/projects" element={<Projects user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="/projectDetails" element={<ProjectDetails user={currentUser} />} />
+            <Route path="/projects" element={<Projects projects={projects} loading={projectsLoading} changeCount={projectChangeCount} user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/projectDetails" element={<ProjectDetails user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
             <Route path="/ticketDetails" element={<TicketDetails user={currentUser} />} />
             <Route path="/addTicket" element={<AddTicket user={currentUser} />} />
             <Route path="/editTicket" element={<EditTicket user={currentUser} />} />
-            <Route path="/addProject" element={<AddProject user={currentUser} />} />
+            <Route path="/addProject" element={<AddProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
             <Route path="/editProject" element={<EditProject user={currentUser} />} />
             <Route path="/projectHistory" element={<ProjectHistory user={currentUser} />} />
             <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
@@ -164,12 +207,12 @@ const memoizedTotalNotifications = useMemo(() => {
             <Route path="/profile" element={<UserProfile user={currentUser} />} />
             <Route path="/profileHistory" element={<UserProfileHistory user={currentUser} />} />
             <Route path="/editUserProfile" element={<EditUserProfile user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="/myTickets" element={<MyTickets user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/myTickets" element={<MyTickets user={currentUser} setUser={setCurrentUser} projects={projects}/>} />
             <Route path="/myProjectTickets" element={<MyProjectsTickets user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/manageUsers" element={<ManageProjectUsers user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/editUserRole" element={<EditUserRole />} />
-            <Route path="/myActions" element={<MyActions user={currentUser} />} />
-            <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/myActions" element={<MyActions user={currentUser} projects={projects}/>} />
+            <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} projects={projects} readCounts={readCounts}/>} />
             <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/dashboard" element={<Dashboard user={currentUser} />} />
             <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />

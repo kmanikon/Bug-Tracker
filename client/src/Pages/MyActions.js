@@ -21,10 +21,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const MyActions = ({user}) => {
+const MyActions = ({user, projects}) => {
 
     const location = useLocation();
-    const [projects, setProjects] = useState([]);
+    //const [projects, setProjects] = useState([]);
     const [actions, setActions] = useState([]);
 
     const [loading, setLoading] = useState(false);
@@ -48,7 +48,7 @@ const MyActions = ({user}) => {
 
     
 
-
+/*
     const makeAPICallProjects = async (route) => {
 
     
@@ -61,6 +61,7 @@ const MyActions = ({user}) => {
           setProjects(postsFromServer);
       });
   }
+  */
 
   const makeAPICallActions = async (route) => {
 
@@ -86,7 +87,7 @@ const MyActions = ({user}) => {
     
     try {
         await Promise.all([
-            makeAPICallProjects('get-projects-by-user-id/' + user.userId),
+            //makeAPICallProjects('get-projects-by-user-id/' + user.userId),
             makeAPICallActions('get-actions-by-user-id/' + user.userId)
         ]);
     } catch (error) {
@@ -102,7 +103,7 @@ const MyActions = ({user}) => {
     if (user){
         handleLoading();
     }
-  }, [changeCount, location, user]);
+  }, [user]); // changeCount, location, 
 
   
 
@@ -213,7 +214,7 @@ const MyActions = ({user}) => {
         { true && /*projects?.length && actions?.length && projects?.length > 0 && actions?.length > 0 &&*/
 
         <>
-            {!loading ?
+            {!loading && projects && actions ?
                 <div style={{width: '100%'}}>
                     <UserProfileCard projects={projects} actions={actions} changeCount={changeCount}/>
                 </div>

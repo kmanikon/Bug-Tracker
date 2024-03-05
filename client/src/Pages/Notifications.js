@@ -29,23 +29,24 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const Notifications = ({user}) => {
+const Notifications = ({user, projects, readCounts}) => {
   const location = useLocation();
 
   var changeCount = 0;
 
-  const [projects, setProjects] = useState([]);
-  const [readCounts, setReadCounts] = useState([]);
+  //const [projects, setProjects] = useState([]);
+  //const [readCounts, setReadCounts] = useState([]);
 
   let navigate = useNavigate(); 
 
 
   // readCounts: project id, count
 
-  var projectIds = projects.map((project) => project.projectId)
+  var projectIds = projects?.map((project) => project.projectId) || [];
 
   var mappedCounts = projectIds.map((id) => readCounts[id] ? readCounts[id] : 0)
 
+  /*
   const makeAPICallProjects = async (route) => {
 
   
@@ -58,9 +59,11 @@ const Notifications = ({user}) => {
           setProjects(postsFromServer);
       });
   }
+  */
 
 
 
+  /*
   const makeAPICallReads = async (route) => {
 
 
@@ -74,18 +77,21 @@ const Notifications = ({user}) => {
       
     });
 }
+*/
 
  
  
+/*
   
   useEffect( () => {
 
       if (user){
-          makeAPICallProjects('get-projects-by-user-id/' + user.userId);
+          //makeAPICallProjects('get-projects-by-user-id/' + user.userId);
 
           makeAPICallReads('get-unread-actions-by-user-id/' + user.userId)
       }
   }, [changeCount, location, user]);
+  */
 
 
 

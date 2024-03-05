@@ -33,14 +33,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const MyTickets = ({user}) => { 
+const MyTickets = ({user, projects}) => { 
 
     const location = useLocation();
 
     var changeCount = 0;
 
-    const [projects, setProjects] = useState([]);
-    const [actions, setActions] = useState([]);
+    //const [projects, setProjects] = useState([]);
+    //const [actions, setActions] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
@@ -54,6 +54,7 @@ const MyTickets = ({user}) => {
     }
     */
     
+    /*
     const makeAPICallProjects = async (route) => {
 
     
@@ -66,7 +67,9 @@ const MyTickets = ({user}) => {
             setProjects(postsFromServer);
         });
     }
+    */
 
+    /*
     const makeAPICallActions = async (route) => {
 
     
@@ -85,19 +88,22 @@ const MyTickets = ({user}) => {
             //setActions(postsFromServer);
         });
     }
+    */
 
     const handleLoading = async () => {
         setLoading(true);
         
+        /*
         try {
             await Promise.all([
-                makeAPICallProjects('get-projects-by-user-id/' + user.userId),
+                //makeAPICallProjects('get-projects-by-user-id/' + user.userId),
                 makeAPICallActions('get-actions-by-user-id/' + user.userId)
             ]);
         } catch (error) {
             // Handle errors here if needed
             console.error("Error fetching data:", error);
         }
+        */
     
         setLoading(false);
     }
@@ -199,9 +205,9 @@ const MyTickets = ({user}) => {
             </div>
             </div>
 
-            {!loading ?
+            {!loading && projects ?
                 <div style={{width: '100%'}}>
-                    <MyTicketsCard projects={projects} actions={actions} changeCount={changeCount} />
+                    <MyTicketsCard projects={projects} changeCount={changeCount} />
                 </div>
                 :
                 <div style={{marginLeft: '100px', marginTop: '50px'}}>

@@ -37,12 +37,12 @@ const prioList = [
 
 
 
-const AddProject = ({user}) => {
+const AddProject = ({user, changeCount, setChangeCount}) => {
 
 
     const location = useLocation();
     //var { changeCount } = location.state;
-    var changeCount = 0;
+    //var changeCount = 0;
 
 
 
@@ -67,9 +67,10 @@ const AddProject = ({user}) => {
 
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
-        changeCount++;
+        //changeCount++;
+        //setChangeCount(changeCount + 1);
         let path = `/projects`; 
-        navigate(path, {state:{changeCount: changeCount}});
+        navigate(path);
     }
 
     const makeAPICallChangeAccess = async (route, project) => {
@@ -90,7 +91,8 @@ const AddProject = ({user}) => {
             accessIds.push(parseInt(project))
             user.accessIdList = accessIds;
             localStorage.setItem( 'currentUser', JSON.stringify(user) );
-            window.location.reload(false);
+            //window.location.reload(false);
+            setChangeCount(changeCount + 1);
         });
 
     }
