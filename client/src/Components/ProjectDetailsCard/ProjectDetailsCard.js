@@ -23,11 +23,13 @@ import useStyles from './styles';
 
 
 
-const ProjectDetailsCard = ({project, changeCount, setChangeCount, user}) => {
+const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketChangeCount, setTicketChangeCount, userChangeCount, setUserChangeCount}) => {
 
     const [tickets, setTickets] = useState([]);
     const [history, setHistory] = useState([]);
     const [projectUsers, setProjectUsers] = useState([]);
+
+    //const [ticketChangeCount, setTicketChangeCount] = useState(0);
 
     const ref = useRef(null);
     const classes = useStyles();
@@ -98,6 +100,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user}) => {
         routeChangeDelete();
     }
 
+
     useEffect( () => {
         if (user){
           makeAPICallGetHistory('get-actions-by-project-id-notifications/' + project.projectId)
@@ -105,12 +108,19 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user}) => {
         }
     }, [user]);
 
+
     useEffect( () => {
         if (user){
             makeAPICallProjects('get-posts-by-project/' + proj.projectId + '/' + user.userId);
-            makeAPICallUsers('get-users-by-project-id/' + proj.projectId);
         }
-    }, [changeCount, user]);
+    }, [ticketChangeCount, user]);
+
+
+    useEffect( () => {
+      if (user){
+          makeAPICallUsers('get-users-by-project-id/' + proj.projectId);
+      }
+  }, [userChangeCount, user]);
     
 
 
@@ -352,7 +362,17 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user}) => {
   
       <div style={{ marginTop: '50px', fontWeight: 'bold' }}></div>
   
-      <TicketTable tickets={tickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user} />
+      <TicketTable 
+        tickets={tickets} 
+        setTickets={setTickets}
+        ticketChangeCount={ticketChangeCount}
+        setTicketChangeCount={setTicketChangeCount}
+        project={project} 
+        devList={devList} 
+        changeCount={changeCount} 
+        user={user} 
+      />
+
   
       <div style={{ marginTop: '40px' }}></div>
   

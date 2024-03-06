@@ -33,7 +33,7 @@ const prioList = [
 
 
 
-const AddTicket = ({user}) => {
+const AddTicket = ({user, ticketChangeCount, setTicketChangeCount}) => {
 
 
     const location = useLocation();
@@ -78,7 +78,7 @@ const AddTicket = ({user}) => {
 
         .then(response => response.json())
         .then(response => {
-            window.location.reload(false);
+            setTicketChangeCount(changeCount + 1);
         });
     }
 

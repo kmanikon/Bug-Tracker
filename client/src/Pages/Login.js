@@ -98,7 +98,6 @@ const Login = ({user, setUser, setInit, setTotalNotifications}) => {
     .then(response => response.json())
     .then(response => {
 
-        //window.location.reload(false);
         setInit(true)
 
 
@@ -218,7 +217,6 @@ const Login = ({user, setUser, setInit, setTotalNotifications}) => {
           // create initial notification here
           //setInitialNotification(response)
           makeAPICallReads('get-unread-actions-by-user-id/' + response.userId, response).then(() => {
-            //window.location.reload(false);
             
             
             localStorage.setItem( 'currentUser', JSON.stringify(response) );
@@ -227,7 +225,6 @@ const Login = ({user, setUser, setInit, setTotalNotifications}) => {
             setLoginState(0);
             
             routeChange();
-            //window.location.reload(false);
             
           })
         }

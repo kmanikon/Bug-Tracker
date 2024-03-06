@@ -23,7 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const RemoveProjectUser = () => {
+const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
 
     const location = useLocation();
     var { project, devList, changeCount } = location.state;
@@ -68,7 +68,7 @@ const RemoveProjectUser = () => {
         .then(response => {
             project = response;
             routeChange();
-            window.location.reload(false);
+            setUserChangeCount(userChangeCount + 1);
         });
 
     }

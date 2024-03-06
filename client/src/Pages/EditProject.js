@@ -23,7 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 */
 
 
-const EditProject = ({user}) => {
+const EditProject = ({user, changeCount, setChangeCount}) => {
 
     const classes = useStyles();
     const ref = useRef(null);
@@ -62,7 +62,7 @@ const EditProject = ({user}) => {
 
         .then(response => response.json())
         .then(response => {
-            window.location.reload(false);
+            setChangeCount(changeCount + 1);
         });
     }
 

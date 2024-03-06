@@ -18,7 +18,7 @@ import url from '../defs';
 
 
 
-const AddProjectUser = () => {
+const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
 
     const location = useLocation();
     var { project, devList, changeCount, projectUsers } = location.state;
@@ -62,7 +62,7 @@ const AddProjectUser = () => {
         .then(response => {
             project = response;
             routeChange();
-            window.location.reload(false);
+            setUserChangeCount(userChangeCount + 1);
         });
 
     }

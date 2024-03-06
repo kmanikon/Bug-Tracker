@@ -66,7 +66,7 @@ const typeOrder = {
 
  
 
-const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }) => {
+const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCount, project, devList, changeCount, user }) => {
 
 
 
@@ -184,7 +184,7 @@ const TicketTable = ({tickets, setTickets, project, devList, changeCount, user }
             
 
             // reload page (last resort)
-            window.location.reload(false);
+            setTicketChangeCount(ticketChangeCount + 1);
               
 
             

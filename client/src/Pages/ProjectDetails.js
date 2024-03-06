@@ -14,7 +14,7 @@ import ProjectDetailsCard from '../Components/ProjectDetailsCard/ProjectDetailsC
 
 
 
-const ProjectDetails = ({user, changeCount, setChangeCount}) => {
+const ProjectDetails = ({user, changeCount, setChangeCount, ticketChangeCount, setTicketChangeCount, userChangeCount, setUserChangeCount}) => {
 
   const location = useLocation();
   var { project } = location.state;
@@ -25,7 +25,7 @@ const ProjectDetails = ({user, changeCount, setChangeCount}) => {
         <div style={{marginTop: '110px'}}></div>
 
         <div style={{marginLeft: '20px'}}>
-          <ProjectDetailsCard project={project} changeCount={changeCount} setChangeCount={setChangeCount} user={user} />
+          <ProjectDetailsCard project={project} changeCount={changeCount} setChangeCount={setChangeCount} user={user} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount} userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>
         </div>
     </div>
   )

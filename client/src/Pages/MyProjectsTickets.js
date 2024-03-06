@@ -242,14 +242,6 @@ const makeAPICallGetHistory = async (route) => {
 
             </div>
 
-            
-
-            {/*
-            <div style={{marginTop: '20px'}}></div>
-
-            <MyTicketTable tickets={showTickets} setTickets={setTickets} project={project} devList={devList} changeCount={changeCount} user={user} showAssigned={showAssigned}/>
-            */}
-
 
             {/* Board Here */}
             <div style={{ width: '93%', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid',}}>

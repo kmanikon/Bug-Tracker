@@ -28,7 +28,7 @@ const prioList = [
     'Low'
 ]
 
-const EditTicket = ({ user }) => {
+const EditTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
     //const location = useLocation();
     //const { project } = location.state;
     // ticket, ticket num
@@ -91,7 +91,7 @@ const EditTicket = ({ user }) => {
 
         .then(response => response.json())
         .then(response => {
-            window.location.reload(false);
+            setTicketChangeCount(ticketChangeCount + 1);
         });
     }
 

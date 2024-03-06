@@ -26,7 +26,7 @@ const roleList = [
     'Project Manager',
 ]
 
-const EditUserRole = () => {
+const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
 
     const location = useLocation();
     var { project, devList, changeCount } = location.state;
@@ -72,7 +72,7 @@ const EditUserRole = () => {
         .then(response => {
             //project = response;
             routeChange();
-            window.location.reload(false);
+            setUserChangeCount(userChangeCount + 1);
         });
 
     }

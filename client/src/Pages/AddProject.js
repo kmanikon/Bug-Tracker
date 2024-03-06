@@ -91,7 +91,6 @@ const AddProject = ({user, changeCount, setChangeCount}) => {
             accessIds.push(parseInt(project))
             user.accessIdList = accessIds;
             localStorage.setItem( 'currentUser', JSON.stringify(user) );
-            //window.location.reload(false);
             setChangeCount(changeCount + 1);
         });
 
@@ -120,7 +119,6 @@ const AddProject = ({user, changeCount, setChangeCount}) => {
                 body: JSON.stringify(post)
             })
             */
-            //window.location.reload(false);
            
         });
     }

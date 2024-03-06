@@ -101,6 +101,9 @@ function App() {
   const [projectChangeCount, setProjectChangeCount] = useState(0);
   //var projectChangeCount = 0;
 
+  const [ticketChangeCount, setTicketChangeCount] = useState(0);
+
+  const [userChangeCount, setUserChangeCount] = useState(0);
 
 
   const makeAPICallReads = async (route) => {
@@ -193,16 +196,16 @@ function App() {
             {/* Define your routes here */}
             <Route path="/home" element={<Home />} />
             <Route path="/projects" element={<Projects projects={projects} loading={projectsLoading} changeCount={projectChangeCount} user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="/projectDetails" element={<ProjectDetails user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
+            <Route path="/projectDetails" element={<ProjectDetails user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount} userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/ticketDetails" element={<TicketDetails user={currentUser} />} />
-            <Route path="/addTicket" element={<AddTicket user={currentUser} />} />
-            <Route path="/editTicket" element={<EditTicket user={currentUser} />} />
+            <Route path="/addTicket" element={<AddTicket user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
+            <Route path="/editTicket" element={<EditTicket user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
             <Route path="/addProject" element={<AddProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
-            <Route path="/editProject" element={<EditProject user={currentUser} />} />
+            <Route path="/editProject" element={<EditProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
             <Route path="/projectHistory" element={<ProjectHistory user={currentUser} />} />
             <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
-            <Route path="/addProjectUser" element={<AddProjectUser />} />
-            <Route path="/removeProjectUser" element={<RemoveProjectUser />} />
+            <Route path="/addProjectUser" element={<AddProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
+            <Route path="/removeProjectUser" element={<RemoveProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} />} />
             <Route path="/profile" element={<UserProfile user={currentUser} />} />
             <Route path="/profileHistory" element={<UserProfileHistory user={currentUser} />} />
@@ -210,7 +213,7 @@ function App() {
             <Route path="/myTickets" element={<MyTickets user={currentUser} setUser={setCurrentUser} projects={projects}/>} />
             <Route path="/myProjectTickets" element={<MyProjectsTickets user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/manageUsers" element={<ManageProjectUsers user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="/editUserRole" element={<EditUserRole />} />
+            <Route path="/editUserRole" element={<EditUserRole userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/myActions" element={<MyActions user={currentUser} projects={projects}/>} />
             <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} projects={projects} readCounts={readCounts}/>} />
             <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} />} />

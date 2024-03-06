@@ -71,9 +71,7 @@ const EditUserProfile = ({user, setUser}) => {
         .then(response => {
 
             localStorage.setItem( 'currentUser', JSON.stringify(post) );
-            setUser(post);
-            
-            //window.location.reload(false);
+            setUser(post);            
         });
     }
 
