@@ -105,6 +105,7 @@ function App() {
 
   const [userChangeCount, setUserChangeCount] = useState(0);
 
+  const [historyCount, setHistoryCount] = useState(0);
 
   const makeAPICallReads = async (route) => {
       const response = await fetch(url + route, {
@@ -136,12 +137,9 @@ function App() {
                   // Handle error
               });
       }
-  }, [currentUser, init]); // location.pathname
+  }, [historyCount, currentUser, init]); // location.pathname
 
-
-
-
-
+  
   const makeAPICallProjects = async (route) => {
       fetch(url + route, {
           method: 'GET'
@@ -216,7 +214,7 @@ function App() {
             <Route path="/editUserRole" element={<EditUserRole userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/myActions" element={<MyActions user={currentUser} projects={projects}/>} />
             <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} projects={projects} readCounts={readCounts}/>} />
-            <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} historyCount={historyCount} setHistoryCount={setHistoryCount}/>} />
             <Route path="/dashboard" element={<Dashboard user={currentUser} />} />
             <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
             <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />

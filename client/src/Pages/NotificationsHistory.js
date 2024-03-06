@@ -14,7 +14,7 @@ import url from '../defs';
 
 
 
-const NotificationsHistory = ({user}) => {
+const NotificationsHistory = ({user, historyCount, setHistoryCount}) => {
 
     /*
     var { innerWidth: width, innerHeight: height } = window;
@@ -25,8 +25,6 @@ const NotificationsHistory = ({user}) => {
 
     const [tickets, setTickets] = useState([]);
     const [history, setHistory] = useState([]);
-
-    const [historyCount, setHistoryCount] = useState(0);
 
     const makeAPICallPosts = async (route) => {
 
@@ -76,7 +74,7 @@ const NotificationsHistory = ({user}) => {
             makeAPICallActions('get-actions-by-project-id-notifications/' + project.projectId)
             makeAPICallPosts('get-posts-by-project-notifications/' + project.projectId);
         }
-    }, [historyCount, user])
+    }, [historyCount, user]);
  
 
 
