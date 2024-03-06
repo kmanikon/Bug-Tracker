@@ -47,7 +47,7 @@ const COLUMNS = [
     }
 ];
 
-const NotificationsTable = ({project, history, tickets, changeCount, userProfile, user}) => {
+const NotificationsTable = ({project, history, tickets, changeCount, userProfile, user, historyCount, setHistoryCount}) => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -126,7 +126,8 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
         .then(response => {
 
             // reload page (last resort)
-            window.location.reload(false);
+            //window.location.reload(false);
+            setHistoryCount(historyCount + 1);
             
         });
     }

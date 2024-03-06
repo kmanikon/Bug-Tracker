@@ -12,7 +12,7 @@ import TicketHistoryDetailsCard from '../Components/TicketHistoryDetailsCard/Tic
 
 
 
-const TicketHistoryDetails = ({user}) => {
+const TicketHistoryDetails = ({user, ticketChangeCount, setTicketChangeCount}) => {
 
     const location = useLocation();
     const { ticket, project, action, tickets, history, changeCount, userProfile } = location.state;
@@ -22,7 +22,7 @@ const TicketHistoryDetails = ({user}) => {
                 <div style={{marginTop: '90px'}}></div>
 
                 {ticket ? 
-                    <TicketHistoryDetailsCard action={action} user={user} ticket={ticket} project={project} tickets={tickets} history={history} changeCount={changeCount} userProfile={userProfile}/>
+                    <TicketHistoryDetailsCard action={action} user={user} ticket={ticket} project={project} tickets={tickets} history={history} changeCount={changeCount} userProfile={userProfile} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>
                     :
                     null
                 }

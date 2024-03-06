@@ -11,7 +11,7 @@ import TicketDetailsCard from '../Components/TicketDetailsCard/TicketDetailsCard
 */
 
 
-const TicketDetails = ({user}) => {
+const TicketDetails = ({user, ticketChangeCount, setTicketChangeCount}) => {
 
 
     const location = useLocation();
@@ -25,7 +25,7 @@ const TicketDetails = ({user}) => {
           <div style={{marginTop: '90px'}}></div>
   
           <div>
-            <TicketDetailsCard ticket={ticket} ticketNum={ticketNum} project={project} devList={devList} changeCount={changeCount} user={user} myTickets={myTickets}/>
+            <TicketDetailsCard ticket={ticket} ticketNum={ticketNum} project={project} devList={devList} changeCount={changeCount} user={user} myTickets={myTickets} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>
           </div>
 
           

@@ -26,6 +26,8 @@ const NotificationsHistory = ({user}) => {
     const [tickets, setTickets] = useState([]);
     const [history, setHistory] = useState([]);
 
+    const [historyCount, setHistoryCount] = useState(0);
+
     const makeAPICallPosts = async (route) => {
 
     
@@ -74,7 +76,7 @@ const NotificationsHistory = ({user}) => {
             makeAPICallActions('get-actions-by-project-id-notifications/' + project.projectId)
             makeAPICallPosts('get-posts-by-project-notifications/' + project.projectId);
         }
-    }, [user])
+    }, [historyCount, user])
  
 
 
@@ -83,7 +85,7 @@ const NotificationsHistory = ({user}) => {
             <div style={{marginTop: '110px'}}></div>
 
             
-            <NotificationsTable project={project} history={filteredHistory} tickets={tickets} changeCount={changeCount} user={user}/>
+            <NotificationsTable project={project} history={filteredHistory} tickets={tickets} changeCount={changeCount} user={user} historyCount={historyCount} setHistoryCount={setHistoryCount}/>
  
 
         </div>

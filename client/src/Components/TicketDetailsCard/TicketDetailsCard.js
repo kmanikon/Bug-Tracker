@@ -23,7 +23,7 @@ import useStyles from './styles';
 
 
 
-const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, user, myTickets}) => {
+const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, user, myTickets, ticketChangeCount, setTicketChangeCount}) => {
 
 
 
@@ -68,7 +68,7 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
 
         .then(response => response.json())
         .then(response => {
-            window.location.reload(false);
+            setTicketChangeCount(ticketChangeCount + 1);
         });
     }
 

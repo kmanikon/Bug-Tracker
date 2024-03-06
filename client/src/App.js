@@ -197,7 +197,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/projects" element={<Projects projects={projects} loading={projectsLoading} changeCount={projectChangeCount} user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/projectDetails" element={<ProjectDetails user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount} userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
-            <Route path="/ticketDetails" element={<TicketDetails user={currentUser} />} />
+            <Route path="/ticketDetails" element={<TicketDetails user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
             <Route path="/addTicket" element={<AddTicket user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
             <Route path="/editTicket" element={<EditTicket user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
             <Route path="/addProject" element={<AddProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
@@ -206,7 +206,7 @@ function App() {
             <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
             <Route path="/addProjectUser" element={<AddProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/removeProjectUser" element={<RemoveProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
-            <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} />} />
+            <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
             <Route path="/profile" element={<UserProfile user={currentUser} />} />
             <Route path="/profileHistory" element={<UserProfileHistory user={currentUser} />} />
             <Route path="/editUserProfile" element={<EditUserProfile user={currentUser} setUser={setCurrentUser} />} />

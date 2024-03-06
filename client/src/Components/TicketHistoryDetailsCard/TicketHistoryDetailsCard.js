@@ -52,7 +52,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 */
 
-const TicketHistoryDetailsCard = ({user, ticket, project, action, tickets, history, changeCount, userProfile}) => {
+const TicketHistoryDetailsCard = ({user, ticket, project, action, tickets, history, changeCount, userProfile, ticketChangeCount, setTicketChangeCount}) => {
  
     const tick = ticket; 
 
@@ -75,7 +75,7 @@ const TicketHistoryDetailsCard = ({user, ticket, project, action, tickets, histo
 
       .then(response => response.json())
       .then(response => {
-          window.location.reload(false);
+          setTicketChangeCount(ticketChangeCount + 1);
       });
   }
 
@@ -92,7 +92,7 @@ const TicketHistoryDetailsCard = ({user, ticket, project, action, tickets, histo
 
       .then(response => response.json())
       .then(response => {
-          window.location.reload(false);
+          setTicketChangeCount(ticketChangeCount + 1);
       });
   }
 
