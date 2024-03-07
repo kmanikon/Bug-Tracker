@@ -42,7 +42,7 @@ const demoUser2 = {
 }
 
 
-const Login = ({user, setUser, setInit, setTotalNotifications}) => {
+const Login = ({user, setUser, init, setInit, setTotalNotifications}) => {
 
   setUser(null);
 
@@ -84,9 +84,6 @@ const Login = ({user, setUser, setInit, setTotalNotifications}) => {
 
   const makeAPICallCreateNotif = async (route, post) => {
 
-
-
-
     await fetch(url + route, {
         method: 'POST',
         headers: {
@@ -98,20 +95,13 @@ const Login = ({user, setUser, setInit, setTotalNotifications}) => {
     .then(response => response.json())
     .then(response => {
 
-        setInit(true)
-
-
-
-
-
+        setInit(init + 1);
 
     })
     .catch((error) => {
 
     });
 
-
-    
 
 }
 

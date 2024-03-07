@@ -92,7 +92,7 @@ function App() {
   const [checkUser, setCheckUser] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  const [init, setInit] = useState(false);
+  const [init, setInit] = useState(0);
   const [totalNotifications, setTotalNotifications] = useState(0);
   const [readCounts, setReadCounts] = useState([]);
 
@@ -114,32 +114,35 @@ function App() {
       const postsFromServer = await response.json();
       setReadCounts(postsFromServer);
       const sum = Object.values(postsFromServer).reduce((acc, value) => acc + value, 0);
-      //setTotalNotifications(sum);
+      setTotalNotifications(sum);
       return sum;
   }
 
+  
   /*
   useEffect(() => {
       if (currentUser){
           makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId);
       }
-    }, [currentUser, location.pathname, init]) // location.pathname,
+    }, [historyCount, currentUser, init]); // location.pathname,
   */
  
 
+    
   const memoizedTotalNotifications = useMemo(() => {
       if (currentUser) {
           makeAPICallReads('get-unread-actions-by-user-id/' + currentUser.userId)
               .then(sum => {
-                  setTotalNotifications(sum);
+                  //setTotalNotifications(sum);
+                  //console.log(sum);
               })
               .catch(error => {
                   // Handle error
               });
       }
   }, [historyCount, currentUser, init]); // location.pathname
-
   
+
   const makeAPICallProjects = async (route) => {
       fetch(url + route, {
           method: 'GET'
@@ -201,7 +204,7 @@ function App() {
             <Route path="/addProject" element={<AddProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
             <Route path="/editProject" element={<EditProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
             <Route path="/projectHistory" element={<ProjectHistory user={currentUser} />} />
-            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} init={init} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
             <Route path="/addProjectUser" element={<AddProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/removeProjectUser" element={<RemoveProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
@@ -216,8 +219,8 @@ function App() {
             <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} projects={projects} readCounts={readCounts}/>} />
             <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} historyCount={historyCount} setHistoryCount={setHistoryCount}/>} />
             <Route path="/dashboard" element={<Dashboard user={currentUser} />} />
-            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
-            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} init={init} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
+            <Route path="*" element={<Login user={currentUser} setUser={setCurrentUser} init={init} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
           </Routes>
         </div>
       </div>
