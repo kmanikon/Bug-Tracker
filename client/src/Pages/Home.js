@@ -43,7 +43,7 @@ const Home = () => {
     const sm = 6;
     const md = 6;
 
-    const isSmallScreen = useMediaQuery('(max-width:600px)');
+    const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     return (
       <div style={{  
@@ -113,7 +113,7 @@ const Home = () => {
           >
     
               <DashboardCustomizeOutlinedIcon style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
-              <div style={{ fontSize: isSmallScreen ? '140%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
+              <div style={{ fontSize: isSmallScreen ? '140%' : '150%', marginTop: isSmallScreen ? '0px' : '10px', color: 'grey'}}>
                 Workflows
               </div>
               
@@ -163,7 +163,8 @@ const Home = () => {
             justifyContent: 'center',
             flexDirection: 'row',
             display: 'block'
-          }}              
+          }}     
+          //variant={isSmallScreen ? "contained": "normal" }         
           >
     
               <BellOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>

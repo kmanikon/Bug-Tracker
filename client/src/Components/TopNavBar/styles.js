@@ -35,7 +35,10 @@ export default makeStyles((theme) => ({
         left: "0px",
         top: '0px'
       }
-    }
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: 'none'
+    },
     
   },
   toolbar: {
@@ -51,6 +54,26 @@ export default makeStyles((theme) => ({
   notifications: {
     marginRight: '10px'
   },
+
+  mobileBar: {
+    display: 'none',
+
+    [theme.breakpoints.down("sm")]: {
+      display: 'block',
+
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        height: '60px',
+        marginBottom: '50px',
+        position: 'fixed',
+        minWidth: '830px',
+        zIndex: '2',
+        width: '100vw',
+      
+    },
+  }
 
 
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Avatar, Button, useMediaQuery } from '@material-ui/core';
 import { PaperClipOutlined, UserOutlined, BellOutlined, WindowsOutlined, MenuOutlined } from '@ant-design/icons';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
@@ -64,16 +64,19 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
         setSidebarOpen(!sidebarOpen);
     }
 
-    /*
-    useEffect(() => {
+    const isSmallScreen = useMediaQuery('(max-width: 700px)');
 
-        if (user){
-            
-            makeAPICallReads('get-unread-actions-by-user-id/' + user.userId);
+    const hideSidebar = useMediaQuery('(max-width: 959px)')
+
+    useEffect(() => {
+        if (hideSidebar) {
+            setSidebarOpen(false);
         }
-    
-      }, [user, location.pathname, init])
-      */
+        else {
+            setSidebarOpen(true);
+        }
+    }, [hideSidebar])
+
 
     return (
         <>
@@ -156,6 +159,38 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
                 </div>
             </Toolbar>
 
+        </AppBar>
+        
+        <AppBar className={classes.mobileBar} position="static" color="inherit" elevation={3} style={{width: '100vw'}}>
+            <Menu>
+                <Link 
+                    to="/home" 
+                    style={{
+                        textDecoration: 'none',
+                    }}
+                >
+
+                <Button
+                    style={{
+                        height: '40px',
+                        marginLeft: '25px',
+                        marginRight: '20px',
+                        marginTop: '10px',
+                        marginBottom: '10px',
+                        zIndex: '2',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'transparent', // Set background color as needed
+                        border: 'none', // Remove border if needed
+                        cursor: 'pointer',
+                    }}
+                >
+                <MenuOutlined style={{ fontSize: 30, color: 'black' }} />
+                </Button>
+                
+                </Link>
+            </Menu>
         </AppBar>
         </>
     )
