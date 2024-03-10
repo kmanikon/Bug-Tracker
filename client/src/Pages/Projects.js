@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box, CircularProgress } from '@material-ui/core/';
+import { CardActions, CardContent, CardMedia, Button, Typography, Box, CircularProgress, useMediaQuery } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import ProjectCard from '../Components/Card/ProjectCard';
 
@@ -92,6 +92,9 @@ const Projects = ({ projects, loading, user, setUser }) => {
     };
 
 
+    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
+
     const InfoDialog = () => {
         return (
             <div>
@@ -163,7 +166,9 @@ const Projects = ({ projects, loading, user, setUser }) => {
             </div>
 
             <div style={{display: 'flex', alignItems: 'right'}}>
-            <InfoDialog/>
+            {!isSmallScreen &&
+                <InfoDialog/>
+            }
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',

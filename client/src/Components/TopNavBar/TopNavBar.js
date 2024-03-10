@@ -181,10 +181,11 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: 'transparent', // Set background color as needed
+                        //backgroundColor: 'transparent', // Set background color as needed
                         border: 'none', // Remove border if needed
                         cursor: 'pointer',
                     }}
+                    
                 >
                 <MenuOutlined style={{ fontSize: 30, color: 'black' }} />
                 </Button>

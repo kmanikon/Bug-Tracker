@@ -149,7 +149,7 @@ const NotificationsCard = ({projects, notifCounts, changeCount}) => {
                             
                             <Card className={classes.headerCard} ref={ref}>
                                 <div style={{display: 'flex'}}>
-                                    <div style={{width: '35%', display: 'block'}}>
+                                    <div style={{ display: 'block'}}>
                                         <Box className={classes.subTitle} variant="h5" gutterBottom>{filteredProjects[row.id].description}</Box>
                                     </div>
                                 </div>
