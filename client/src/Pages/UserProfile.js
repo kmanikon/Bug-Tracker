@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box, Grid } from '@material-ui/core/';
+import { CardActions, CardContent, CardMedia, Button, Typography, Box, Grid, useMediaQuery } from '@material-ui/core/';
 import { useNavigate } from "react-router-dom";
 
 import { Link } from 'react-router-dom'; 
@@ -29,69 +29,20 @@ const UserProfile = ({user}) => {
 
     var changeCount = 0;
 
-    //const [projects, setProjects] = useState([]);
-    //const [actions, setActions] = useState([]);
-
     let navigate = useNavigate(); 
 
-
-    /*
-    const routeChange = () => { 
-        let path = `/addProject`; 
-        navigate(path, {state:{changeCount: changeCount}});
-    }
-    */
 
     const routeChangeEditProfile = () => {
         let path = `/editUserProfile`; 
         navigate(path);
     }
-    
-    /*
-    const makeAPICallProjects = async (route) => {
-
-    
-        fetch(url + route, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(postsFromServer => {
-
-            setProjects(postsFromServer);
-        });
-    }
-
-    const makeAPICallActions = async (route) => {
-
-    
-        fetch(url + route, {
-            method: 'GET' 
-        })
-        .then(response => response.json())
-        .then(postsFromServer => {
-
-            setActions(postsFromServer.sort(function(a,b){
-                // Turn your strings into dates, and then subtract them
-                // to get a value that is either negative, positive, or zero.
-                return new Date(b.date) - new Date(a.date);
-              }));
-
-            //setActions(postsFromServer);
-        });
-    }
-
-    
-    useEffect( () => {
-
-        if (user){
-            makeAPICallProjects('get-projects-by-user-id/' + user.userId);
-            makeAPICallActions('get-actions-by-user-id/' + user.userId);
-        }
-    }, [changeCount, location, user]);
-
-    */
 
 
+    const xs = 10;
+    const sm = 4;
+    const md = 4;
+
+    const isSmallScreen = useMediaQuery('(max-width: 700px)');
 
 
     return (
@@ -100,18 +51,19 @@ const UserProfile = ({user}) => {
 
 
 
-            <Grid container rowSpacing={1} columnSpacing={1} style={{
-                marginLeft: '5%',
-                //marginTop: '20px',
-                height: '75%',
-                width: '92%',
-                marginRight: '5%',
-                display: 'flex',
-                justifyContent: 'center',
-                minWidth: '750px'
-            }}
+            <Grid container rowSpacing={1} columnSpacing={1} spacing={2}
+                style={{
+                    marginLeft: '5%',
+                    //marginTop: '20px',
+                    height: '75%',
+                    width: '92%',
+                    marginRight: '5%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    //minWidth: '750px'
+                }}
             >
-            <Grid item xs={4}>
+            <Grid item xs={xs} sm={sm} md={md}>
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                 
             <Button style={{
@@ -128,8 +80,8 @@ const UserProfile = ({user}) => {
             }}              
             >
         
-                <FundProjectionScreenOutlined style={{ fontSize: '1000%'}}/>
-                <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+                <FundProjectionScreenOutlined style={{ fontSize: isSmallScreen ? '500%' : '1000%'}}/>
+                <div style={{ fontSize: isSmallScreen ? '125%' : '150%', marginTop: '20px', color: 'grey'}}>
                     Dashboard
                 </div>
                 
@@ -138,7 +90,7 @@ const UserProfile = ({user}) => {
             </Link>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={xs} sm={sm} md={md}>
             <Link to="/myActions" style={{ textDecoration: 'none' }} >
             <Button style={{
                 width: '100%', 
@@ -158,8 +110,8 @@ const UserProfile = ({user}) => {
             }}              
             >
         
-                <SnippetsOutlined style={{ fontSize: '1000%'}}/>
-                <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+                <SnippetsOutlined style={{ fontSize: isSmallScreen ? '500%' : '1000%'}}/>
+                <div style={{ fontSize: isSmallScreen ? '125%' : '150%', marginTop: '20px', color: 'grey', whiteSpace: 'nowrap'}}>
                     Action Logs
                 </div>
                 
@@ -168,7 +120,7 @@ const UserProfile = ({user}) => {
             </Link>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={xs} sm={sm} md={md}>
 
             <Button style={{
                 width: '100%', 
@@ -189,8 +141,8 @@ const UserProfile = ({user}) => {
             onClick={routeChangeEditProfile}
             >
         
-                <UserOutlined style={{ fontSize: '1000%'}}/>
-                <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+                <UserOutlined style={{ fontSize: isSmallScreen ? '500%' : '1000%'}}/>
+                <div style={{ fontSize: isSmallScreen ? '125%' : '150%', marginTop: '20px', color: 'grey'}}>
                     Edit User
                 </div>
                 

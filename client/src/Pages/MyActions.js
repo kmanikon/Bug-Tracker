@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Button, CircularProgress } from '@material-ui/core/';
+import { Button, CircularProgress, useMediaQuery } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
@@ -119,6 +119,9 @@ const MyActions = ({user, projects}) => {
         setOpen(false);
     };
 
+    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
+
 
     const InfoDialog = () => {
         return (
@@ -192,7 +195,9 @@ const MyActions = ({user, projects}) => {
 
             <div style={{display: 'flex'}}>
             
-            <InfoDialog/>
+            {!isSmallScreen &&
+                <InfoDialog/>
+            }
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',
