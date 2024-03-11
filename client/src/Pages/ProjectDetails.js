@@ -21,7 +21,7 @@ const ProjectDetails = ({user, changeCount, setChangeCount, ticketChangeCount, s
 
   
   return (
-    <div style={{ minWidth: '900px'}}>
+    <div style={{ minWidth: '0px'}}>
         <div style={{marginTop: '110px'}}></div>
 
         <div style={{marginLeft: '20px'}}>

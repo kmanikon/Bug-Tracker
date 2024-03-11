@@ -182,7 +182,8 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
                     fontWeight: 'bold',
                     fontSize: 'medium',
                     maxHeight: '40px',
-                    width: '190px',
+                    width: '100%',//'190px',
+                    whiteSpace: 'nowrap'
                 }}
                 onClick={handleClickOpen}
             >
@@ -268,12 +269,12 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
       </div>
   
       <Card className={classes.headerCard} ref={ref}>
-        <div style={{ display: 'flex' }}>
-          <div style={{ width: '35%', display: 'block' }}>
+        <div style={{ display: 'flex', wordBreak: 'break-word' }}>
+          <div style={{ width: '50%', display: 'block' }}>
             <Box className={classes.title} variant="h5" gutterBottom>Title</Box>
             <Box className={classes.subTitle} variant="h5" gutterBottom>{proj.projectName}</Box>
           </div>
-          <div style={{ width: '35%', display: 'block' }}>
+          <div style={{ width: '50%', display: 'block' }}>
             <Box className={classes.titleRight} variant="h5" gutterBottom>Description</Box>
             <Box className={classes.subTitleRight} variant="h5" gutterBottom>{proj.description}</Box>
           </div>
@@ -283,7 +284,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
   
       <div style={{ width: '93%', marginTop: '20px', marginLeft: '20px' }}>
         <Grid container spacing={1} alignItems="flex-start">
-          <Grid item xs={4} sm={8} md={4} lg={2}>
+          <Grid item xs={12} sm={12} md={4} lg={2}>
             <Button 
               variant="outlined" 
               style={{
@@ -298,7 +299,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
             </Button>
           </Grid>
 
-          <Grid item xs={3} sm={5} md={4} lg={3}>
+          <Grid item xs={6} sm={6} md={4} lg={3}>
             <Button 
               variant="outlined" 
               style={{
@@ -313,7 +314,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
             </Button>
           </Grid>
 
-          <Grid item xs={6} sm={3} md={4} lg={3}>
+          <Grid item xs={6} sm={6} md={3} lg={3}>
             <Button 
               variant="outlined" 
               style={{
@@ -321,6 +322,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
                 fontSize: 'medium',
                 maxHeight: '40px',
                 width: '100%',
+                whiteSpace: 'nowrap'
               }}
               onClick={routeChangeHistory}
             >
@@ -330,7 +332,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
 
           {user && user.accessIdList.includes(project.projectId) && (
             <>
-              <Grid item xs={7} sm={5} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <Button 
                   variant="outlined" 
                   style={{
@@ -349,7 +351,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
           {user && user.accessIdList.includes(project.projectId) && (
             <>
 
-              <Grid item xs={12} sm={3} md={4} lg={2}>
+              <Grid item xs={6} sm={6} md={4} lg={2}>
                 <DeleteDialog />
               </Grid>
               </>

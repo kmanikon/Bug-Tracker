@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
 import { Link } from 'react-router-dom';
-import { FormControlLabel, Checkbox, InputLabel, FormControl, IconButton, SearchIcon, TextField, Card, Select, MenuItem, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
-import AutoScrollContainer from 'auto-scroll-container'
+import { FormControlLabel, Checkbox,TextField, Select, MenuItem, Button, useMediaQuery } from '@material-ui/core/';
 
 import url from '../../defs';
 
@@ -303,6 +302,23 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
       return ''
   }
 
+  const isSmallScreen = useMediaQuery('(max-width: 800px)');
+
+  const bk1 = useMediaQuery('(max-width: 1200px)');
+  const bk2 = useMediaQuery('(max-width: 800px)');
+  const bk3 = useMediaQuery('(max-width: 1000px)');
+  const bk4 = useMediaQuery('(max-width: 200px)');
+  const bk5 = useMediaQuery('(max-width: 200px)');
+
+  const formatType = (type) => {
+    if (type === 'Feature Request'){
+      return 'Feature';
+    }
+    if (type === 'Bugs/Errors') {
+      return 'Bug'
+    }
+    return type;
+  }
 
   return (
     <div >
@@ -323,22 +339,25 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
             }}
         />
 
-        <Select
-        style={{ marginTop: '0px', marginLeft: '40px', height: '40px', color: 'grey' }}
-        displayEmpty
-        value={sortBy}
-        onChange={(e) => setSortBy(e.target.value)}
-        >
-        <MenuItem disabled value="">
-            Sort By
-        </MenuItem>
-        {sortList.map(({ name }, index) => (
-            <MenuItem key={index} value={sortList[index]}>
-            {sortList[index]}
-            </MenuItem>
-        ))}
-        </Select>
+        {!isSmallScreen &&
+          <Select
+          style={{ marginTop: '0px', marginLeft: '40px', height: '40px', color: 'grey' }}
+          displayEmpty
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          >
+          <MenuItem disabled value="">
+              Sort By
+          </MenuItem>
+          {sortList.map(({ name }, index) => (
+              <MenuItem key={index} value={sortList[index]}>
+              {sortList[index]}
+              </MenuItem>
+          ))}
+          </Select>
+        }
 
+      {!isSmallScreen &&
         <Select
         style={{ marginTop: '0px', marginLeft: '40px', height: '40px', color: 'grey' }}
         displayEmpty
@@ -354,10 +373,11 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
             </MenuItem>
         ))}
         </Select>
+      }
 
         
 
-        <div style={{marginLeft: 'auto', marginRight: '60px', color: 'grey'}}>
+        <div style={{marginLeft: 'auto', marginRight: '5%', color: 'grey', whiteSpace: 'nowrap'}}>
             <FormControlLabel control={<Checkbox color='primary' value={showClosed} onChange={() => (setShowClosed(!showClosed))} />} label="Show Closed Tickets" />
         </div>
 
@@ -367,7 +387,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
 
     
         <div className="tableContainer">
-  <table {...getTableProps()} style={{width: '93%'}}>
+  <table {...getTableProps()} style={{width: '93%', marginLeft: '10px'}}>
     <colgroup>
       <col className="title-column" />
       <col className="status-column" />
@@ -385,14 +405,21 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
     <thead>
       {headerGroups.map((headerGroup) => (
       <tr {...headerGroup.getHeaderGroupProps()}>
+        {/*
         {headerGroup.headers.map((column) => (
         <th {...column.getHeaderProps()} className="column-header">
           {column.render('Header')}
         </th>
         ))}
-        <th className="submitted-date-column" style={{backgroundColor:'#D6EAF8', border: '0px solid black'}} >Submitted Date</th>
+        */}
+        <th className="column-header" >Title</th>
+        {!bk5 && <th className="column-header" >Status</th>}
+        {!bk3 && <th className="column-header" >Type</th>}
+        {!bk2 && <th className="column-header" >Priority</th>}
+        
+        {!bk1 && <th className="submitted-date-column" style={{backgroundColor:'#D6EAF8', border: '0px solid black'}} >Submitted Date</th>}
         <th className="details-column" style={{backgroundColor:'#D6EAF8', border: '0px solid black'}}> </th>
-        <th className="action-column" style={{backgroundColor:'#D6EAF8', border: '0px solid black'}}> </th>
+        {!bk4 && <th className="action-column" style={{backgroundColor:'#D6EAF8', border: '0px solid black'}}> </th>}
       </tr>
       ))}
     </thead>
@@ -401,16 +428,18 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
         prepareRow(row);
         return (
         <tr className="row-body">
-          <td className="row-body title-column">{data[row.id].title}</td>
+          <td className="row-body title-column row-title">{data[row.id].title}</td>
+          {!bk5 &&
           <td className="row-body status-column">
             {data[row.id].ticketStatus.charAt(0).toUpperCase() +
             data[row.id].ticketStatus.slice(1)}
           </td>
+          }
           
           {/*<td className="row-body assigned-dev-column">{data[row.id].asignedDev}</td>*/}
-          <td className="row-body ticket-type-column">{data[row.id].ticketType}</td>
-          <td className="row-body ticket-prio-column">{data[row.id].ticketPrio}</td>
-          <td className="row-body submitted-date-column">{formatDate(data[row.id].submitDate)}</td>
+          {!bk3 && <td className="row-body ticket-type-column">{formatType(data[row.id].ticketType)}</td> }
+          {!bk2 && <td className="row-body ticket-prio-column">{data[row.id].ticketPrio}</td> }
+          {!bk1 && <td className="row-body submitted-date-column">{formatDate(data[row.id].submitDate)}</td>}
           <td className="row-body details-column">
             {tickets !== null ? (
             <Button
@@ -420,6 +449,9 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
                 fontSize: 'medium',
                 marginRight: '0px',
                 width: '100%',
+                minWidth: '80px',
+                textOverflow: 'clip',
+                whiteSpace: 'nowrap'
               }}
             >
               <Link
@@ -438,6 +470,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
             </Button>
             ) : null}
           </td>
+          {!bk4 &&
           <td className="row-body action-column">
             {tickets !== null ? (
             <>
@@ -449,6 +482,9 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
                   fontSize: 'medium',
                   marginRight: '0px',
                   width: '100%',
+                  minWidth: '80px',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'none'
                 }}
                 //onClick={() => makeAPICallUpdateStatus(data[row.id], "closed", row.id)}
                 onClick={() => handleClose(row.id)}
@@ -463,6 +499,8 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
                   fontSize: 'medium',
                   marginRight: '0px',
                   width: '100%',
+                  minWidth: '80px',
+                  whiteSpace: 'nowrap'
                 }}
                 //onClick={() => makeAPICallUpdateStatus(data[row.id], "pending", row.id)}
                 onClick={() => handleOpen(row.id)}
@@ -473,6 +511,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
             </>
             ) : null}
           </td>
+          }
         </tr>
         );
       })}
