@@ -68,6 +68,7 @@ a:active {
 .row-body {
   /* width: 10% */
   white-space: initial;
+  text-overflow: clip;
 }
 
 .row-title {

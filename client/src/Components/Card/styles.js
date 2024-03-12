@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
   projectInfo: {
     marginLeft: '20px',
     backgroundColor: '#D6EAF8',
-    height: '40px',
+    minHeight: '40px',
     paddingTop: '15px',
     //marginRight: '20px',
     width: '93%',

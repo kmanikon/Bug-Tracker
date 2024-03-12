@@ -101,7 +101,7 @@ const ProjectCard = ({projects, changeCount }) => {
                                     width: '100%', 
                                     display: 'block', 
                                     textAlign: 'left',
-                                    textTransform: 'none'
+                                    textTransform: 'none',
                                 }}
                         
                                 >
