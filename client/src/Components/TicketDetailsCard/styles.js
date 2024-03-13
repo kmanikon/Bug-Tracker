@@ -12,6 +12,7 @@ export default makeStyles((theme) => ({
     paddingTop: '15px',
     //marginRight: '20px',
     width: '93%',
+    minWidth: '0px'
   },
 
   title: {
