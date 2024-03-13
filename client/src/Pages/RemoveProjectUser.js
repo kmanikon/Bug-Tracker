@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
+import { Card, Button, Typography, Select, MenuItem, Grid, useMediaQuery } from '@material-ui/core/';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
@@ -157,6 +157,12 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
     
     }
 
+    const xs = 8;
+    const sm = 6;
+    const md = 6;
+
+    const isSmallScreen = useMediaQuery('(max-width: 599px)');
+
     return (
         <div>
 
@@ -185,7 +191,7 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
                 </Link>
                 </Button>
 
-                
+                <div style={{width: '90%'}}>
                 <div className={classes.projectInfo}>
                     <div className="projectsTitle">Remove User</div>
                 </div>
@@ -195,33 +201,15 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
     
                 <div style={{display: 'flex'}}>
 
-                    <div style={{width: '35%', display: 'block'}}>
-
-                        {/*}
-                        <Box className={classes.title} variant="h5" gutterBottom >Username</Box>
-                        <TextField id="outlined-basic" variant="outlined" 
-                            style={{ width: '240px', marginLeft: '20px', marginTop: '10px'}}
-                            size="small"
-                            value={userName} 
-                            onChange={(e) => setUserName(e.target.value)}
-                        />
-
-
-                    </div>
                 
-                    <div style={{width: '35%', display: 'block'}}>
-                        <Box className={classes.title} variant="h5" gutterBottom >Email</Box>
-                        <TextField id="outlined-basic" variant="outlined" 
-                            style={{ width: '240px', marginLeft: '20px', marginTop: '10px'}}
-                            size="small"
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-    */}
+                    <div style={{width: '100%', display: 'block'}}>
 
+                        
                         <div style={{ display: 'flex', }}>
+                        <Grid container rowSpacing={1} columnSpacing={1} spacing={3}>
+                        <Grid item xs={xs} sm={sm} md={md}>
 
-                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '350px', minWidth: '350px' }}
+                        <Select style={{ marginTop: '20px', marginLeft: '20px', width: '320px' }}
                             value={asignedDev}
                             onChange={(e) => setAsignedDev(e.target.value)}
                         >
@@ -232,17 +220,18 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
                             ))}
                         
                         </Select>
+                        </Grid>
 
                         
-
+                        <Grid item xs={xs} sm={sm} md={md}>
                         <Button color="black" size="large" 
                             style={{
                                 marginTop: '10px',
-                                marginLeft: '20px',
+                                marginLeft: isSmallScreen ? '10px' : '80px',
                                 fontWeight: 'bold',
                                 fontSize: 'large',
-                                minWidth: '200px',
-                                maxWidth: '200px',
+                                minWidth: '140px',
+                                maxWidth: '140px',
                                 transition: 'none'
 
                                 //position: 'fixed',
@@ -255,6 +244,8 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
                             <RightOutlined size="large" style={{marginLeft: '10px'}}/>
                  
                         </Button>
+                        </Grid>
+                        </Grid>
                         
                         </div>
 
@@ -266,6 +257,7 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
                 <div style={{ marginBottom: '20px'}}></div>
                 
             </Card>
+            </div>
 
 
             {userFound === 0 ? 
