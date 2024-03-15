@@ -56,7 +56,7 @@ const Home = () => {
       <div style={{marginTop: '100px'}}></div>
  
       <Grid container rowSpacing={1} columnSpacing={1} style={{
-            marginLeft: '5%',
+            marginLeft: '4%',
             //marginTop: '3%',
             //height: '75%',
             width: '92%',
@@ -84,7 +84,7 @@ const Home = () => {
           >
     
               <FolderOpenOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }} />
-              <div style={{ fontSize: isSmallScreen ? '140%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                 My Projects
               </div>
               
@@ -113,7 +113,7 @@ const Home = () => {
           >
     
               <DashboardCustomizeOutlinedIcon style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
-              <div style={{ fontSize: isSmallScreen ? '140%' : '150%', marginTop: isSmallScreen ? '0px' : '10px', color: 'grey'}}>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '10px', color: 'grey'}}>
                 Workflows
               </div>
               
@@ -138,7 +138,7 @@ const Home = () => {
           >
     
               <UserOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
-              <div style={{ fontSize: isSmallScreen ? '140%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                 User Profile
               </div>
               
@@ -168,7 +168,7 @@ const Home = () => {
           >
     
               <BellOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
-              <div style={{ fontSize: isSmallScreen ? '140%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                 Notifications
               </div>
               

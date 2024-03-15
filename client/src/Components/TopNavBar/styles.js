@@ -46,6 +46,15 @@ export default makeStyles((theme) => ({
     justifyContent: 'flex-end',
     marginRight: '-120px',
   },
+  toolbar_mobile: {
+    /*
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginLeft: 'calc(70% - 90px)'
+    */
+   position: 'absolute',
+   left: 'calc(75% - 60px)'
+  },
   profile: {
     display: 'flex',
     marginRight: '250px',
@@ -68,7 +77,7 @@ export default makeStyles((theme) => ({
         height: '60px',
         marginBottom: '50px',
         position: 'fixed',
-        minWidth: '830px',
+        //minWidth: '830px',
         zIndex: '2',
         width: '100vw',
       

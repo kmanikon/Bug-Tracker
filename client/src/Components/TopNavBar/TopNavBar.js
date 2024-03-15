@@ -161,7 +161,7 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
 
         </AppBar>
         
-        <AppBar className={classes.mobileBar} position="static" color="inherit" elevation={3} style={{width: '100vw'}}>
+        <AppBar className={classes.mobileBar} position="static" color="inherit" elevation={3} style={{width: '100%'}}>
             <Menu>
                 <Link 
                     to="/home" 
@@ -192,6 +192,15 @@ const TopNavBar = ({user, setUser, init, sidebarOpen, setSidebarOpen, totalNotif
                 
                 </Link>
             </Menu>
+
+            <Toolbar className={classes.toolbar_mobile}>
+            <div className={classes.profile}>
+                <Button onClick={handleLogout} style={{transition: 'none', backgroundColor: '#D6EAF8', color: 'black'}} variant="contained">
+                    <UserOutlined style={{ marginRight: '10px'}}/>
+                    Logout
+                </Button>
+            </div>
+            </Toolbar>
         </AppBar>
         </>
     )
