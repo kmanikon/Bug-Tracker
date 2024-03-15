@@ -784,9 +784,9 @@ const makeAPICallPut = async (route, post) => {
 
       {isLoading ? 
         <div style={{
-          width: '300px', 
+          //width: '300px', 
           textAlign: 'center', 
-          marginLeft: '55px', 
+          //marginLeft: '55px', 
           marginTop: '20px',
           marginBottom: '20px',
           textTransform: 'none'
