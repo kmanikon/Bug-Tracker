@@ -47,7 +47,7 @@ const UserProfile = ({user}) => {
 
     return (
         <div style={{ width: '100%', height: 'calc(100vh - 160px)' }}>
-            <div style={{marginTop: '160px'}}></div>
+            <div style={{marginTop: !isSmallScreen ? '160px' : '100px'}}></div>
 
 
 

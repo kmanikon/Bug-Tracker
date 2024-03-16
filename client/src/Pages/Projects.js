@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { 
     ContainerOutlined,
     InfoCircleOutlined,
-    FolderOpenOutlined
-   
+    FolderOpenOutlined,
+    PlusOutlined
   } 
   from '@ant-design/icons';
 
@@ -172,13 +172,14 @@ const Projects = ({ projects, loading, user, setUser }) => {
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',
-                    marginRight: '0px',
-                    marginTop: '20px'
+                    marginRight: !isSmallScreen ? '0px' : '10px',
+                    marginTop: '20px',
+                    whiteSpace: 'nowrap'
                 }}
                 onClick={routeChange}
             >
 
-                Add Project
+                {!isSmallScreen ? <>Add Project</> : <PlusOutlined style={{ fontSize: '150%'}}/>}
                 
             </Button>
             </div>

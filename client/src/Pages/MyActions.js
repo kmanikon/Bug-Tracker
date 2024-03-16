@@ -182,13 +182,13 @@ const MyActions = ({user, projects}) => {
                     marginRight: '20px',
                     fontWeight: 'bold',
                     fontSize: 'large',
-                    marginTop: '20px',
+                    marginTop: '10px',
                     marginLeft: '40px'
                     }}
                 >
 
                 <div style={{display: 'flex', marginBottom: '-20px'}}>
-                    My Actions by Project
+                    {!isSmallScreen ? 'My Actions by Project' : 'My Actions'}
                     <UserOutlined style={{ fontSize: '200%', marginLeft: '20px', marginTop: '-10px'}}/>
                 </div>
             </div>

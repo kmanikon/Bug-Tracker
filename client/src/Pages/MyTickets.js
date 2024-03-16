@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box, CircularProgress } from '@material-ui/core/';
+import { Button, CircularProgress, useMediaQuery } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
@@ -129,6 +129,8 @@ const MyTickets = ({user, projects}) => {
         setOpen(false);
     };
 
+    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
 
     const InfoDialog = () => {
         return (
@@ -199,7 +201,16 @@ const MyTickets = ({user, projects}) => {
                         <DashboardCustomizeOutlinedIcon style={{ fontSize: '200%', marginLeft: '20px', marginTop: '-10px'}}/>
                     </div>
                 </div>
-                <InfoDialog/>
+                {!isSmallScreen ? 
+                
+                    <InfoDialog/> 
+                : 
+                <div style={{height: '60px'}}>
+                    {' '}
+                </div>  
+                
+                
+                }
 
 
             </div>

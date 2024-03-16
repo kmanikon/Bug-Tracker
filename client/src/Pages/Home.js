@@ -48,7 +48,7 @@ const Home = () => {
     return (
       <div style={{  
         height: '100%',
-        minWidth: '400px',
+        //minWidth: '400px',
         minHeight: '500px'
       }}
       >
