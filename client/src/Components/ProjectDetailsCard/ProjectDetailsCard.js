@@ -299,7 +299,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
             </Button>
           </Grid>
 
-          <Grid item xs={6} sm={6} md={4} lg={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <Button 
               variant="outlined" 
               style={{
@@ -307,6 +307,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
                 fontSize: 'medium',
                 maxHeight: '40px',
                 width: '100%',
+                whiteSpace: 'nowrap'
               }} 
               onClick={routeChangeUsers}
             >
@@ -314,7 +315,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
             </Button>
           </Grid>
 
-          <Grid item xs={6} sm={6} md={3} lg={3}>
+          <Grid item xs={12} sm={6} md={3} lg={3}>
             <Button 
               variant="outlined" 
               style={{
@@ -332,7 +333,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
 
           {user && user.accessIdList.includes(project.projectId) && (
             <>
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={12} sm={6} md={4} lg={2}>
                 <Button 
                   variant="outlined" 
                   style={{
@@ -340,6 +341,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
                     fontSize: 'medium',
                     maxHeight: '40px',
                     width: '100%',
+                    whiteSpace: 'nowrap'
                   }}
                   onClick={routeChangeUpdate}
                 >
@@ -351,7 +353,7 @@ const ProjectDetailsCard = ({project, changeCount, setChangeCount, user, ticketC
           {user && user.accessIdList.includes(project.projectId) && (
             <>
 
-              <Grid item xs={6} sm={6} md={4} lg={2}>
+              <Grid item xs={12} sm={6} md={4} lg={2}>
                 <DeleteDialog />
               </Grid>
               </>

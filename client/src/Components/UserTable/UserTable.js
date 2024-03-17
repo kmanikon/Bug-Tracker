@@ -212,13 +212,13 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
       </tr>
       ))}
     </thead>
-    <tbody {...getTableBodyProps()}>
+    <tbody {...getTableBodyProps()} >
       {rows.map(row => {
         prepareRow(row)
         return (
-          <tr {...row.getRowProps()}>
+          <tr {...row.getRowProps()} >
             {row.cells.map((cell) => {
-              return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              return <td {...cell.getCellProps()} >{cell.render('Cell')} </td>
             })}
             
             <td>

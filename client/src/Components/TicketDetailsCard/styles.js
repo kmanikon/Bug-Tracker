@@ -21,6 +21,7 @@ export default makeStyles((theme) => ({
     paddingTop: '10px',
     paddingLeft: '20px',
     //fontWeight: 'bold',
+    minWidth: '100px'
   },
 
   
@@ -31,7 +32,7 @@ export default makeStyles((theme) => ({
     paddingTop: '10px',
     //paddingLeft: '20px',
     
-    marginLeft: '15%',
+    marginLeft: '20px',
     //fontWeight: 'bold',
   },
   
@@ -49,7 +50,8 @@ export default makeStyles((theme) => ({
     //fontSize: 'large',
     paddingTop: '10px',
     //paddingLeft: '20px',
-    marginLeft: '15%',
+    ///marginLeft: '15%',
+    paddingLeft: '20px',
     maxWidth: '75%',
 
   },

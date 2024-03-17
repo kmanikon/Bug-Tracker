@@ -209,7 +209,7 @@ const RemoveProjectUser = ({userChangeCount, setUserChangeCount}) => {
                         <Grid container rowSpacing={1} columnSpacing={1} spacing={3}>
                         <Grid item xs={xs} sm={sm} md={md}>
 
-                        <Select style={{ marginTop: '20px', marginLeft: '20px', width: '320px' }}
+                        <Select style={{ marginTop: '20px', marginLeft: '20px', maxWidth: '120%'  }}
                             value={asignedDev}
                             onChange={(e) => setAsignedDev(e.target.value)}
                         >

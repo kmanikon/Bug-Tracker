@@ -583,6 +583,7 @@ const handleUpdate = () => {
 
         </div>
 
+      <div style={{marginRight: '20px'}}>
         <div className={classes.projectInfo}>
           <div className="projectsTitle">Changes for Ticket #{ticket.ticketNumber}</div>
       </div>
@@ -592,7 +593,7 @@ const handleUpdate = () => {
     
           <div style={{display: 'flex'}}>
 
-              <div style={{width: '35%', display: 'block'}}>
+              <div style={{ width: '50%', display: 'block'}}>
                   <Box className={classes.title} variant="h5" gutterBottom >Title</Box>
                   <Box className={classes.subTitle} variant="h5" gutterBottom>{tick.title}</Box>
 
@@ -622,7 +623,7 @@ const handleUpdate = () => {
                   <Box className={classes.subTitle} variant="h5" gutterBottom>{formatDate(tick.modifyDate)}</Box>
               </div>
           
-              <div style={{width: '35%', display: 'block'}}>
+              <div style={{ width: '50%', display: 'block'}}>
                   <Box className={classes.titleRight} variant="h5" gutterBottom >Description</Box>
                   <Box className={classes.subTitleRight} variant="h5" gutterBottom>{tick.description}</Box>
               
@@ -654,6 +655,7 @@ const handleUpdate = () => {
           <div style={{ marginBottom: '20px'}}></div>
           
       </Card>
+      </div>
 
       <div style={{marginTop: '20px'}}></div>
 

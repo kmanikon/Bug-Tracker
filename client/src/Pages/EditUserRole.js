@@ -219,7 +219,7 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
                         <Grid item xs={xs} sm={sm} md={md}>
                         <div style={{display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Developer</Box>
-                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '350px', minWidth: '350px' }}
+                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '100%' }}
                             value={asignedDev}
                             onChange={(e) => setAsignedDev(e.target.value)}
                         >

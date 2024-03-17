@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
 import { Link } from 'react-router-dom';
-import { IconButton, SearchIcon, TextField, Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { TextField, Button, useMediaQuery } from '@material-ui/core/';
 import './styles.css';
 import AutoScrollContainer from 'auto-scroll-container'
 
@@ -138,6 +138,11 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
         return post
     }
 
+    const bk1 = useMediaQuery('(max-width: 1200px)');
+    const bk2 = useMediaQuery('(max-width: 1000px)');
+    const bk3 = useMediaQuery('(max-width: 800px)');
+    const bk4 = useMediaQuery('(max-width: 200px)');
+    const bk5 = useMediaQuery('(max-width: 200px)');
 
     return (
         <div style={{width: '100%'}}>
@@ -161,6 +166,7 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
 
         <div style={{display: 'flex'}}>
 
+        {/*
           <div style={{marginLeft: '20px',
                 marginBottom: '20px',
                 marginRight: '20px',
@@ -172,6 +178,7 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
             >
                 Ticket History
             </div>
+            */}
 
           <TextField
             id="search-bar"
@@ -191,22 +198,29 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
         />
         </div>
 
-            <table {...getTableProps()} style={{width: '93%'}}>
+            <table {...getTableProps()}>
             <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
+                        {/*
                         {headerGroup.headers.map((column) => (
                             <th {...column.getHeaderProps()} style={{backgroundColor: '#D6EAF8', width: '12%'}}> 
                             {column.render('Header')}
                         </th>
                         ))}
+                        */}
+
+                        <th className="column-header" >Title</th>
+                        {!bk1 && <th className="column-header" >Status</th>}
+                        {!bk2 && <th className="column-header" >Type</th>}
+                        <th className="column-header" >Action</th>
 
                         {/* new column */}
-                            <th style={{backgroundColor: '#D6EAF8', width: '17%'}}>Date</th>
+                        {!bk3 && <th style={{backgroundColor: '#D6EAF8', width: '17%'}}>Date</th>}
                             {user ?
                             <>
                             {user.accessIdList.includes(project.projectId) ?
-                            <th style={{backgroundColor: '#D6EAF8', width: '15%'}}> </th>
+                            <th style={{backgroundColor: '#D6EAF8'}}> </th>
                             :
                             null}
                             </>
@@ -252,27 +266,33 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
                             </td>
                             */}
 
+                            {!bk1 &&
                             <td className="row-body">
                                 {(data[row.id].ticketStatus.charAt(0).toUpperCase() 
                                 + data[row.id].ticketStatus.slice(1) )}
                             </td>
+                            }
                             {/*
                             <td className="row-body">
                                 {(data[row.id].asignedDev)}
                             </td>
                                 */}
 
+                            {!bk2 && 
                             <td className="row-body">
                                 {(data[row.id].ticketType)}
                             </td>
+                            }
 
                             <td className="row-body">
                                 {(data[row.id].actionString)}
                             </td>
 
+                            {!bk3 && 
                             <td className="row-body">
                                 {formatDate(data[row.id].submitDate)}
                             </td>
+                            }
 
                                 {user ?
                                 <>
@@ -284,13 +304,21 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
                                     <Button variant="outlined" style={{
                                         fontWeight: 'bold',
                                         fontSize: 'medium',
-                                        marginRight: '0px'
+                                        //marginRight: '0px'
+                                        //minWidth: '80px'
+                                        width: '100%',
+                                        minWidth: 80,
+                                        
                                     }}
                                     >
                                         {data[row.id].actionString === 'Created Project' || data[row.id].actionString === 'Updated Project' ?
                                             null: 
 
-                                        <Link to="/ticketHistoryDetails" state={{ ticket: getTicket(data[row.id]), project: project, action: data[row.id].actionString, tickets: tickets, history: history, changeCount: changeCount, userProfile: 0 }} > details </Link>
+                                        <Link to="/ticketHistoryDetails" state={{ ticket: getTicket(data[row.id]), project: project, action: data[row.id].actionString, tickets: tickets, history: history, changeCount: changeCount, userProfile: 0 }} > 
+                                            <div>
+                                                details 
+                                            </div>
+                                        </Link>
                                         }
                      
                                     </Button>

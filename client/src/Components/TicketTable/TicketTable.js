@@ -310,6 +310,8 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
   const bk4 = useMediaQuery('(max-width: 200px)');
   const bk5 = useMediaQuery('(max-width: 200px)');
 
+  const bk6 = useMediaQuery('(max-width: 500px)');
+
   const formatType = (type) => {
     if (type === 'Feature Request'){
       return 'Feature';
@@ -324,6 +326,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
     <div >
 
         <div style={{display: 'flex'}}>
+        {!bk6 &&
         <TextField
             id="search-bar"
             className="text"
@@ -338,6 +341,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
                 marginBottom: '20px'
             }}
         />
+        }
 
         {!isSmallScreen &&
           <Select
@@ -377,7 +381,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
 
         
 
-        <div style={{marginLeft: 'auto', marginRight: '5%', color: 'grey', whiteSpace: 'nowrap'}}>
+        <div style={{marginLeft: !bk6 ? 'auto' : '30px', marginBottom: !bk6 ? 'auto' : '20px', marginRight: '5%', color: 'grey', whiteSpace: 'nowrap'}}>
             <FormControlLabel control={<Checkbox color='primary' value={showClosed} onChange={() => (setShowClosed(!showClosed))} />} label="Show Closed Tickets" />
         </div>
 
@@ -387,21 +391,15 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
 
     
         <div className="tableContainer">
-  <table {...getTableProps()} style={{width: '93%', marginLeft: '10px'}}>
+  <table {...getTableProps()} style={{width: '97%', marginLeft: '10px'}}>
+    {/*
     <colgroup>
       <col className="title-column" />
       <col className="status-column" />
-      {/*
-      <col className="assigned-dev-column" />
-      */}
       <col className="ticket-type-column" />
       <col className="ticket-prio-column" />
-      {/*
-      <col className="submitted-date-column" />
-      <col className="details-column" />
-      <col className="action-column" />
-      */}
     </colgroup>
+    */}
     <thead>
       {headerGroups.map((headerGroup) => (
       <tr {...headerGroup.getHeaderGroupProps()}>
@@ -413,7 +411,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
         ))}
         */}
         <th className="column-header" >Title</th>
-        {!bk5 && <th className="column-header" >Status</th>}
+        {!bk6 && <th className="column-header" >Status</th>}
         {!bk3 && <th className="column-header" >Type</th>}
         {!bk2 && <th className="column-header" >Priority</th>}
         
@@ -429,7 +427,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
         return (
         <tr className="row-body">
           <td className="row-body title-column row-title">{data[row.id].title}</td>
-          {!bk5 &&
+          {!bk6 &&
           <td className="row-body status-column">
             {data[row.id].ticketStatus.charAt(0).toUpperCase() +
             data[row.id].ticketStatus.slice(1)}
@@ -440,7 +438,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
           {!bk3 && <td className="row-body ticket-type-column">{formatType(data[row.id].ticketType)}</td> }
           {!bk2 && <td className="row-body ticket-prio-column">{data[row.id].ticketPrio}</td> }
           {!bk1 && <td className="row-body submitted-date-column">{formatDate(data[row.id].submitDate)}</td>}
-          <td className="row-body details-column">
+          <td className="row-body details-column" >
             {tickets !== null ? (
             <Button
               variant="outlined"

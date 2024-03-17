@@ -120,7 +120,7 @@ const AddTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
                             />
                             <div style={{ marginTop: '10px'}}></div>
                             <Box className={classes.title} variant="h5" gutterBottom >Assigned Developer</Box>
-                            <Select style={{ marginTop: 10, marginLeft: 20 }}
+                            <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '100%' }}
                                 value={asignedDev}
                                 onChange={(e) => setAsignedDev(e.target.value)}
                             >

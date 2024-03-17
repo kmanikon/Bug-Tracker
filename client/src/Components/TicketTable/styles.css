@@ -1,7 +1,6 @@
 .tableContainer {
   overflow-x: auto;
   min-width: 0px !important;
-  
 }
 
 table {
@@ -35,7 +34,6 @@ table th {
   color: #333333;
   height: 40px;
   padding: 10px;
-
 }
 
 tr {
@@ -96,7 +94,7 @@ a:active {
 }
 
 .title-column {
-  width: 30%; 
+  width: 30%;
 }
 
 .submitted-date-column {

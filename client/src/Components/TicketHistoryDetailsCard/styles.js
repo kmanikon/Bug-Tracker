@@ -12,42 +12,48 @@ export default makeStyles((theme) => ({
     paddingTop: '15px',
     //marginRight: '20px',
     width: '93%',
+    minWidth: '0px',
   },
 
   title: {
     fontWeight: 'bold',
-    fontSize: 'large',
+    //fontSize: 'large',
     paddingTop: '10px',
     paddingLeft: '20px',
     //fontWeight: 'bold',
+    minWidth: '100px'
   },
 
   
   titleRight: {
     
     fontWeight: 'bold',
-    fontSize: 'large',
+    //fontSize: 'large',
     paddingTop: '10px',
     //paddingLeft: '20px',
     
-    marginLeft: '45%',
+    marginLeft: '20px',
     //fontWeight: 'bold',
   },
   
 
   subTitle: {
-    fontSize: 'large',
+    //fontSize: 'large',
     paddingTop: '10px',
     paddingLeft: '20px',
+    maxWidth: '100%',
   },
 
   
   subTitleRight: {
     //fontWeight: 'bold',
-    fontSize: 'large',
+    //fontSize: 'large',
     paddingTop: '10px',
     //paddingLeft: '20px',
-    marginLeft: '45%'
+    ///marginLeft: '15%',
+    paddingLeft: '20px',
+    maxWidth: '75%',
+
   },
   
 
@@ -57,7 +63,9 @@ export default makeStyles((theme) => ({
 
   headerCard: {
     marginLeft: '20px',
-    width: '93%'
+    width: '93%',
+    fontSize: 'large',
+    wordBreak: 'break-word'
   }
 
 
