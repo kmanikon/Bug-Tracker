@@ -218,10 +218,10 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
         return (
           <tr {...row.getRowProps()} >
             {row.cells.map((cell) => {
-              return <td {...cell.getCellProps()} >{cell.render('Cell')} </td>
+              return <td {...cell.getCellProps()} className="row-body">{cell.render('Cell')} </td>
             })}
             
-            <td>
+            <td className="row-body">
               {data[row.id].accessIdList.includes(project.projectId) ?
                 <>Project Manager</> :
                 <>Developer</>

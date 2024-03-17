@@ -438,7 +438,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
           {!bk3 && <td className="row-body ticket-type-column">{formatType(data[row.id].ticketType)}</td> }
           {!bk2 && <td className="row-body ticket-prio-column">{data[row.id].ticketPrio}</td> }
           {!bk1 && <td className="row-body submitted-date-column">{formatDate(data[row.id].submitDate)}</td>}
-          <td className="row-body details-column" >
+          <td className="details-column" >
             {tickets !== null ? (
             <Button
               variant="outlined"
@@ -469,7 +469,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
             ) : null}
           </td>
           {!bk4 &&
-          <td className="row-body action-column">
+          <td className="action-column">
             {tickets !== null ? (
             <>
               {data[row.id].ticketStatus === 'pending' ? (
