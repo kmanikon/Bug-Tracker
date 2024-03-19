@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
 import { Link } from 'react-router-dom';
-import { IconButton, SearchIcon, TextField, Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import {  TextField, Button, useMediaQuery } from '@material-ui/core/';
 import { CloseOutlined } from '@ant-design/icons';
 import './styles.css';
 import AutoScrollContainer from 'auto-scroll-container'
@@ -204,6 +204,12 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
         return post
     }
 
+    const bk1 = useMediaQuery('(max-width: 1200px)');
+    const bk2 = useMediaQuery('(max-width: 1000px)');
+    const bk3 = useMediaQuery('(max-width: 800px)');
+    const bk4 = useMediaQuery('(max-width: 200px)');
+    const bk5 = useMediaQuery('(max-width: 200px)');
+
     return (
         <div style={{width: '100%'}}>
             <Button color="black" size="large" variant="outlined"
@@ -226,6 +232,7 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
 
         <div style={{display: 'flex'}}>
 
+            {/*
           <div style={{marginLeft: '20px',
                 marginBottom: '20px',
                 marginRight: '20px',
@@ -237,6 +244,7 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
             >
                 New Changes
             </div>
+            */}
 
           <TextField
             id="search-bar"
@@ -260,16 +268,21 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
             <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
+                        {/*
                         {headerGroup.headers.map((column) => (
                             <th {...column.getHeaderProps()} style={{backgroundColor: '#D6EAF8'}}> 
                             {column.render('Header')}
                         </th>
                         ))}
+                        */}
+                        <th className="column-header" >Title</th>
+                        {!bk1 && <th className="column-header" >User</th>}
+                        <th className="column-header" >Action</th>
 
                         {/* new column */}
-                            <th style={{backgroundColor: '#D6EAF8', width: '15%'}}>Date</th>
-                            <th style={{backgroundColor: '#D6EAF8', width: '13%'}}> </th>
-                            <th style={{backgroundColor: '#D6EAF8', width: '10%'}}> </th>
+                        {!bk3 && <th style={{backgroundColor: '#D6EAF8', width: '17%'}}>Date</th>}
+                        <th style={{backgroundColor: '#D6EAF8'}}> </th>
+                        {!bk2 && <th style={{backgroundColor: '#D6EAF8'}}> </th>}
                         
                     </tr>
                     
@@ -284,58 +297,73 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
                         <tr {...row.getRowProps()}>
 
 
+                        {/*
                         {row.cells.map((cell) => {
                             return <td {...cell.getCellProps()}>
                             {cell.render('Cell')} </td>
 
-                                })}
-                                {/* Add new cell with 'details' string */}
-                                {/*<td >
-                                    
-                                    {users !== null ?
-                                        <Link to="/ticketDetails" state={{ user: data[row.id], ticketNum: row.id, project: project, changeCount: changeCount }} > details </Link>
-                                    : 
-                                        null
+                        })}
+                        */}
+                        <td className="row-body">
+                            {(data[row.id].title)}
+                        </td>
+
+                        {!bk1 &&
+                            <td className="row-body">
+                                {data[row.id].userName}
+                            </td>
+                        }
+
+                        
+                        <td className="row-body">
+                            {(data[row.id].actionString)}
+                        </td>
+                        
+                               
+                        {!bk3 && 
+                            <td className="row-body">
+                                {formatDate(data[row.id].date)}
+                            </td>
+                        }
+
+                        <td >
+                            {history !== null ?
+                                <Button variant="outlined" style={{
+                                    fontWeight: 'bold',
+                                    fontSize: 'medium', 
+                                    //marginRight: '0px',
+                                    //width: 80
+                                    width: '100%',
+                                    minWidth: 80,
+
+                                }}
+                                >
+                                    {data[row.id].actionString === 'Created Project' || data[row.id].actionString === 'Updated Project' ?
+                                        null: 
+
+                                    <Link to="/ticketHistoryDetails" state={{ ticket: getTicket(data[row.id]), project: project, action: data[row.id].actionString, tickets: tickets, history: history, changeCount: changeCount, userProfile: 3  }} > details </Link>
                                     }
-                                    </td>
-                                */}
-                                <td>
-                                    {formatDate(data[row.id].date)}
-                                </td>
-
-                                <td >
-
-                                {history !== null ?
-
-                                    <Button variant="outlined" style={{
+                    
+                                </Button>
+                            : 
+                                null
+                            }
+                        </td>
+                        {!bk2 && 
+                            <td>
+                                <Button variant="outlined" style={{
                                         fontWeight: 'bold',
-                                        fontSize: 'medium', 
-                                        marginRight: '0px'
+                                        fontSize: 'large', 
+                                        height: '40px',
+                                        width: '100%',
+                                        minWidth: 80,
                                     }}
+                                    onClick={() => handleMarkRead(row.id)}
                                     >
-                                        {data[row.id].actionString === 'Created Project' || data[row.id].actionString === 'Updated Project' ?
-                                            null: 
-
-                                        <Link to="/ticketHistoryDetails" state={{ ticket: getTicket(data[row.id]), project: project, action: data[row.id].actionString, tickets: tickets, history: history, changeCount: changeCount, userProfile: 3  }} > details </Link>
-                                        }
-                     
-                                    </Button>
-                                : 
-                                    null
-                                }
-                                </td>
-                                <td>
-                                    <Button variant="outlined" style={{
-                                            fontWeight: 'bold',
-                                            fontSize: 'large', 
-                                            height: '40px',
-                                            marginRight: '20px'
-                                        }}
-                                        onClick={() => handleMarkRead(row.id)}
-                                        >
-                                        <CloseOutlined/>
-                                    </Button>
-                                </td>
+                                    <CloseOutlined/>
+                                </Button>
+                            </td>
+                        }
 
 
                         </tr>
