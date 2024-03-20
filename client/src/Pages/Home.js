@@ -31,7 +31,7 @@ import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomi
 */
  
 
-const Home = () => {
+const Home = ({isSmallScreen}) => {
 
     //const location = useLocation();
 
@@ -39,7 +39,7 @@ const Home = () => {
     const sm = 6;
     const md = 6;
 
-    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     return (
       <div style={{  

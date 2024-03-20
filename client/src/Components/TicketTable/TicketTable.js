@@ -308,8 +308,6 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
   const bk2 = useMediaQuery('(max-width: 800px)');
   const bk3 = useMediaQuery('(max-width: 1000px)');
   const bk4 = useMediaQuery('(max-width: 200px)');
-  const bk5 = useMediaQuery('(max-width: 200px)');
-
   const bk6 = useMediaQuery('(max-width: 500px)');
 
   const formatType = (type) => {

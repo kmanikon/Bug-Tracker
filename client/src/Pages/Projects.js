@@ -31,7 +31,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const Projects = ({ projects, loading, user, setUser }) => {
+const Projects = ({ projects, loading, user, setUser, isSmallScreen }) => {
 
     const location = useLocation();
 
@@ -92,7 +92,7 @@ const Projects = ({ projects, loading, user, setUser }) => {
     };
 
 
-    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
 
     const InfoDialog = () => {

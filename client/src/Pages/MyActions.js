@@ -21,7 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const MyActions = ({user, projects}) => {
+const MyActions = ({user, projects, isSmallScreen}) => {
 
     const location = useLocation();
     //const [projects, setProjects] = useState([]);
@@ -119,7 +119,7 @@ const MyActions = ({user, projects}) => {
         setOpen(false);
     };
 
-    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
 
 

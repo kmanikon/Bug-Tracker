@@ -29,7 +29,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const Notifications = ({user, projects, readCounts}) => {
+const Notifications = ({user, projects, readCounts, isSmallScreen}) => {
   const location = useLocation();
 
   var changeCount = 0;
@@ -107,7 +107,7 @@ const Notifications = ({user, projects, readCounts}) => {
         setOpen(false);
     };
 
-    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     const InfoDialog = () => {
         return (

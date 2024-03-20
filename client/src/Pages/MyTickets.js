@@ -33,7 +33,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const MyTickets = ({user, projects}) => { 
+const MyTickets = ({user, projects, isSmallScreen}) => { 
 
     const location = useLocation();
 
@@ -129,7 +129,7 @@ const MyTickets = ({user, projects}) => {
         setOpen(false);
     };
 
-    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
 
     const InfoDialog = () => {

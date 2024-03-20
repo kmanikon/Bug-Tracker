@@ -32,7 +32,7 @@ const COLUMNS = [
   ];
 
 
-const UserTable = ({devList, user, users, project, changeCount}) => {
+const UserTable = ({devList, user, users, project, changeCount, bk2}) => {
 
 
     let navigate = useNavigate();
@@ -79,7 +79,7 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
     }
 
     const bk1 = useMediaQuery('(max-width: 850px)');
-    const bk2 = useMediaQuery('(max-width: 600px)');
+    //const bk2 = useMediaQuery('(max-width: 600px)');
     const bk3 = useMediaQuery('(max-width: 425px)');
 
   return (

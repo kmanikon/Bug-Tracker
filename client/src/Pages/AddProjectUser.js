@@ -18,7 +18,7 @@ import url from '../defs';
 
 
 
-const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
+const AddProjectUser = ({userChangeCount, setUserChangeCount, isSmallScreen}) => {
 
     const location = useLocation();
     var { project, devList, changeCount, projectUsers } = location.state;
@@ -107,7 +107,7 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
     const sm = 5;
     const md = 5;
 
-    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     return (
         <div>

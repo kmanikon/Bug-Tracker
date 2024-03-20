@@ -141,8 +141,6 @@ const ProjectHistoryTable = ({project, history, tickets, changeCount, user}) => 
     const bk1 = useMediaQuery('(max-width: 1200px)');
     const bk2 = useMediaQuery('(max-width: 1000px)');
     const bk3 = useMediaQuery('(max-width: 800px)');
-    const bk4 = useMediaQuery('(max-width: 200px)');
-    const bk5 = useMediaQuery('(max-width: 200px)');
 
     return (
         <div style={{width: '100%'}}>
