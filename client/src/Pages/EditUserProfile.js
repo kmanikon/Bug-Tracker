@@ -151,6 +151,7 @@ const EditUserProfile = ({user, setUser}) => {
             
             <div style={{marginTop: '110px'}}></div>
             
+            <div style={{marginRight: 20}}>
             <div className={classes.projectInfo}>
                 <div className="projectsTitle">Update Profile</div>
             </div>
@@ -160,7 +161,7 @@ const EditUserProfile = ({user, setUser}) => {
     
                 <div style={{display: 'flex'}}>
 
-                    <div style={{width: '35%', display: 'block'}}>
+                    <div style={{ display: 'block'}}>
                         <div style={{ marginBottom: '20px'}}></div>
                         <Box className={classes.title} variant="h5" gutterBottom >Username</Box>
                         <TextField id="outlined-basic" variant="outlined" 
@@ -187,7 +188,7 @@ const EditUserProfile = ({user, setUser}) => {
                         <Box className={classes.title} variant="h5" gutterBottom >Password</Box>
 
                         <TextField id="outlined-basic" variant="outlined" 
-                                style={{ width: '300px', marginLeft: '20px', marginTop: '15px', marginBottom: '20px'}}
+                                style={{ width: '240px', marginLeft: '20px', marginTop: '15px', marginBottom: '20px'}}
                                 size="small"
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)}    
@@ -215,6 +216,7 @@ const EditUserProfile = ({user, setUser}) => {
                 <div style={{ marginBottom: '20px'}}></div>
                 
             </Card>
+            </div>
 
 
             <div style={{

@@ -24,10 +24,6 @@ from '@ant-design/icons';
 
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
  
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { useNavigate } from "react-router-dom";
-
- 
 /*
 
   the homepage + navigation to main pages
