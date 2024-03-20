@@ -381,7 +381,7 @@ const TicketTable = ({tickets, setTickets, ticketChangeCount, setTicketChangeCou
 
         
 
-        <div style={{marginLeft: !bk6 ? 'auto' : '30px', marginBottom: !bk6 ? 'auto' : '20px', marginRight: '5%', color: 'grey', whiteSpace: 'nowrap'}}>
+        <div style={{marginLeft: !bk6 ? 'auto' : '30px', marginBottom: !bk6 ? 'auto' : '20px', marginRight: !bk2 ? '20px' : 0, color: 'grey', whiteSpace: 'nowrap'}}>
             <FormControlLabel control={<Checkbox color='primary' value={showClosed} onChange={() => (setShowClosed(!showClosed))} />} label="Show Closed Tickets" />
         </div>
 

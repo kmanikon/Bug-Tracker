@@ -1,90 +1,95 @@
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    /*width: 80vw;*/ /* change from 'width: 100%;' to 'width: 100%;' */
-    /*border: 1px solid #ddd;*/
-    margin-left: 20px; /* add this line to add space on the left side */
-    margin-right: 20px;
-    
+  border-collapse: collapse;
+  border-spacing: 0;
+  /*width: 80vw;*/ /* change from 'width: 100%;' to 'width: 100%;' */
+  /*border: 1px solid #ddd;*/
+  margin-left: 20px; /* add this line to add space on the left side */
+  margin-right: 20px;
+  
 
 
 }
- 
+
 table th, table td {
-    text-align: center;
-    padding: 16px;
-    /*border: 1px solid #ddd;*/
+  text-align: center;
+  padding: 16px;
+  /*border: 1px solid #ddd;*/
 }
- 
-table tr:hover {
-  background-color: #f8f8f8;
-}
- 
-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #B8E2F2; /*#2bd3f1;*/ /*#ff993b*/
-    color: #333333;
 
-    /*table-layout: fixed;*/
+table tr:hover {
+background-color: #f8f8f8;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #B8E2F2; /*#2bd3f1;*/ /*#ff993b*/
+  color: #333333;
+  /*table-layout: fixed;*/
 }
 
 tr {
-  height: 80px;
+height: 80px;
 }
+
+td {
+text-overflow: clip !important;
+}
+
 
 
 
 table {
-  table-layout: fixed;
-  
+table-layout: fixed;
+
+
 }
 
 
 
 
 a:link {
-    color: black;
-    background-color: transparent;
-    text-decoration: none;
-  }
-  
-  a:visited {
-    color: black;
-    background-color: transparent;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: black;
-    background-color: transparent;
-    /*text-decoration: underline;*/
-  }
-  
-  a:active {
-    color: black;
-    background-color: transparent;
-    /*text-decoration: underline;*/
-  }
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
 
-  .tableContainer{
+a:visited {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
 
-    border-radius: 20px;
-    /*height: 300px;*/
-    padding: 0 10px 10px 10px;
-    /*overflow-y: scroll;*/
-    min-height: 500px;
-    height: 100%;
+a:hover {
+  color: black;
+  background-color: transparent;
+  /*text-decoration: underline;*/
+}
+
+a:active {
+  color: black;
+  background-color: transparent;
+  /*text-decoration: underline;*/
+}
+
+.tableContainer{
+
+  border-radius: 20px;
+  /*height: 300px;*/
+  padding: 0 10px 10px 10px;
+  /*overflow-y: scroll;*/
+  min-height: 500px;
+  height: 100%;
 }
 
 .column-header {
-  background-color: #D6EAF8;
-  /*width: '15%';*/
+background-color: #D6EAF8;
+/*width: '15%';*/
 }
 
 .row-body {
-  /*width: 10%*/
+/*width: 10%*/
 
 
 }
