@@ -53,11 +53,11 @@ const UserProfile = ({user}) => {
 
             <Grid container rowSpacing={1} columnSpacing={1} spacing={2}
                 style={{
-                    marginLeft: '5%',
+                    marginLeft: '4%',
                     //marginTop: '20px',
                     height: '75%',
                     width: '92%',
-                    marginRight: '5%',
+                    marginRight: '4%',
                     display: 'flex',
                     justifyContent: 'center',
                     //minWidth: '750px'

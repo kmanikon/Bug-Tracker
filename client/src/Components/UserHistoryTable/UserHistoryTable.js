@@ -142,7 +142,7 @@ const UserHistoryTable = ({project, history, tickets, changeCount, userProfile})
     return (
         <div style={{width: '100%'}}>
 
-<Typography variant="h5" align="center" style={{marginLeft: -20, marginTop: 0, marginBottom: 10, fontWeight: 710 }}>My Activity Log for {project.projectName}</Typography>
+        <Typography variant="h5" align="center" style={{marginLeft: -20, marginTop: 0, marginBottom: 10, fontWeight: 710 }}>My Activity Log for {project.projectName}</Typography>
             
 
         <div style={{display: 'flex'}}>

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
 import {  
   Button, 
-  Typography, 
+  useMediaQuery, 
   Grid
 } 
 from '@material-ui/core/';
@@ -325,10 +325,16 @@ const Dashboard = ({user}) => {
     const graphHeight = '240px';
     const graphMargin = '20px';
 
+    const xs = 12;
+    const md = 6;
+
+
+    const isSmallScreen = useMediaQuery('(max-width: 959px)');
+
 
     
     return (
-      <div style={{ height: 'calc(100vh - 200px)', minWidth: '800px' }}>
+      <div style={{ height: 'calc(100vh - 200px)' }}>
 
       <div style={{marginTop: '100px'}}></div>
 
@@ -402,19 +408,20 @@ const Dashboard = ({user}) => {
         </div>
 
  
-        <Grid container rowSpacing={1} columnSpacing={1} style={{
+        <Grid container rowSpacing={1} columnSpacing={1} sapcing={3} style={{
             marginLeft: '5%',
-            marginTop: '3%',
-            height: '75%',
-            width: '92%',
-            marginRight: '5%'
+            //marginTop: '3%',
+            //height: '75%',
+            //width: '100vw',
+            marginRight: '5%',
+            justifyContent: 'center'
           }}
         >
 
 
-        <Grid item xs={6} style={{ borderRight: "1px solid black", borderBottom: "1px solid black" }}>
+        <Grid item xs={xs} md={md} style={{ borderRight: !isSmallScreen ? "1px solid black" : "0px solid black", borderBottom: "1px solid black" }}>
 
-            <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
+            <div style={{height: '90%', width: '90%', marginLeft: '10%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByPriodata} 
                     options={{
@@ -452,7 +459,7 @@ const Dashboard = ({user}) => {
         </Grid>
 
 
-        <Grid item xs={6} style={{ borderBottom: "1px solid black"}}>
+        <Grid item xs={xs} md={md} style={{ borderBottom: "1px solid black"}}>
         <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
                 <Doughnut 
                     data={TicketsByTypedata} 
@@ -489,8 +496,8 @@ const Dashboard = ({user}) => {
                 />
             </div>
         </Grid>
-        <Grid item xs={6} style={{ borderRight: "1px solid black"}}>
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
+        <Grid item xs={xs} md={md} style={{ borderRight: !isSmallScreen ? "1px solid black" : "0px solid black" }}>
+        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0px', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
             <Bar
                 data={TicketsByProjectdata}
                 height={200}
@@ -532,9 +539,10 @@ const Dashboard = ({user}) => {
             />
             </div>
         </Grid>
-        <Grid item xs={6}>
 
 
+
+        <Grid item xs={xs} md={md} style={{borderTop: isSmallScreen ? "1px solid black" : "0px solid black",}}>
         <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByStatusdata} 
