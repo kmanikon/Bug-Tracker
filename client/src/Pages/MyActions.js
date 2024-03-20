@@ -182,7 +182,7 @@ const MyActions = ({user, projects}) => {
                     marginRight: '20px',
                     fontWeight: 'bold',
                     fontSize: 'large',
-                    marginTop: '10px',
+                    marginTop: '20px',
                     marginLeft: '40px'
                     }}
                 >

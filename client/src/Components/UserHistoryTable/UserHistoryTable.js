@@ -3,6 +3,7 @@ import { useTable } from 'react-table'
 import { Link } from 'react-router-dom';
 import { TextField, Button, useMediaQuery } from '@material-ui/core/';
 import './styles.css';
+import { Typography } from '@mui/material';
 
 /*
 
@@ -142,6 +143,8 @@ const UserHistoryTable = ({project, history, tickets, changeCount, userProfile})
 
     return (
         <div style={{width: '100%'}}>
+
+<Typography variant="h5" align="center" style={{marginLeft: -20, marginTop: 0, marginBottom: 10, fontWeight: 710 }}>My Activity Log for {project.projectName}</Typography>
             
 
         <div style={{display: 'flex'}}>

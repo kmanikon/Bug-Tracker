@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
 import { Link } from 'react-router-dom';
-import {  TextField, Button, useMediaQuery } from '@material-ui/core/';
+import {  TextField, Button, useMediaQuery, Typography } from '@material-ui/core/';
 import { CloseOutlined } from '@ant-design/icons';
 import './styles.css';
 import AutoScrollContainer from 'auto-scroll-container'
@@ -229,6 +229,8 @@ const NotificationsTable = ({project, history, tickets, changeCount, userProfile
               
               </Link>
           </Button>
+
+          <Typography variant="h5" align="center" style={{marginLeft: -20, marginTop: 0, marginBottom: 10, fontWeight: 710 }}>{project.projectName} Notifications</Typography>
 
         <div style={{display: 'flex'}}>
 

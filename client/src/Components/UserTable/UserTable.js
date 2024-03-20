@@ -84,7 +84,8 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
 
   return (
     <div >
-        <div style={{display: 'flex', justifyContent: 'space-between', marginRight: '7%'}}>
+        <div
+         style={{display: 'flex', justifyContent: 'space-between', marginRight: '7%'}}>
         <TextField
             id="search-bar"
             className="text"
