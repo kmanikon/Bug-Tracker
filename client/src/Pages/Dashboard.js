@@ -331,6 +331,58 @@ const Dashboard = ({user}) => {
 
     const isSmallScreen = useMediaQuery('(max-width: 959px)');
 
+    const isMobile = useMediaQuery('(max-width: 820px)');
+
+
+
+    const ToggleButons = () => {
+        return (
+            <ToggleButtonGroup
+                value={showAssigned}
+                exclusive
+                aria-label="text alignment"
+                style={{
+                    //marginRight: '80px',
+                    fontWeight: 'bold',
+                    fontSize: 'large',
+                    height: '50px'
+                }}
+            >
+                <ToggleButton 
+                    variant="outlined"
+                    size="large"
+                    value={false}
+                    disableRipple
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        height: '50px',
+                        color: 'black'
+                    }}
+                    onClick={handleShowSubmitted}
+                >
+                     { isMobile ? 'Submitted' : 'Submitted Tickets'}
+                </ToggleButton>
+
+                <ToggleButton 
+                    variant="outlined"
+                    size="large"
+                    value={true}
+                    disableRipple
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        height: '50px',
+                        color: 'black'
+                    }}
+                    onClick={handleShowAssigned}
+                >
+                     { isMobile ? 'Assigned' : 'Assigned Tickets'}
+                </ToggleButton>
+
+            </ToggleButtonGroup>
+        );
+    }
 
     
     return (
@@ -338,12 +390,11 @@ const Dashboard = ({user}) => {
 
       <div style={{marginTop: '100px'}}></div>
 
-
-        <div style={{display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{display: isMobile ? 'block' : 'flex', justifyContent: 'space-between' }}>
             < Button color="black" size="large" variant="outlined"
                 style={{
                     //marginTop: '10px',
-                    marginLeft: '80px',
+                    marginLeft: '40px',
                     //marginBottom: '0px',
                     fontWeight: 'bold',
                     fontSize: 'large',
@@ -359,6 +410,10 @@ const Dashboard = ({user}) => {
               
               </Link>
             </Button>
+
+            <div style={{marginLeft: isMobile ? '0px' : 0, marginTop: isMobile ? '20px' : 0, width: !isMobile ? 'calc(100vw - 370px)' : 'calc(100vw + 0px)', textAlign: isMobile ? 'center' : 'right', marginRight: isMobile ? '0px' : '80px'}}>
+                <ToggleButons/>
+            </div>
 
             {/*
             <ToggleButtonGroup
@@ -420,7 +475,8 @@ const Dashboard = ({user}) => {
             //marginLeft: '-20px',
             width: '100%',
             justifyContent: 'center',
-            marginLeft: '0%'
+            //marginLeft: '20px',
+            //marginTop: '20px'
           }}
         >
 
@@ -503,7 +559,7 @@ const Dashboard = ({user}) => {
             </div>
         </Grid>
         <Grid item xs={xs} md={md} style={{ borderRight: !isSmallScreen ? "1px solid black" : "0px solid black" }}>
-        <div style={{ minWidth: '200px', marginTop: '5%', paddingBottom: 0, display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
+        <div style={{ minWidth: '200px', marginTop: '5%', marginLeft: '10%', marginRight: '10%', paddingBottom: 0, display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
             <Bar
                 data={TicketsByProjectdata}
                 height={240}
@@ -550,7 +606,7 @@ const Dashboard = ({user}) => {
 
 
         <Grid item xs={xs} md={md} style={{borderTop: isSmallScreen ? "1px solid black" : "0px solid black",}}>
-        <div style={{ minWidth: '200px', marginTop: '0%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
+        <div style={{ minWidth: '200px', marginTop: '5%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByStatusdata} 
                     options={{
