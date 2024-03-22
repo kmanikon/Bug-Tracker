@@ -473,17 +473,16 @@ const Dashboard = ({user}) => {
             //marginRight: '5%',
             //marginLeft: '0px',
             //marginLeft: '-20px',
-            width: '100%',
+            width: 'calc(100% - 40px)',
             justifyContent: 'center',
-            //marginLeft: '20px',
-            //marginTop: '20px'
+            margin: '20px'
           }}
         >
 
 
         <Grid item xs={xs} md={md} style={{ borderRight: !isSmallScreen ? "1px solid black" : "0px solid black", borderBottom: "1px solid black" }}>
 
-            <div style={{ minWidth: '200px', marginTop: '5%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
+            <div style={{ minWidth: '200px', marginTop: '2%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByPriodata} 
                     options={{
@@ -522,7 +521,7 @@ const Dashboard = ({user}) => {
 
 
         <Grid item xs={xs} md={md} style={{ borderBottom: "1px solid black"}}>
-        <div style={{ minWidth: '200px', marginTop: '5%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
+        <div style={{ minWidth: '200px', marginTop: '2%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
                 <Doughnut 
                     data={TicketsByTypedata} 
                     options={{
