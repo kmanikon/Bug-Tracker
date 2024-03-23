@@ -180,6 +180,7 @@ function App() {
 
   const isSmallScreen = useMediaQuery('(max-width: 600px)');
   const isSmallScreen700px = useMediaQuery('(max-width: 700px)');
+  const isSmallScreen800px = useMediaQuery('(max-width: 800px)');
 
 
   return (
@@ -214,7 +215,7 @@ function App() {
             <Route path="/profileHistory" element={<UserProfileHistory user={currentUser} />} />
             <Route path="/editUserProfile" element={<EditUserProfile user={currentUser} setUser={setCurrentUser} />} />
             <Route path="/myTickets" element={<MyTickets user={currentUser} setUser={setCurrentUser} projects={projects} isSmallScreen={isSmallScreen}/>} />
-            <Route path="/myProjectTickets" element={<MyProjectsTickets user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/myProjectTickets" element={<MyProjectsTickets user={currentUser} setUser={setCurrentUser} isSmallScreen={isSmallScreen800px}/>} />
             <Route path="/manageUsers" element={<ManageProjectUsers user={currentUser} setUser={setCurrentUser} isSmallScreen={isSmallScreen}/>} />
             <Route path="/editUserRole" element={<EditUserRole userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/myActions" element={<MyActions user={currentUser} projects={projects} isSmallScreen={isSmallScreen}/>} />

@@ -73,7 +73,7 @@ let linkChangeCount = 0;
 
 let id = 0;
 
-const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose, openClear, handleCloseClear}) => {
+const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose, openClear, handleCloseClear, isSmallScreen}) => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -85,8 +85,6 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
     const [description, setDescription] = useState('');
 
     const [workflowId, setWorkflowId] = useState(null);
-
-    const isSmallScreen = useMediaQuery('(max-width: 800px)');
 
     //let [id, setId] = useState(0);
 
@@ -423,7 +421,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
                 style={{
                     fontWeight: 'bold',
                     fontSize: 'large',
-                    minWidth: 300,
+                    minWidth: isSmallScreen ? 240 : 300,
                     //minHeight: 300
                 }}
             >
@@ -457,7 +455,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
                 style={{
                     fontWeight: 'bold',
                     fontSize: 'large',
-                    minWidth: 300,
+                    minWidth: isSmallScreen ? 240 : 300,
                     //minHeight: 300
                 }}
             >

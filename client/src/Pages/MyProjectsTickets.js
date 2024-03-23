@@ -21,7 +21,7 @@ import 'reactflow/dist/style.css';
 */
 
 
-const MyProjectsTickets = ({user}) => {
+const MyProjectsTickets = ({user, isSmallScreen}) => {
 
   // state: project
 
@@ -138,9 +138,6 @@ const makeAPICallGetHistory = async (route) => {
   const handleCloseClear = () => {
     setOpenClear(false);
   }
-
-  const isSmallScreen = useMediaQuery('(max-width: 800px)');
-
 
     return (
       <div style={{ width: 'calc(100% - 20px)', marginLeft: '20px' }}>
@@ -259,6 +256,7 @@ const makeAPICallGetHistory = async (route) => {
                 handleClose={handleClose}
                 openClear={openClear}
                 handleCloseClear={handleCloseClear}
+                isSmallScreen={isSmallScreen}
               />
             </div>
 
