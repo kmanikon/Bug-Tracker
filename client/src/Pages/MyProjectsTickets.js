@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from
 import { useLocation } from 'react-router-dom';
 import TopNavBar from '../Components/TopNavBar/TopNavBar';
 import ProjectBoard from '../Components/ProjectBoard/ProjectBoard';
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
+import { Button, useMediaQuery } from '@material-ui/core/';
 import { PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
@@ -139,9 +139,11 @@ const makeAPICallGetHistory = async (route) => {
     setOpenClear(false);
   }
 
+  const isSmallScreen = useMediaQuery('(max-width: 800px)');
+
 
     return (
-      <div style={{ width: '100%', marginLeft: '20px'}}>
+      <div style={{ width: 'calc(100% - 20px)', marginLeft: '20px' }}>
             <div style={{marginTop: '80px'}}></div>
 
             
@@ -153,7 +155,8 @@ const makeAPICallGetHistory = async (route) => {
                       //marginLeft: '20px',
                       marginBottom: '20px',
                       fontWeight: 'bold',
-                      fontSize: 'large'
+                      fontSize: 'large',
+                      whiteSpace: 'nowrap'
                   }}
 
               >
@@ -171,16 +174,17 @@ const makeAPICallGetHistory = async (route) => {
                 variant="outlined"
                   style={{
                       marginTop: '0px',
-                      marginLeft: '40px',
+                      marginLeft: isSmallScreen ? '20px' : '40px',
                       marginBottom: '20px',
                       fontWeight: 'bold',
                       fontSize: 'large',
-                      width: 300,
-                      fontSize: 16
+                      width: isSmallScreen ? '27%' : 300,
+                      fontSize: 16,
+                      whiteSpace: 'nowrap'
                   }}
                   onClick={handleOpen}
               >
-                    Save Workflow
+                    {isSmallScreen ? 'Save' : 'Save Workflow'}
               </Button>
 
               <Button 
@@ -190,16 +194,17 @@ const makeAPICallGetHistory = async (route) => {
                   style={{
                       color: '#ab47bc',
                       marginTop: '0px',
-                      marginLeft: '40px',
+                      marginLeft: isSmallScreen ? '20px' : '40px',
                       marginBottom: '20px',
                       fontWeight: 'bold',
                       fontSize: 'large',
-                      width: 200,
-                      fontSize: 16
+                      width: isSmallScreen ? '27%' : 200,
+                      fontSize: 16,
+                      whiteSpace: 'nowrap'
                   }}
                   onClick={handleOpenClear}
               >
-                    Clear Board
+                    {isSmallScreen ? 'Clear' : 'Clear Board'}
               </Button>
 
             {/*
@@ -244,7 +249,7 @@ const makeAPICallGetHistory = async (route) => {
 
 
             {/* Board Here */}
-            <div style={{ width: '93%', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid',}}>
+            <div style={{ width: '96%', height: '75vh', borderWidth: '1px', borderColor: 'grey', borderStyle: 'solid', marginRight: 0}}>
               <ProjectBoard
                 tickets={tickets}
                 project={project}

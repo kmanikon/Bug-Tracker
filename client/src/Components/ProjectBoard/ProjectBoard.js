@@ -5,23 +5,10 @@ import ReactFlow, {
     useNodesState,
     useEdgesState,
     addEdge,
-    getIncomers,
-    getOutgoers,
-    MiniMap,
-    NodeToolbar,
-    Panel,
-    Position,
-    Handle,
     Controls,
-    getConnectedEdges,
-    useReactFlow,
-    ControlButton,
     MarkerType,
-    useViewport
-
   } from 'reactflow';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
-import { Button, TextField, Paper } from '@material-ui/core';
+import { Button, TextField, useMediaQuery } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import TicketNode from './TicketNode';
 import Note from './Note';
@@ -98,6 +85,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
     const [description, setDescription] = useState('');
 
     const [workflowId, setWorkflowId] = useState(null);
+
+    const isSmallScreen = useMediaQuery('(max-width: 800px)');
 
     //let [id, setId] = useState(0);
 
@@ -529,6 +518,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
           </ReactFlowProvider>
         }
 
+          {!isSmallScreen &&
+          <>
           <Divider orientation="vertical" flexItem />
           <div className="boardWindow">
             <div style={{display: 'flex', justifyContent: 'space-evenly', marginTop: '20px'}}>
@@ -585,25 +576,6 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
             <>
               <div style={{marginTop: '30px'}}></div>
 
-              {/*
-              <TextField
-                className="text"
-                onChange={(e) => setTitle(e.target.value)}  
-                value={title} 
-                label="Title"
-                variant="outlined"
-                //placeholder="Title"
-                size="small"
-                style={{
-                    marginLeft: '10%',
-                    marginBottom: '20px',
-                    marginTop: '0px',
-                    width: '80%'
-
-                }}
-              />
-              */}
-              
 
 
 
@@ -639,6 +611,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
               </>
             }
           </div>
+          </>
+          }
         </div>
 
 

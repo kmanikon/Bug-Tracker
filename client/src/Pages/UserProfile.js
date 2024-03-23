@@ -23,7 +23,7 @@ import {
 
 
 
-const UserProfile = ({user}) => {
+const UserProfile = ({user, isSmallScreen}) => {
 
     const location = useLocation();
 
@@ -42,7 +42,7 @@ const UserProfile = ({user}) => {
     const sm = 4;
     const md = 4;
 
-    const isSmallScreen = useMediaQuery('(max-width: 700px)');
+    //const isSmallScreen = useMediaQuery('(max-width: 700px)');
 
 
     return (
