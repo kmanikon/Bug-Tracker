@@ -6,7 +6,6 @@
 
 
 // Google Cloud url
-// make sure new image pushes are not cached (new image on dockerhub)
-const url = 'https://bugtracker-nuckuqerya-uc.a.run.app/'; 
+const url = process.env.REACT_APP_DOCKER_URL;
 
 export default url;
