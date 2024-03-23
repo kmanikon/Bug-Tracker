@@ -33,6 +33,11 @@ tr {
   height: 80px;
 }
 
+td {
+  text-overflow: clip !important;
+}
+
+
 
 
 table {

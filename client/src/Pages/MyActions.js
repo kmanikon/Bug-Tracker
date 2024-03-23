@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Button, CircularProgress } from '@material-ui/core/';
+import { Button, CircularProgress, useMediaQuery } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const MyActions = ({user, projects}) => {
+const MyActions = ({user, projects, isSmallScreen}) => {
 
     const location = useLocation();
     //const [projects, setProjects] = useState([]);
@@ -119,6 +119,9 @@ const MyActions = ({user, projects}) => {
         setOpen(false);
     };
 
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
+
 
     const InfoDialog = () => {
         return (
@@ -185,14 +188,16 @@ const MyActions = ({user, projects}) => {
                 >
 
                 <div style={{display: 'flex', marginBottom: '-20px'}}>
-                    My Actions by Project
+                    {!isSmallScreen ? 'My Actions by Project' : 'My Actions'}
                     <UserOutlined style={{ fontSize: '200%', marginLeft: '20px', marginTop: '-10px'}}/>
                 </div>
             </div>
 
             <div style={{display: 'flex'}}>
             
-            <InfoDialog/>
+            {!isSmallScreen &&
+                <InfoDialog/>
+            }
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { Button, useMediaQuery } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import { useNavigate } from "react-router-dom";
 import NotificationsCard from '../Components/NotificationsCard/NotificationsCard';
@@ -29,7 +29,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const Notifications = ({user, projects, readCounts}) => {
+const Notifications = ({user, projects, readCounts, isSmallScreen}) => {
   const location = useLocation();
 
   var changeCount = 0;
@@ -107,6 +107,7 @@ const Notifications = ({user, projects, readCounts}) => {
         setOpen(false);
     };
 
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     const InfoDialog = () => {
         return (
@@ -174,7 +175,14 @@ const Notifications = ({user, projects, readCounts}) => {
                   Updates to My Tickets
                   <BellOutlined style={{ fontSize: '200%', marginLeft: '20px'}}/>
               </div>
-              <InfoDialog/>
+              {!isSmallScreen ? 
+                
+                <InfoDialog/> 
+              : 
+                <div style={{height: '60px'}}>
+                    {' '}
+                </div> 
+              }
 
 
           </div>

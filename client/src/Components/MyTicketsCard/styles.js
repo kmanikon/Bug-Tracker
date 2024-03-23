@@ -8,10 +8,10 @@ export default makeStyles((theme) => ({
   projectInfo: {
     marginLeft: '20px',
     backgroundColor: '#D6EAF8',
-    height: '40px',
+    minHeight: '40px',
     paddingTop: '15px',
     //marginRight: '20px',
-    width: '93%',
+    width: 'calc(93% - 20px)'
   },
 
   title: {
@@ -57,7 +57,7 @@ export default makeStyles((theme) => ({
 
   headerCard: {
     marginLeft: '20px',
-    width: '93%'
+    width: 'calc(93% - 20px)'
   }
 
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
+import { Card, TextField, Button, Box, Select, MenuItem, Grid } from '@material-ui/core/';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
@@ -135,6 +135,10 @@ const EditTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
         routeChange();
     }
 
+    const xs = 8;
+    const sm = 7;
+    const md = 6;
+
 
     return (
         <div>
@@ -150,10 +154,13 @@ const EditTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
 
 
             <Card className={classes.headerCard} ref={ref}>
-    
-                <div style={{display: 'flex', minWidth: '800px'}}>
 
-                    <div style={{width: '35%', display: 'block'}}>
+                <Grid container rowSpacing={1} columnSpacing={1} spacing={2}>
+                    <Grid item xs={xs} sm={sm} md={md}>
+    
+
+
+                    <div style={{ display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Title</Box>
                         <TextField id="outlined-basic" variant="outlined" 
                             style={{ width: '240px', marginLeft: '20px', marginTop: '10px'}}
@@ -167,7 +174,7 @@ const EditTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
                         <div style={{ marginTop: '10px'}}></div>
 
                         <Box className={classes.title} variant="h5" gutterBottom >Assigned Developer</Box>
-                        <Select style={{ marginTop: 10, marginLeft: 20 }}
+                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '100%' }}
                             value={asignedDev}
                             onChange={(e) => setAsignedDev(e.target.value)}
                         >
@@ -179,18 +186,11 @@ const EditTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
                         
                         </Select>
 
-
-                        <div style={{ marginTop: '20px'}}></div>
-
-                        <Box className={classes.title} variant="h5" gutterBottom >Description</Box>
-                        <TextField id="outlined-basic" variant="outlined" multiline="true"
-                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px'}}
-                            value={description} 
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
                     </div>
+                    </Grid>
                 
-                    <div style={{width: '35%', display: 'block'}}>
+                    <Grid item xs={xs} sm={sm} md={md} >
+                    <div style={{ display: 'block'}}>
                         <Box className={classes.titleRight} variant="h5" gutterBottom >Ticket Type</Box>
                         <Box className={classes.subTitleRight} variant="h5" gutterBottom>
                             <Select style={{ marginTop: 0, marginLeft: 0 }}
@@ -228,8 +228,17 @@ const EditTicket = ({ user, ticketChangeCount, setTicketChangeCount }) => {
 
                         
                     </div>
+                    </Grid>
+                    </Grid>
+                    <div style={{ marginTop: '20px'}}></div>
+                <Box className={classes.title} variant="h5" gutterBottom >Description</Box>
+                <TextField id="outlined-basic" variant="outlined" multiline={true}
+                    style={{ width: '70%', marginLeft: '20px', marginTop: '10px'}}
+                    value={description} 
+                    onChange={(e) => setDescription(e.target.value)}
+                />
 
-                </div>
+                
 
                 <div style={{ marginBottom: '20px'}}></div>
                 

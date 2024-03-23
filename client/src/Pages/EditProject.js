@@ -135,7 +135,7 @@ const EditProject = ({user, changeCount, setChangeCount}) => {
     return (
         <div>
 
-        <div style={{ marginLeft: '20px'}}>
+        <div style={{ marginLeft: '20px', marginRight: '20px'}}>
         <div>
             
             <div style={{marginTop: '110px'}}></div>
@@ -163,7 +163,7 @@ const EditProject = ({user, changeCount, setChangeCount}) => {
 
                         <Box className={classes.title} variant="h5" gutterBottom >Description</Box>
                         <TextField id="outlined-basic" variant="outlined" multiline="true"
-                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px', minWidth: '500px'}}
+                            style={{ width: '200%', marginLeft: '20px', marginTop: '10px', minWidth: '240px'}}
                             value={description} 
                             onChange={(e) => setDescription(e.target.value)}
                         />

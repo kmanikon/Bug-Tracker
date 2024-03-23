@@ -35,13 +35,25 @@ export default makeStyles((theme) => ({
         left: "0px",
         top: '0px'
       }
-    }
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: 'none'
+    },
     
   },
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
     marginRight: '-120px',
+  },
+  toolbar_mobile: {
+    /*
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginLeft: 'calc(70% - 90px)'
+    */
+   position: 'absolute',
+   left: 'calc(75% - 60px)'
   },
   profile: {
     display: 'flex',
@@ -51,6 +63,26 @@ export default makeStyles((theme) => ({
   notifications: {
     marginRight: '10px'
   },
+
+  mobileBar: {
+    display: 'none',
+
+    [theme.breakpoints.down("sm")]: {
+      display: 'block',
+
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        height: '60px',
+        marginBottom: '50px',
+        position: 'fixed',
+        //minWidth: '830px',
+        zIndex: '2',
+        width: '100vw',
+      
+    },
+  }
 
 
 

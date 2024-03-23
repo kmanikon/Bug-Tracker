@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import styles from './styles';
 import { Link } from 'react-router-dom';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { Card, Button, Box, useMediaQuery } from '@material-ui/core/';
 import { useNavigate } from "react-router-dom";
 
 import url from '../../defs';
@@ -204,6 +204,7 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
       );
   }
 
+  const isSmallScreen = useMediaQuery('(max-width: 550px)');
 
   return (
     <div>
@@ -217,6 +218,7 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
           whiteSpace: 'noWrap'
 
         }}>
+            
             <Button variant="outlined" style={{
               fontWeight: 'bold',
               fontSize: 'medium',
@@ -243,7 +245,8 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
               }
                                 
              </Button>
-
+            
+            
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',
@@ -254,13 +257,16 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
                 Update Ticket
             </Button>
 
+            {!isSmallScreen && 
             <DeleteDialog />
+            }
 
         </div>
 
 
       </div>
         
+      <div style={{}}>
       <div className={classes.projectInfo}>
           <div className="projectsTitle">Details for Ticket #{ticket.ticketNumber}</div>
       </div>
@@ -270,7 +276,7 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
     
           <div style={{display: 'flex'}}>
 
-              <div style={{width: '35%', display: 'block'}}>
+              <div style={{flex: 1}}>
                   <Box className={classes.title} variant="h5" gutterBottom >Title</Box>
                   <Box className={classes.subTitle} variant="h5" gutterBottom>{tick.title}</Box>
 
@@ -300,7 +306,7 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
                   <Box className={classes.subTitle} variant="h5" gutterBottom>{formatDate(tick.modifyDate)}</Box>
               </div>
           
-              <div style={{width: '35%', display: 'block'}}>
+              <div style={{flex: 1}}>
                   <Box className={classes.titleRight} variant="h5" gutterBottom >Description</Box>
                   <Box className={classes.subTitleRight} variant="h5" gutterBottom>{tick.description}</Box>
               
@@ -332,6 +338,7 @@ const TicketDetailsCard = ({ticket, ticketNum, project, devList, changeCount, us
           <div style={{ marginBottom: '20px'}}></div>
           
       </Card>
+      </div>
 
 
       <div style={{marginTop: '20px'}}></div>

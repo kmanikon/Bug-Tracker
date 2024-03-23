@@ -20,6 +20,7 @@ export default makeStyles((theme) => ({
     paddingTop: '10px',
     paddingLeft: '20px',
     //fontWeight: 'bold',
+    marginRight: '20px'
   },
 
   
@@ -30,8 +31,9 @@ export default makeStyles((theme) => ({
     paddingTop: '10px',
     //paddingLeft: '20px',
     
-    marginLeft: '45%',
+    //marginLeft: '45%',
     //fontWeight: 'bold',
+    marginRight: '20px'
   },
   
 
@@ -39,6 +41,7 @@ export default makeStyles((theme) => ({
     fontSize: 'large',
     paddingTop: '10px',
     paddingLeft: '20px',
+    marginRight: '20px'
   },
 
   
@@ -47,7 +50,8 @@ export default makeStyles((theme) => ({
     fontSize: 'large',
     paddingTop: '10px',
     //paddingLeft: '20px',
-    marginLeft: '45%'
+    //marginLeft: '45%'
+    marginRight: '20px'
   },
   
 

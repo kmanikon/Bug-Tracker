@@ -17,7 +17,7 @@ import url from '../defs';
 
 
 
-const ManageProjectUsers = ({user}) => {
+const ManageProjectUsers = ({user, isSmallScreen}) => {
 
     const location = useLocation();
     var { project, devList, changeCount } = location.state;
@@ -83,7 +83,7 @@ const ManageProjectUsers = ({user}) => {
               </Link>
           </Button>
 
-            <UserTable devList={devList} user={user} users={projectUsers} project={project} changeCount={changeCount}/>
+            <UserTable devList={devList} user={user} users={projectUsers} project={project} changeCount={changeCount} bk2={isSmallScreen}/>
 
 
         </div>

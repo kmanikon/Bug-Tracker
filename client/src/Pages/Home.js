@@ -8,7 +8,8 @@ import {
   Button, 
   Typography, 
   Box, 
-  Grid
+  Grid,
+  useMediaQuery
 } 
 from '@material-ui/core/';
 
@@ -23,10 +24,6 @@ from '@ant-design/icons';
 
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
  
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { useNavigate } from "react-router-dom";
-
- 
 /*
 
   the homepage + navigation to main pages
@@ -34,63 +31,39 @@ import { useNavigate } from "react-router-dom";
 */
  
 
-const Home = () => {
+const Home = ({isSmallScreen}) => {
 
     //const location = useLocation();
 
+    const xs = 8;
+    const sm = 6;
+    const md = 6;
+
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     return (
       <div style={{  
         height: '100%',
-        minWidth: '700px',
+        //minWidth: '400px',
         minHeight: '500px'
       }}
       >
 
-      <div style={{marginTop: '80px'}}></div>
-
-      {/*
-        <Link to="/projects" style={{ textDecoration: 'none' }}>
-          <Button style={{
-            width: '40%', 
-            //display: 'block', 
-            textAlign: 'left',
-            marginLeft: '5%',
-            marginTop: '3%', 
-            //textTransform: 'none',
-            height: '45%',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: 'large',
-
-            flex: 0,
-            justifyContent: 'center',
-            flexDirection: 'row',
-            display: 'block'
-          }}              
-          >
-    
-              <ContainerOutlined style={{ fontSize: '400%'}}/>
-              <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
-                My Projects
-              </div>
-              
-          </Button>
-
-          </Link>
-        */}
-
+      <div style={{marginTop: '100px'}}></div>
  
       <Grid container rowSpacing={1} columnSpacing={1} style={{
-            marginLeft: '5%',
-            marginTop: '3%',
+            marginLeft: '4%',
+            //marginTop: '3%',
             //height: '75%',
             width: '92%',
-            marginRight: '5%',
-            height: '80vh'
+            //marginRight: '5%',
+            height: isSmallScreen ? 'calc(100vh - 290px)' : 'calc(100vh - 170px)',
+            display: 'flex',
+            justifyContent: 'center',
           }}
+          spacing={3}
         >
-        <Grid item xs={6}>
+        <Grid item xs={xs} sm={sm} md={md}>
         <Link to="/projects" style={{ textDecoration: 'none' }}>
           <Button style={{
             width: '100%', 
@@ -102,12 +75,12 @@ const Home = () => {
             flex: 0,
             justifyContent: 'center',
             flexDirection: 'row',
-            display: 'block'
+            display: 'block',
           }}              
           >
     
-              <FolderOpenOutlined style={{ fontSize: '400%'}}/>
-              <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+              <FolderOpenOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }} />
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                 My Projects
               </div>
               
@@ -115,7 +88,7 @@ const Home = () => {
 
           </Link>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={xs} sm={sm} md={md}>
         <Link to="/myTickets" style={{ textDecoration: 'none' }}>
           <Button style={{
             width: '100%', 
@@ -135,8 +108,8 @@ const Home = () => {
           }}              
           >
     
-              <DashboardCustomizeOutlinedIcon style={{ fontSize: '400%'}}/>
-              <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+              <DashboardCustomizeOutlinedIcon style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '10px', color: 'grey'}}>
                 Workflows
               </div>
               
@@ -144,7 +117,7 @@ const Home = () => {
 
           </Link>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={xs} sm={sm} md={md}>
         <Link to="/profile" style={{ textDecoration: 'none' }}>
           <Button style={{
             width: '100%', 
@@ -160,8 +133,8 @@ const Home = () => {
           }}              
           >
     
-              <UserOutlined style={{ fontSize: '400%'}}/>
-              <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+              <UserOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                 User Profile
               </div>
               
@@ -169,7 +142,7 @@ const Home = () => {
 
           </Link>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={xs} sm={sm} md={md}>
         <Link to="/notifications" style={{ textDecoration: 'none' }}>
           <Button style={{
             width: '100%', 
@@ -186,11 +159,12 @@ const Home = () => {
             justifyContent: 'center',
             flexDirection: 'row',
             display: 'block'
-          }}              
+          }}     
+          //variant={isSmallScreen ? "contained": "normal" }         
           >
     
-              <BellOutlined style={{ fontSize: '400%'}}/>
-              <div style={{ fontSize: '150%', marginTop: '20px', color: 'grey'}}>
+              <BellOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
+              <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                 Notifications
               </div>
               

@@ -154,7 +154,7 @@ const AddProject = ({user, changeCount, setChangeCount}) => {
     
                 <div style={{display: 'flex' }}>
 
-                    <div style={{width: '35%', display: 'block'}}>
+                    <div style={{minWidth: '120px', width: '40%', display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Title</Box>
                         <TextField id="outlined-basic" variant="outlined" 
                             style={{ width: '240px', marginLeft: '20px', marginTop: '10px'}}

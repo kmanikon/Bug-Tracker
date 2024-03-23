@@ -17,8 +17,7 @@
     padding: 16px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-    
+    /*text-overflow: ellipsis !important;*/
   }
 
   table tr:hover {
@@ -65,6 +64,8 @@
   
   .row-body {
     /* width: 10% */
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
   }
   
   .column-header,

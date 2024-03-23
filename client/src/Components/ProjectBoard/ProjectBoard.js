@@ -5,23 +5,10 @@ import ReactFlow, {
     useNodesState,
     useEdgesState,
     addEdge,
-    getIncomers,
-    getOutgoers,
-    MiniMap,
-    NodeToolbar,
-    Panel,
-    Position,
-    Handle,
     Controls,
-    getConnectedEdges,
-    useReactFlow,
-    ControlButton,
     MarkerType,
-    useViewport
-
   } from 'reactflow';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
-import { Button, TextField, Paper } from '@material-ui/core';
+import { Button, TextField, useMediaQuery } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import TicketNode from './TicketNode';
 import Note from './Note';
@@ -86,7 +73,7 @@ let linkChangeCount = 0;
 
 let id = 0;
 
-const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose, openClear, handleCloseClear}) => {
+const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose, openClear, handleCloseClear, isSmallScreen}) => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -434,7 +421,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
                 style={{
                     fontWeight: 'bold',
                     fontSize: 'large',
-                    minWidth: 300,
+                    minWidth: isSmallScreen ? 240 : 300,
                     //minHeight: 300
                 }}
             >
@@ -468,7 +455,7 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
                 style={{
                     fontWeight: 'bold',
                     fontSize: 'large',
-                    minWidth: 300,
+                    minWidth: isSmallScreen ? 240 : 300,
                     //minHeight: 300
                 }}
             >
@@ -529,6 +516,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
           </ReactFlowProvider>
         }
 
+          {!isSmallScreen &&
+          <>
           <Divider orientation="vertical" flexItem />
           <div className="boardWindow">
             <div style={{display: 'flex', justifyContent: 'space-evenly', marginTop: '20px'}}>
@@ -585,25 +574,6 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
             <>
               <div style={{marginTop: '30px'}}></div>
 
-              {/*
-              <TextField
-                className="text"
-                onChange={(e) => setTitle(e.target.value)}  
-                value={title} 
-                label="Title"
-                variant="outlined"
-                //placeholder="Title"
-                size="small"
-                style={{
-                    marginLeft: '10%',
-                    marginBottom: '20px',
-                    marginTop: '0px',
-                    width: '80%'
-
-                }}
-              />
-              */}
-              
 
 
 
@@ -639,6 +609,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
               </>
             }
           </div>
+          </>
+          }
         </div>
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import SideNavBar from './Components/SideNavBar/SideNavBar';
 import TopNavBar from './Components/TopNavBar/TopNavBar';
@@ -29,7 +29,7 @@ import MyProjectsTickets from './Pages/MyProjectsTickets';
 import Notifications from './Pages/Notifications';
 import NotificationsHistory from './Pages/NotificationsHistory';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
 
 import url from './defs';
 
@@ -178,6 +178,9 @@ function App() {
   }, []);
 
 
+  const isSmallScreen = useMediaQuery('(max-width: 600px)');
+  const isSmallScreen700px = useMediaQuery('(max-width: 700px)');
+  const isSmallScreen800px = useMediaQuery('(max-width: 800px)');
 
 
   return (
@@ -195,8 +198,8 @@ function App() {
         <div style={{ width: '100%', marginLeft: (sidebarOpen && location.pathname !== '/login' && location.pathname !== '/') ? '120px' : '0px' }}>
           <Routes>
             {/* Define your routes here */}
-            <Route path="/home" element={<Home />} />
-            <Route path="/projects" element={<Projects projects={projects} loading={projectsLoading} changeCount={projectChangeCount} user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/home" element={<Home isSmallScreen={isSmallScreen}/>} />
+            <Route path="/projects" element={<Projects projects={projects} loading={projectsLoading} changeCount={projectChangeCount} user={currentUser} setUser={setCurrentUser} isSmallScreen={isSmallScreen}/>} />
             <Route path="/projectDetails" element={<ProjectDetails user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount} userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/ticketDetails" element={<TicketDetails user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
             <Route path="/addTicket" element={<AddTicket user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
@@ -205,18 +208,18 @@ function App() {
             <Route path="/editProject" element={<EditProject user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount}/>} />
             <Route path="/projectHistory" element={<ProjectHistory user={currentUser} />} />
             <Route path="/login" element={<Login user={currentUser} setUser={setCurrentUser} init={init} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />
-            <Route path="/addProjectUser" element={<AddProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
+            <Route path="/addProjectUser" element={<AddProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount} isSmallScreen={isSmallScreen}/>} />
             <Route path="/removeProjectUser" element={<RemoveProjectUser userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/ticketHistoryDetails" element={<TicketHistoryDetails user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
-            <Route path="/profile" element={<UserProfile user={currentUser} />} />
+            <Route path="/profile" element={<UserProfile user={currentUser} />} isSmallScreen={isSmallScreen700px}/>
             <Route path="/profileHistory" element={<UserProfileHistory user={currentUser} />} />
             <Route path="/editUserProfile" element={<EditUserProfile user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="/myTickets" element={<MyTickets user={currentUser} setUser={setCurrentUser} projects={projects}/>} />
-            <Route path="/myProjectTickets" element={<MyProjectsTickets user={currentUser} setUser={setCurrentUser} />} />
-            <Route path="/manageUsers" element={<ManageProjectUsers user={currentUser} setUser={setCurrentUser} />} />
+            <Route path="/myTickets" element={<MyTickets user={currentUser} setUser={setCurrentUser} projects={projects} isSmallScreen={isSmallScreen}/>} />
+            <Route path="/myProjectTickets" element={<MyProjectsTickets user={currentUser} setUser={setCurrentUser} isSmallScreen={isSmallScreen800px}/>} />
+            <Route path="/manageUsers" element={<ManageProjectUsers user={currentUser} setUser={setCurrentUser} isSmallScreen={isSmallScreen}/>} />
             <Route path="/editUserRole" element={<EditUserRole userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
-            <Route path="/myActions" element={<MyActions user={currentUser} projects={projects}/>} />
-            <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} projects={projects} readCounts={readCounts}/>} />
+            <Route path="/myActions" element={<MyActions user={currentUser} projects={projects} isSmallScreen={isSmallScreen}/>} />
+            <Route path="/notifications" element={<Notifications user={currentUser} setUser={setCurrentUser} projects={projects} readCounts={readCounts} isSmallScreen={isSmallScreen}/>} />
             <Route path="/notificationsHistory" element={<NotificationsHistory user={currentUser} setUser={setCurrentUser} historyCount={historyCount} setHistoryCount={setHistoryCount}/>} />
             <Route path="/dashboard" element={<Dashboard user={currentUser} />} />
             <Route path="/" element={<Login user={currentUser} setUser={setCurrentUser} init={init} setInit={setInit} setTotalNotifications={setTotalNotifications}/>} />

@@ -439,29 +439,29 @@ const makeAPICallPut = async (route, post) => {
 
 
     
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', marginLeft: 0 }}>
       
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
 
-      <div style={{width: '450px', height: '400px'}}>
+      <div style={{width: '85%', maxWidth: '450px', height: '400px'}}>
 
       {demo === false ?
 
       <>
-      <div className={classes.projectInfo}>
+      <div className={classes.projectInfo} style={{marginLeft: '10px'}}>
           <div className="projectsTitle" style={{textAlign: 'center'}}>{signUp === 1 ? 'Sign Up' : 'Sign In'}</div>
       </div>
 
       
 
-      <Card className={classes.headerCard}>
-        <div style={{marginLeft: '35px', marginTop: '20px'}}>
+      <Card className={classes.headerCard} style={{ marginLeft: '10px'}}>
+        <div style={{marginLeft: '7.5%', marginTop: '20px'}}>
 
 
         {signUp === 1 || signUp === 3 ? 
         
         <TextField id="outlined-basic" variant="outlined" 
-          style={{ width: '300px', marginLeft: '20px', marginTop: '10px', marginBottom: '5px'}}
+          style={{ width: '80%', marginLeft: '5%', marginTop: '10px', marginBottom: '5px'}}
           size="small"
           value={username} 
           onChange={(e) => setUsername(e.target.value)}           
@@ -473,7 +473,7 @@ const makeAPICallPut = async (route, post) => {
         null}
 
         <TextField id="outlined-basic" variant="outlined" 
-          style={{ width: '300px', marginLeft: '20px', marginTop: '10px'}}
+          style={{ width: '80%', marginLeft: '5%', marginTop: '10px'}}
           size="small"
           value={email} 
           onChange={(e) => setEmail(e.target.value)}           
@@ -484,7 +484,7 @@ const makeAPICallPut = async (route, post) => {
 
 
         <TextField id="outlined-basic" variant="outlined" 
-          style={{ width: '300px', marginLeft: '20px', marginTop: '15px', marginBottom: '20px'}}
+          style={{ width: '80%', marginLeft: '5%', marginTop: '15px', marginBottom: '20px'}}
           size="small"
           value={password} 
           onChange={(e) => setPassword(e.target.value)}    
@@ -505,7 +505,7 @@ const makeAPICallPut = async (route, post) => {
 
         {signUp === 3 ? 
         <TextField id="outlined-basic" variant="outlined" 
-        style={{ width: '300px', marginLeft: '20px', marginTop: '0px', marginBottom: '20px'}}
+        style={{ width: '80%', marginLeft: '5%', marginTop: '0px', marginBottom: '20px'}}
         size="small"
         value={repeatPassword} 
         onChange={(e) => setRepeatPassword(e.target.value)}    
@@ -532,9 +532,10 @@ const makeAPICallPut = async (route, post) => {
 
         {signUp === 1 ?
           <Button variant="outlined" style={{
-            width: '300px', 
+            //width: '300px', 
+            width: '80%', marginLeft: '5%',
             textAlign: 'center', 
-            marginLeft: '20px', 
+            //marginLeft: '20px', 
             backgroundColor: '#D6EAF8',
             fontWeight: 'bold'
             }}
@@ -556,9 +557,9 @@ const makeAPICallPut = async (route, post) => {
         <>
         {signUp === 3 ? 
         <Button variant="outlined" style={{
-          width: '300px', 
+          width: '80%', marginLeft: '5%',
           textAlign: 'center', 
-          marginLeft: '20px', 
+          //marginLeft: '20px', 
           backgroundColor: '#D6EAF8',
           fontWeight: 'bold'
           }}
@@ -568,9 +569,9 @@ const makeAPICallPut = async (route, post) => {
         </Button>
         :
         <Button variant="outlined" style={{
-          width: '300px', 
+          width: '80%', marginLeft: '5%',
           textAlign: 'center', 
-          marginLeft: '20px', 
+          //marginLeft: '20px', 
           backgroundColor: '#D6EAF8',
           fontWeight: 'bold'
           }}
@@ -584,9 +585,9 @@ const makeAPICallPut = async (route, post) => {
 
         {loginState === 1 ? 
           <Typography style={{
-            width: '300px', 
+            width: '80%', marginLeft: '5%',
             textAlign: 'center', 
-            marginLeft: '20px',
+            //marginLeft: '20px',
             marginTop: '10px'
           }}>
             Incorrect Credentials. Try Again
@@ -595,9 +596,9 @@ const makeAPICallPut = async (route, post) => {
 
       {loginState === 2 ? 
           <Typography style={{
-            width: '300px', 
+            width: '80%', marginLeft: '5%',
             textAlign: 'center', 
-            marginLeft: '20px',
+            //marginLeft: '20px',
             marginTop: '10px'
           }}>
             Could Not {signUp === 3 ? <>Find</>: <>Create</>} User.
@@ -606,9 +607,9 @@ const makeAPICallPut = async (route, post) => {
 
       {loginState === 3 ? 
           <Typography style={{
-            width: '300px', 
+            width: '80%', marginLeft: '5%',
             textAlign: 'center', 
-            marginLeft: '20px',
+            //marginLeft: '20px',
             marginTop: '10px'
           }}>
             Passwords Do Not Match.
@@ -619,9 +620,9 @@ const makeAPICallPut = async (route, post) => {
 
         {signUp !== 3 ?
         <Button variant="text" style={{
-          width: '300px', 
+          width: '80%', marginLeft: '5%',
           textAlign: 'center', 
-          marginLeft: '20px', 
+          //marginLeft: '20px', 
           marginTop: '40px',
           textTransform: 'none'
           }}
@@ -639,9 +640,9 @@ const makeAPICallPut = async (route, post) => {
 
         {signUp !== 3 ?
         <Button variant="text" style={{
-          width: '300px', 
+          width: '80%', marginLeft: '5%',
           textAlign: 'center', 
-          marginLeft: '20px', 
+          //marginLeft: '20px', 
           marginTop: '0px',
           textTransform: 'none'
           }}
@@ -652,9 +653,9 @@ const makeAPICallPut = async (route, post) => {
         </Button>
         :
         <Button variant="text" style={{
-          width: '300px', 
+          width: '80%', marginLeft: '5%',
           textAlign: 'center', 
-          marginLeft: '20px', 
+          //marginLeft: '20px', 
           marginTop: '40px',
           marginBottom: '20px',
           textTransform: 'none'
@@ -670,9 +671,9 @@ const makeAPICallPut = async (route, post) => {
 
         {signUp !== 3 ?
         <Button variant="text" style={{
-          width: '300px', 
+          width: '80%', marginLeft: '5%',
           textAlign: 'center', 
-          marginLeft: '20px', 
+          //marginLeft: '20px', 
           marginTop: '0px',
           marginBottom: '20px',
           textTransform: 'none'
@@ -699,13 +700,13 @@ const makeAPICallPut = async (route, post) => {
       : 
       
       <>
-      <div className={classes.projectInfo}>
+      <div className={classes.projectInfo} style={{ marginLeft: '10px'}}>
           <div className="projectsTitle" style={{textAlign: 'center'}}>{signUp === 1 ? 'Sign Up' : 'Sign In'}</div>
       </div>
 
       
 
-      <Card className={classes.headerCard}>
+      <Card className={classes.headerCard} style={{ marginLeft: '10px'}}>
         <div style={{marginTop: '20px'}}>
 
         
@@ -730,13 +731,14 @@ const makeAPICallPut = async (route, post) => {
             justifyContent: 'center',
             flexDirection: 'row',
             display: 'block',
-            paddingTop: '15px'
+            paddingTop: '15px',
+            whiteSpace: 'nowrap'
           }}
           onClick={handleSignInDemoAdmin}              
           >
     
             <ContainerOutlined style={{ fontSize: '400%'}}/>
-              <div style={{ fontSize: '100%', marginTop: '20px', color: 'grey'}}>
+              <div style={{ fontSize: '90%', marginTop: '20px', color: 'grey'}}>
                 Admin
               </div>
               
@@ -759,13 +761,14 @@ const makeAPICallPut = async (route, post) => {
             justifyContent: 'center',
             flexDirection: 'row',
             display: 'block',
-            paddingTop: '15px'
+            paddingTop: '15px',
+            whiteSpace: 'nowrap'
           }}     
           onClick={handleSignInDemoDev}                  
           >
     
             <UserOutlined style={{ fontSize: '400%'}}/>
-            <div style={{ fontSize: '100%', marginTop: '20px', color: 'grey'}}>
+            <div style={{ fontSize: '90%', marginTop: '20px', color: 'grey'}}>
                 Developer
             </div>
               
@@ -781,9 +784,9 @@ const makeAPICallPut = async (route, post) => {
 
       {isLoading ? 
         <div style={{
-          width: '300px', 
+          //width: '300px', 
           textAlign: 'center', 
-          marginLeft: '55px', 
+          //marginLeft: '55px', 
           marginTop: '20px',
           marginBottom: '20px',
           textTransform: 'none'
@@ -793,9 +796,10 @@ const makeAPICallPut = async (route, post) => {
           :
         <>
             <Button variant="text" style={{
-            width: '300px', 
+              width: '80%',
+            //width: '300px', 
             textAlign: 'center', 
-            marginLeft: '55px', 
+            marginLeft: '10%', 
             marginTop: '20px',
             marginBottom: '20px',
             textTransform: 'none'

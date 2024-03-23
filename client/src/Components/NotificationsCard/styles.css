@@ -6,6 +6,7 @@ table {
     margin-left: 20px; /* add this line to add space on the left side */
     margin-right: 20px;
     border-color: transparent;
+    min-width: 0px !important;
 }
  
 table th, table td {

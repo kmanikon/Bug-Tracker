@@ -14,8 +14,8 @@ table th, table td {
 }
 
 table tr:hover {
-    background-color: #f8f8f8;
-  }
+  background-color: #f8f8f8;
+}
  
 table th {
     padding-top: 12px;
@@ -23,20 +23,71 @@ table th {
     text-align: center;
     background-color: #B8E2F2; /*#2bd3f1;*/ /*#ff993b*/
     color: #333333;
-    font-weight: bold;
-    font-size: large;
+    /*table-layout: fixed;*/
+
 }
+
+tr {
+  height: 80px;
+}
+
+td {
+  text-overflow: clip !important;
+}
+
+
+
 
 table {
-    word-break: break-word;
+  table-layout: fixed;
+
+  
 }
 
 
 
-.tableContainer{
+
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: black;
+    background-color: transparent;
+    /*text-decoration: underline;*/
+  }
+  
+  a:active {
+    color: black;
+    background-color: transparent;
+    /*text-decoration: underline;*/
+  }
+
+  .tableContainer{
 
     border-radius: 20px;
     /*height: 300px;*/
     padding: 0 10px 10px 10px;
     /*overflow-y: scroll;*/
+    min-height: 500px;
+    height: 100%;
+}
+
+.column-header {
+  background-color: #D6EAF8;
+  /*width: '15%';*/
+}
+
+.row-body {
+  /*width: 10%*/
+
+
 }

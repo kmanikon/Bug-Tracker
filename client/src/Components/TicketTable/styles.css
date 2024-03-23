@@ -1,7 +1,6 @@
 .tableContainer {
   overflow-x: auto;
-  min-width: 900px;
-  
+  min-width: 0px !important;
 }
 
 table {
@@ -17,7 +16,7 @@ table td {
   padding: 16px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis;*/
   
 }
 
@@ -35,7 +34,6 @@ table th {
   color: #333333;
   height: 40px;
   padding: 10px;
-
 }
 
 tr {
@@ -67,7 +65,19 @@ a:active {
 
 .row-body {
   /* width: 10% */
+  white-space: initial;
+  text-overflow: clip;
 }
+
+.row-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 2.4em; 
+  line-height: 1.2em; 
+}
+
+
 
 .column-header,
 .row-body {
@@ -84,38 +94,42 @@ a:active {
 }
 
 .title-column {
-  width: 15%; /* Adjust the width as needed */
-}
-
-.status-column {
-  width: 11%; /* Adjust the width as needed */
-}
-
-.assigned-dev-column {
-  width: 17%; /* Adjust the width as needed */
-}
-
-.ticket-type-column {
-  width: 15%; /* Adjust the width as needed */
-  
-}
-
-.ticket-prio-column {
-  width: 12%; /* Adjust the width as needed */
+  width: 30%;
 }
 
 .submitted-date-column {
-  width: 17%; /* Adjust the width as needed */
+  width: 17%; 
+}
+
+/*
+.title-column {
+  width: 40%; 
+}
+
+.status-column {
+  width: 13%; 
+}
+
+.ticket-type-column {
+  width: 17%;
+}
+
+.ticket-prio-column {
+  width: 12%; 
+}
+
+.submitted-date-column {
+  width: 17%; 
 }
 
 .details-column {
-  width: 10%; /* Adjust the width as needed */
+  width: 10%; 
 }
 
 .action-column {
-  width: 10%; /* Adjust the width as needed */
-  
+  width: 10%; 
 }
+*/
 
 table {
   min-width: 950px;

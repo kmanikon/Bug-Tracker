@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
 import { Link, useNavigate } from 'react-router-dom';
-import { IconButton, SearchIcon, TextField, Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core/';
+import { TextField, Button, useMediaQuery } from '@material-ui/core/';
 import './styles.css';
 import AutoScrollContainer from 'auto-scroll-container'
 
@@ -16,7 +16,7 @@ import AutoScrollContainer from 'auto-scroll-container'
 
 const COLUMNS = [
     {
-        Header: 'Username',
+        Header: 'User',
         accessor: 'username'
     },
     {
@@ -32,7 +32,7 @@ const COLUMNS = [
   ];
 
 
-const UserTable = ({devList, user, users, project, changeCount}) => {
+const UserTable = ({devList, user, users, project, changeCount, bk2}) => {
 
 
     let navigate = useNavigate();
@@ -78,9 +78,14 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
         navigate(path, {state:{'project': project, devList: devList, changeCount: changeCount}});
     }
 
+    const bk1 = useMediaQuery('(max-width: 850px)');
+    //const bk2 = useMediaQuery('(max-width: 600px)');
+    const bk3 = useMediaQuery('(max-width: 425px)');
+
   return (
     <div >
-        <div style={{display: 'flex', justifyContent: 'space-between', marginRight: '7%'}}>
+        <div
+         style={{display: 'flex', justifyContent: 'space-between', marginRight: '7%'}}>
         <TextField
             id="search-bar"
             className="text"
@@ -98,16 +103,20 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
                 <div>
                       {user && user.accessIdList.includes(project.projectId) ?
                         <>
+                        {!bk3 &&
                         <Button variant="outlined" style={{
                                 fontWeight: 'bold',
                                 fontSize: 'medium',
-                                marginRight: '20px'
+                                marginRight: '20px',
+                                whiteSpace: 'nowrap'
                             }}
                             onClick={routeChangeUser}
                         >
                             Add User
                         </Button>
+                        }
 
+                        {!bk2 &&
                         <Button variant="outlined" style={{
                                 fontWeight: 'bold',
                                 fontSize: 'medium',
@@ -117,7 +126,9 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
                         >
                             Remove User
                         </Button>
+                        }
 
+                        {!bk1 &&
                         <Button variant="outlined" style={{
                                 fontWeight: 'bold',
                                 fontSize: 'medium',
@@ -127,6 +138,7 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
                         >
                             Change User Roles
                         </Button>
+                        }
                         </>
                       : null}
                       </div>
@@ -201,15 +213,16 @@ const UserTable = ({devList, user, users, project, changeCount}) => {
       </tr>
       ))}
     </thead>
-    <tbody {...getTableBodyProps()}>
+    <tbody {...getTableBodyProps()} >
       {rows.map(row => {
         prepareRow(row)
         return (
-          <tr {...row.getRowProps()}>
+          <tr {...row.getRowProps()} >
             {row.cells.map((cell) => {
-              return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              return <td {...cell.getCellProps()} className="row-body">{cell.render('Cell')} </td>
             })}
-            <td>
+            
+            <td className="row-body">
               {data[row.id].accessIdList.includes(project.projectId) ?
                 <>Project Manager</> :
                 <>Developer</>

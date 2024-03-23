@@ -1,7 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
+import { Card, Button, Typography, Box, Select, MenuItem, Grid, useMediaQuery } from '@material-ui/core/';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
@@ -166,6 +165,12 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
     
     }
 
+    const xs = 8;
+    const sm = 8;
+    const md = 6;
+
+    const isSmallScreen = useMediaQuery('(max-width: 959px)');
+
     return (
         <div>
 
@@ -195,6 +200,7 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
                 </Link>
                 </Button>
                 
+                <div style={{width: '90%'}}>
                 <div className={classes.projectInfo}>
                     <div className="projectsTitle">Change User Role</div>
                 </div>
@@ -204,14 +210,16 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
     
                 <div style={{display: 'flex'}}>
 
-                    <div style={{width: '35%', display: 'block'}}>
+                    <div style={{display: 'block'}}>
 
 
                         <div style={{display: 'flex', marginTop: '10px', marginBottom: '10px'}}>
 
+                        <Grid container rowSpacing={1} columnSpacing={1} spacing={3}>
+                        <Grid item xs={xs} sm={sm} md={md}>
                         <div style={{display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Developer</Box>
-                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '350px', minWidth: '350px' }}
+                        <Select style={{ marginTop: 10, marginLeft: 20, maxWidth: '100%' }}
                             value={asignedDev}
                             onChange={(e) => setAsignedDev(e.target.value)}
                         >
@@ -223,10 +231,11 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
                         
                         </Select>
                         </div>
+                        </Grid>
 
 
-                        <div style={{display: 'block', marginLeft: '100px', minWidth: '125px',
-                                maxWidth: '125px'}}>
+                        <Grid item xs={xs} sm={sm} md={md}>
+                        <div style={{display: 'block', marginLeft: isSmallScreen ? '0px' : '40px', minWidth: '125px', maxWidth: '125px'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >New Role</Box>
                         <Box className={classes.subTitle} variant="h5" gutterBottom>
                             <Select style={{ marginTop: 0, marginLeft: 0 }}
@@ -243,15 +252,17 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
                             
                         </Box>
                         </div>
+                        </Grid>
 
 
+                        <Grid item xs={xs} sm={sm} md={md}>
                         <Button color="black" size="large" 
                             style={{
                                 marginTop: '20px',
-                                marginLeft: '100px',
+                                marginLeft: '20px',
                                 fontWeight: 'bold',
                                 fontSize: 'large',
-                                minWidth: '200px',
+                                //minWidth: '200px',
                                 transition: 'none'
                                 //maxWidth: '125px'
                             }}
@@ -261,6 +272,8 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
                             Submit
                             <RightOutlined size="large" style={{marginLeft: '10px'}}/>
                         </Button>
+                        </Grid>
+                        </Grid>
 
 
                     </div>
@@ -272,6 +285,7 @@ const EditUserRole = ({userChangeCount, setUserChangeCount}) => {
                 <div style={{ marginBottom: '20px'}}></div>
                 
             </Card>
+            </div>
 
 
             {userFound === 0 ? 

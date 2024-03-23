@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
 import {  
   Button, 
-  Typography, 
+  useMediaQuery, 
   Grid
 } 
 from '@material-ui/core/';
@@ -325,19 +325,76 @@ const Dashboard = ({user}) => {
     const graphHeight = '240px';
     const graphMargin = '20px';
 
+    const xs = 8;
+    const md = 6;
+
+
+    const isSmallScreen = useMediaQuery('(max-width: 959px)');
+
+    const isMobile = useMediaQuery('(max-width: 820px)');
+
+
+
+    const ToggleButons = () => {
+        return (
+            <ToggleButtonGroup
+                value={showAssigned}
+                exclusive
+                aria-label="text alignment"
+                style={{
+                    //marginRight: '80px',
+                    fontWeight: 'bold',
+                    fontSize: 'large',
+                    height: '50px'
+                }}
+            >
+                <ToggleButton 
+                    variant="outlined"
+                    size="large"
+                    value={false}
+                    disableRipple
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        height: '50px',
+                        color: 'black'
+                    }}
+                    onClick={handleShowSubmitted}
+                >
+                     { isMobile ? 'Submitted' : 'Submitted Tickets'}
+                </ToggleButton>
+
+                <ToggleButton 
+                    variant="outlined"
+                    size="large"
+                    value={true}
+                    disableRipple
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 'large',
+                        height: '50px',
+                        color: 'black'
+                    }}
+                    onClick={handleShowAssigned}
+                >
+                     { isMobile ? 'Assigned' : 'Assigned Tickets'}
+                </ToggleButton>
+
+            </ToggleButtonGroup>
+        );
+    }
 
     
     return (
-      <div style={{ height: 'calc(100vh - 200px)', minWidth: '800px' }}>
+      <div style={{ height: 'calc(100vh - 200px)' }}>
 
       <div style={{marginTop: '100px'}}></div>
 
-
-        <div style={{display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{display: isMobile ? 'block' : 'flex', justifyContent: 'space-between' }}>
             < Button color="black" size="large" variant="outlined"
                 style={{
                     //marginTop: '10px',
-                    marginLeft: '80px',
+                    marginLeft: '40px',
                     //marginBottom: '0px',
                     fontWeight: 'bold',
                     fontSize: 'large',
@@ -354,6 +411,11 @@ const Dashboard = ({user}) => {
               </Link>
             </Button>
 
+            <div style={{marginLeft: isMobile ? '0px' : 0, marginTop: isMobile ? '20px' : 0, width: !isMobile ? 'calc(100vw - 370px)' : 'calc(100vw + 0px)', textAlign: isMobile ? 'center' : 'right', marginRight: isMobile ? '0px' : '80px'}}>
+                <ToggleButons/>
+            </div>
+
+            {/*
             <ToggleButtonGroup
                 value={showAssigned}
                 exclusive
@@ -398,23 +460,29 @@ const Dashboard = ({user}) => {
                 </ToggleButton>
 
             </ToggleButtonGroup>
+            */}
 
         </div>
 
  
-        <Grid container rowSpacing={1} columnSpacing={1} style={{
-            marginLeft: '5%',
-            marginTop: '3%',
-            height: '75%',
-            width: '92%',
-            marginRight: '5%'
+        <Grid container rowSpacing={1} columnSpacing={1} sapcing={0} style={{
+            //marginLeft: '5%',
+            //marginTop: '3%',
+            //height: '75%',
+            //width: '100vw',
+            //marginRight: '5%',
+            //marginLeft: '0px',
+            //marginLeft: '-20px',
+            width: 'calc(100% - 40px)',
+            justifyContent: 'center',
+            margin: '20px'
           }}
         >
 
 
-        <Grid item xs={6} style={{ borderRight: "1px solid black", borderBottom: "1px solid black" }}>
+        <Grid item xs={xs} md={md} style={{ borderRight: !isSmallScreen ? "1px solid black" : "0px solid black", borderBottom: "1px solid black" }}>
 
-            <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
+            <div style={{ minWidth: '200px', marginTop: '2%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByPriodata} 
                     options={{
@@ -452,8 +520,8 @@ const Dashboard = ({user}) => {
         </Grid>
 
 
-        <Grid item xs={6} style={{ borderBottom: "1px solid black"}}>
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
+        <Grid item xs={xs} md={md} style={{ borderBottom: "1px solid black"}}>
+        <div style={{ minWidth: '200px', marginTop: isMobile ? '4%' : '2%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
                 <Doughnut 
                     data={TicketsByTypedata} 
                     options={{
@@ -489,11 +557,12 @@ const Dashboard = ({user}) => {
                 />
             </div>
         </Grid>
-        <Grid item xs={6} style={{ borderRight: "1px solid black"}}>
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
+        <Grid item xs={xs} md={md} style={{ borderRight: !isSmallScreen ? "1px solid black" : "0px solid black" }}>
+        <div style={{ minWidth: '200px', marginTop: '4%', marginLeft: '10%', marginRight: '10%', paddingBottom: 0, display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
             <Bar
                 data={TicketsByProjectdata}
-                height={200}
+                height={240}
+                //width={300}
                 options={{
                     plugins: {
                         title: {
@@ -532,10 +601,11 @@ const Dashboard = ({user}) => {
             />
             </div>
         </Grid>
-        <Grid item xs={6}>
 
 
-        <div style={{height: '90%', width: '90%', marginLeft: '5%', marginTop: '0%', display: 'flex', justifyContent: 'center', minHeight: graphHeight, marginBottom: graphMargin}}>
+
+        <Grid item xs={xs} md={md} style={{borderTop: isSmallScreen ? "1px solid black" : "0px solid black",}}>
+        <div style={{ minWidth: '200px', marginTop: '4%', display: 'flex', justifyContent: 'center', height: graphHeight, marginBottom: graphMargin}}>
                 <Pie 
                     data={TicketsByStatusdata} 
                     options={{
@@ -567,6 +637,7 @@ const Dashboard = ({user}) => {
                             },
                             
                         },
+                        maintainAspectRatio: false
                     }}
                 />
             </div>

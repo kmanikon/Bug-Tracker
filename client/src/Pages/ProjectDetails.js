@@ -21,10 +21,10 @@ const ProjectDetails = ({user, changeCount, setChangeCount, ticketChangeCount, s
 
   
   return (
-    <div style={{ minWidth: '900px'}}>
+    <div style={{ minWidth: '0px'}}>
         <div style={{marginTop: '110px'}}></div>
 
-        <div style={{marginLeft: '20px'}}>
+        <div style={{marginLeft: '20px', marginRight: '20px'}}>
           <ProjectDetailsCard project={project} changeCount={changeCount} setChangeCount={setChangeCount} user={user} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount} userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>
         </div>
     </div>

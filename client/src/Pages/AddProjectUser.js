@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem } from '@material-ui/core/';
+import { Card, TextField, Button, Typography, Box, Grid, useMediaQuery } from '@material-ui/core/';
 import { RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
@@ -18,7 +18,7 @@ import url from '../defs';
 
 
 
-const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
+const AddProjectUser = ({userChangeCount, setUserChangeCount, isSmallScreen}) => {
 
     const location = useLocation();
     var { project, devList, changeCount, projectUsers } = location.state;
@@ -103,6 +103,12 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
 
     }
 
+    const xs = 12;
+    const sm = 5;
+    const md = 5;
+
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
     return (
         <div>
 
@@ -130,6 +136,7 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
                 </Link>
                 </Button>
                 
+                <div style={{marginRight: '40px'}}>
                 <div className={classes.projectInfo}>
                     <div className="projectsTitle">Add User</div>
                 </div>
@@ -137,8 +144,10 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
 
                 <Card className={classes.headerCard} ref={ref}>
     
-                <div style={{display: 'flex', minWidth: '800px'}}>
+                <div style={{display: 'flex'}}>
 
+                <Grid container rowSpacing={1} columnSpacing={1} spacing={1}>
+                    <Grid item xs={xs} sm={sm} md={md}>
                     <div style={{width: '35%', display: 'block'}}>
                         <Box className={classes.title} variant="h5" gutterBottom >Username</Box>
                         <TextField id="outlined-basic" variant="outlined" 
@@ -150,11 +159,13 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
 
 
                     </div>
+                    </Grid>
                 
-                    <div style={{width: '35%', display: 'block'}}>
-                        <Box className={classes.title} variant="h5" gutterBottom >Email</Box>
+                    <Grid item xs={xs} sm={sm} md={md}>
+                    <div style={{display: 'block', marginLeft: 'auto'}}>
+                        <Box className={classes.title} variant="h5" gutterBottom style={{marginLeft: isSmallScreen ? '0px' : '30px'}}>Email</Box>
                         <TextField id="outlined-basic" variant="outlined" 
-                            style={{ width: '240px', marginLeft: '20px', marginTop: '10px'}}
+                            style={{ width: '240px', marginLeft: isSmallScreen ? '20px' : '50px', marginTop: '10px'}}
                             size="small"
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)}
@@ -163,17 +174,19 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
 
                         
                     </div>
+                    </Grid>
 
+                    <Grid item xs={xs} sm={sm} md={md}>
                     <Button color="black" size="large" 
                         style={{
                             marginTop: '30px',
-                            marginLeft: '20px',
+                            //marginLeft: '20px',
                             fontWeight: 'bold',
                             fontSize: 'large',
-                            minWidth: '200px',
+                            //minWidth: '200px',
                             maxWidth: '200px',
-                            transition: 'none'
-
+                            transition: 'none',
+                            marginLeft: '20px'
                             //position: 'fixed',
     
                         }}
@@ -185,11 +198,15 @@ const AddProjectUser = ({userChangeCount, setUserChangeCount}) => {
                 
                     </Button>
 
+                    </Grid>
+                    </Grid>
+
                 </div>
 
                 <div style={{ marginBottom: '20px'}}></div>
                 
             </Card>
+            </div>
 
             {userFound === 0 ? 
             

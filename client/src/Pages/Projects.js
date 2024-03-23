@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { CardActions, CardContent, CardMedia, Button, Typography, Box, CircularProgress } from '@material-ui/core/';
+import { CardActions, CardContent, CardMedia, Button, Typography, Box, CircularProgress, useMediaQuery } from '@material-ui/core/';
 import TopNavBar from '../Components/TopNavBar/TopNavBar'
 import ProjectCard from '../Components/Card/ProjectCard';
 
@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { 
     ContainerOutlined,
     InfoCircleOutlined,
-    FolderOpenOutlined
-   
+    FolderOpenOutlined,
+    PlusOutlined
   } 
   from '@ant-design/icons';
 
@@ -31,7 +31,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 
-const Projects = ({ projects, loading, user, setUser }) => {
+const Projects = ({ projects, loading, user, setUser, isSmallScreen }) => {
 
     const location = useLocation();
 
@@ -90,6 +90,9 @@ const Projects = ({ projects, loading, user, setUser }) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+
+    //const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
 
     const InfoDialog = () => {
@@ -163,17 +166,20 @@ const Projects = ({ projects, loading, user, setUser }) => {
             </div>
 
             <div style={{display: 'flex', alignItems: 'right'}}>
-            <InfoDialog/>
+            {!isSmallScreen &&
+                <InfoDialog/>
+            }
             <Button variant="outlined" style={{
                     fontWeight: 'bold',
                     fontSize: 'medium',
-                    marginRight: '0px',
-                    marginTop: '20px'
+                    marginRight: !isSmallScreen ? '0px' : '10px',
+                    marginTop: '20px',
+                    whiteSpace: 'nowrap'
                 }}
                 onClick={routeChange}
             >
 
-                Add Project
+                {!isSmallScreen ? <>Add Project</> : <PlusOutlined style={{ fontSize: '150%'}}/>}
                 
             </Button>
             </div>
