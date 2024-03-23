@@ -505,6 +505,8 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
                 onDrop={onDrop}
                 onDragOver={onDragOver}
                 connectionLineType="SmoothStep"
+                minZoom={isSmallScreen ? 1 : 0}
+                maxZoom={10}
               >
                 <Background variant="dots" gap={12} size={1} />
                 <Controls>
