@@ -507,10 +507,10 @@ const ProjectBoard = ({tickets, project, devlist, changeCount, open, handleClose
                 connectionLineType="SmoothStep"
 
 
-                onlyRenderVisibleElements={true}
+                //onlyRenderVisibleElements={true}
                 //panOnScrollSpeed={0.1}
-                //minZoom={isSmallScreen ? 1.5 : 0}
-                //maxZoom={1.5}
+                //minZoom={isSmallScreen ? 1.0 : 0}
+                //maxZoom={3.5}
                 //zoomOnDoubleClick={false}
                 //zoomOnScroll={isSmallScreen ? false : true}
                 //zoomOnPinch={isSmallScreen ? false : true}
