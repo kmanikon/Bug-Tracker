@@ -39,6 +39,7 @@ export default makeStyles((theme) => ({
     fontSize: 'large',
     paddingTop: '10px',
     paddingLeft: '20px',
+    paddingRight: '20px'
   },
 
   
