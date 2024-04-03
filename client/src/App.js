@@ -198,7 +198,7 @@ function App() {
         <div style={{ width: '100%', marginLeft: (sidebarOpen && location.pathname !== '/login' && location.pathname !== '/') ? '120px' : '0px' }}>
           <Routes>
             {/* Define your routes here */}
-            <Route path="/home" element={<Home isSmallScreen={isSmallScreen}/>} />
+            <Route path="/home" element={<Home isSmallScreen={isSmallScreen} totalNotifications={totalNotifications}/>} />
             <Route path="/projects" element={<Projects projects={projects} loading={projectsLoading} changeCount={projectChangeCount} user={currentUser} setUser={setCurrentUser} isSmallScreen={isSmallScreen}/>} />
             <Route path="/projectDetails" element={<ProjectDetails user={currentUser} changeCount={projectChangeCount} setChangeCount={setProjectChangeCount} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount} userChangeCount={userChangeCount} setUserChangeCount={setUserChangeCount}/>} />
             <Route path="/ticketDetails" element={<TicketDetails user={currentUser} ticketChangeCount={ticketChangeCount} setTicketChangeCount={setTicketChangeCount}/>} />
