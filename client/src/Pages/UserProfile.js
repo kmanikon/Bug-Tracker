@@ -61,6 +61,7 @@ const UserProfile = ({user, isSmallScreen}) => {
                     display: 'flex',
                     justifyContent: 'center',
                     //minWidth: '750px'
+                    marginTop: isSmallScreen ? '100px' : '0px'
                 }}
             >
             <Grid item xs={xs} sm={sm} md={md}>
