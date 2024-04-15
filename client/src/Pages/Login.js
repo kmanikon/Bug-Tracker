@@ -443,12 +443,12 @@ const makeAPICallPut = async (route, post) => {
 
       <>
       <div className={classes.projectInfo} style={{marginLeft: '10px'}}>
-          <div className="projectsTitle" style={{textAlign: 'center'}}>{signUp === 1 ? 'Sign Up' : 'Sign In'}</div>
+          <div className="projectsTitle" style={{textAlign: 'center'}}>{signUp === 1 ? 'Sign Up' : signUp === 3  ? 'Forgot Password' : 'Sign In'}</div>
       </div>
 
       
 
-      <Card className={classes.headerCard} style={{ marginLeft: '10px'}}>
+      <Card className={classes.headerCard} style={{ marginLeft: '10px' }}>
         <div style={{marginLeft: '7.5%', marginTop: '20px'}}>
 
 
@@ -531,14 +531,16 @@ const makeAPICallPut = async (route, post) => {
             textAlign: 'center', 
             //marginLeft: '20px', 
             backgroundColor: '#D6EAF8',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%'
             }}
             onClick={handleSignUp}
             >
               {isLoading ? 
-              <div>
-              <CircularProgress size={15}/>
-              </div>
+              <CircularProgress size={25}/>
               :
               <>
               {signUp === 1 ? 'Sign Up' : 'Sign In'}
@@ -559,7 +561,13 @@ const makeAPICallPut = async (route, post) => {
           }}
           onClick={handleForgotPassword}
           >
-            {signUp === 1 ? 'Sign Up' : 'Sign In'}
+            {isLoading ? 
+              <CircularProgress size={25}/>
+              :
+              <>
+              {signUp === 1 ? 'Sign Up' : 'Sign In'}
+              </>
+            }
         </Button>
         :
         <Button variant="outlined" style={{
@@ -571,7 +579,13 @@ const makeAPICallPut = async (route, post) => {
           }}
           onClick={handleSignIn}
           >
-            {signUp === 1 ? 'Sign Up' : 'Sign In'}
+            {isLoading ? 
+              <CircularProgress size={25}/>
+              :
+              <>
+              {signUp === 1 ? 'Sign Up' : 'Sign In'}
+              </>
+            }
         </Button>
         }
         </>
@@ -703,7 +717,7 @@ const makeAPICallPut = async (route, post) => {
       
       <>
       <div className={classes.projectInfo} style={{ marginLeft: '10px'}}>
-          <div className="projectsTitle" style={{textAlign: 'center'}}>{signUp === 1 ? 'Sign Up' : 'Sign In'}</div>
+          <div className="projectsTitle" style={{textAlign: 'center'}}>{'Demo User'}</div>
       </div>
 
       
