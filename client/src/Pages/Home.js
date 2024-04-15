@@ -76,6 +76,7 @@ const Home = ({isSmallScreen, totalNotifications}) => {
             justifyContent: 'center',
             flexDirection: 'row',
             display: 'block',
+            border: '1px solid #F0F0F0',
           }}              
           >
     
@@ -104,7 +105,8 @@ const Home = ({isSmallScreen, totalNotifications}) => {
             flex: 0,
             justifyContent: 'center',
             flexDirection: 'row',
-            display: 'block'
+            display: 'block',
+            border: '1px solid #F0F0F0',
           }}              
           >
     
@@ -129,7 +131,8 @@ const Home = ({isSmallScreen, totalNotifications}) => {
             flex: 0,
             justifyContent: 'center',
             flexDirection: 'row',
-            display: 'block'
+            display: 'block',
+            border: '1px solid #F0F0F0',
           }}              
           >
     
@@ -158,7 +161,8 @@ const Home = ({isSmallScreen, totalNotifications}) => {
             flex: 0,
             justifyContent: 'center',
             flexDirection: 'row',
-            display: 'block'
+            display: 'block',
+            border: '1px solid #F0F0F0',
           }}     
           //variant={isSmallScreen ? "contained": "normal" }         
           >

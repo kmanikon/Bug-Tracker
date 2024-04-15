@@ -77,11 +77,12 @@ const UserProfile = ({user, isSmallScreen}) => {
                 flex: 0,
                 justifyContent: 'center',
                 flexDirection: 'row',
-                display: 'block'
+                display: 'block',
+                border: '1px solid #F0F0F0',
             }}              
             >
         
-                <FundProjectionScreenOutlined style={{ fontSize: isSmallScreen ? '500%' : '1000%'}}/>
+                <FundProjectionScreenOutlined style={{ fontSize: isSmallScreen ? '500%' : '900%'}}/>
                 <div style={{ fontSize: isSmallScreen ? '125%' : '150%', marginTop: '20px', color: 'grey'}}>
                     Dashboard
                 </div>
@@ -107,11 +108,12 @@ const UserProfile = ({user, isSmallScreen}) => {
                 flex: 0,
                 justifyContent: 'center',
                 flexDirection: 'row',
-                display: 'block'
+                display: 'block',
+                border: '1px solid #F0F0F0',
             }}              
             >
         
-                <SnippetsOutlined style={{ fontSize: isSmallScreen ? '500%' : '1000%'}}/>
+                <SnippetsOutlined style={{ fontSize: isSmallScreen ? '500%' : '900%'}}/>
                 <div style={{ fontSize: isSmallScreen ? '125%' : '150%', marginTop: '20px', color: 'grey', whiteSpace: 'nowrap'}}>
                     Action Logs
                 </div>
@@ -137,12 +139,13 @@ const UserProfile = ({user, isSmallScreen}) => {
                 flex: 0,
                 justifyContent: 'center',
                 flexDirection: 'row',
-                display: 'block'
+                display: 'block',
+                border: '1px solid #F0F0F0',
             }}
             onClick={routeChangeEditProfile}
             >
         
-                <UserOutlined style={{ fontSize: isSmallScreen ? '500%' : '1000%'}}/>
+                <UserOutlined style={{ fontSize: isSmallScreen ? '500%' : '900%'}}/>
                 <div style={{ fontSize: isSmallScreen ? '125%' : '150%', marginTop: '20px', color: 'grey'}}>
                     Edit User
                 </div>
