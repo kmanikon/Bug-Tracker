@@ -624,7 +624,9 @@ const makeAPICallPut = async (route, post) => {
           textAlign: 'center', 
           //marginLeft: '20px', 
           marginTop: '40px',
-          textTransform: 'none'
+          textTransform: 'none',
+          transition: 'none', 
+          transform: 'none',
           }}
           onClick={() => handleSwap()}
           >
@@ -644,7 +646,9 @@ const makeAPICallPut = async (route, post) => {
           textAlign: 'center', 
           //marginLeft: '20px', 
           marginTop: '0px',
-          textTransform: 'none'
+          textTransform: 'none',
+          transition: 'none', 
+          transform: 'none',
           }}
           onClick={handleForgot}
           >
@@ -658,7 +662,9 @@ const makeAPICallPut = async (route, post) => {
           //marginLeft: '20px', 
           marginTop: '40px',
           marginBottom: '20px',
-          textTransform: 'none'
+          textTransform: 'none',
+          transition: 'none', 
+          transform: 'none',
           }}
           onClick={handleForgotReturn}
           >
@@ -676,7 +682,9 @@ const makeAPICallPut = async (route, post) => {
           //marginLeft: '20px', 
           marginTop: '0px',
           marginBottom: '20px',
-          textTransform: 'none'
+          textTransform: 'none',
+          transition: 'none', 
+          transform: 'none',
           }}
           //onClick={handleSignInDemoAdmin}
           onClick={swapDemo}
@@ -802,7 +810,9 @@ const makeAPICallPut = async (route, post) => {
             marginLeft: '10%', 
             marginTop: '20px',
             marginBottom: '20px',
-            textTransform: 'none'
+            textTransform: 'none',
+            transition: 'none', 
+            transform: 'none',
             }}
             //onClick={handleSignInDemoAdmin}
             onClick={swapDemo}
