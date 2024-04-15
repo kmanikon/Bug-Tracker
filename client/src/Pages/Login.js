@@ -1,8 +1,5 @@
-import React, { useState, useRef, useLayoutEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import TopNavBar from '../Components/TopNavBar/TopNavBar'
-import { Card, TextField, CardActions, CardContent, CardMedia, Button, Typography, Box, Select, MenuItem, Grid, InputAdornment, IconButton, CircularProgress } from '@material-ui/core/';
-import { RightOutlined } from '@ant-design/icons';
+import React, { useState } from 'react'
+import { Card, TextField, Button, Typography, Grid, InputAdornment, IconButton, CircularProgress } from '@material-ui/core/';
 import { useNavigate } from "react-router-dom";
 import useStyles from '../Components/TicketDetailsCard/styles';
 
@@ -10,13 +7,10 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import { 
-  ContainerOutlined,
   UserOutlined,
-
-        
+  UsergroupAddOutlined        
 } 
 from '@ant-design/icons';
-
 import url from '../defs';
 
 
@@ -724,8 +718,10 @@ const makeAPICallPut = async (route, post) => {
             marginTop: '5%',
             height: '75%',
             width: '92%',
-            marginRight: '5%'
+            marginRight: '5%',
+            marginBottom: '0px'
           }}
+          spacing={3}
         >
         <Grid item xs={6}>
           <Button style={{
@@ -740,12 +736,15 @@ const makeAPICallPut = async (route, post) => {
             flexDirection: 'row',
             display: 'block',
             paddingTop: '15px',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            transition: 'none', 
+            transform: 'none',
+            border: '2px solid #F0F0F0',
           }}
           onClick={handleSignInDemoAdmin}              
           >
     
-            <ContainerOutlined style={{ fontSize: '400%'}}/>
+            <UsergroupAddOutlined style={{ fontSize: '400%'}}/>
               <div style={{ fontSize: '90%', marginTop: '20px', color: 'grey'}}>
                 Admin
               </div>
@@ -770,7 +769,10 @@ const makeAPICallPut = async (route, post) => {
             flexDirection: 'row',
             display: 'block',
             paddingTop: '15px',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            transition: 'none', 
+            transform: 'none',
+            border: '2px solid #F0F0F0',
           }}     
           onClick={handleSignInDemoDev}                  
           >

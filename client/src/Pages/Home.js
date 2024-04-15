@@ -170,22 +170,22 @@ const Home = ({isSmallScreen, totalNotifications}) => {
               <BellOutlined style={{ fontSize: isSmallScreen ? '350%' : '400%' }}/>
               <div style={{ fontSize: isSmallScreen ? '120%' : '150%', marginTop: isSmallScreen ? '0px' : '20px', color: 'grey'}}>
                     {totalNotifications !== 0 ? 
-                                        <span class="icon-button__badge" style={{
-                                            position: 'absolute',
-                                            top: isSmallScreen ? '-5%' : 'calc(50% - 80px)',
-                                            right: 'calc(50% - 50px)',
-                                            width: '30px',
-                                            height: '30px',
-                                            background: 'red',
-                                            color: '#ffffff',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            borderRadius: '50%',
-                                            fontSize: 18
-                                        }}>{totalNotifications}</span>
-                                        : null
-                                        }
+                      <span class="icon-button__badge" style={{
+                          position: 'absolute',
+                          top: isSmallScreen ? '-5%' : 'calc(50% - 80px)',
+                          right: 'calc(50% - 50px)',
+                          width: '30px',
+                          height: '30px',
+                          background: 'red',
+                          color: '#ffffff',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          borderRadius: '50%',
+                          fontSize: 18
+                      }}>{totalNotifications}</span>
+                      : null
+                      }
                 Notifications
               </div>
               
